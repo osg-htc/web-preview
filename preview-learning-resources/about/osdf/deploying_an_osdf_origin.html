@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Deploying an OSDF Origin | OSG</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Deploying an OSDF Origin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A national, distributed computing partnership for data-intensive research" />
+<meta property="og:description" content="A national, distributed computing partnership for data-intensive research" />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Deploying an OSDF Origin" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A national, distributed computing partnership for data-intensive research","headline":"Deploying an OSDF Origin","url":"/web-preview/preview-learning-resources/about/osdf/deploying_an_osdf_origin.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-learning-resources/assets/css/style.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/web-preview/preview-learning-resources/assets/js/bootstrap.bundle.min.js" ></script>
+
+
+
+
+
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-learning-resources/"><img height="55" src="/web-preview/preview-learning-resources/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-learning-resources/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-learning-resources/about/open_science_pool/">Open Science Pool</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-learning-resources/about/osdf/">Open Science Data Federation</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-learning-resources/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-learning-resources/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-learning-resources/about/publications/">Publications</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-learning-resources/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-learning-resources/campus-cyberinfrastructure.html">Campuses</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-learning-resources/spotlight.html">Spotlight</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-learning-resources/news.html">News</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-learning-resources/events.html">Events</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-learning-resources/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Learning Resources
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="/web-preview/preview-learning-resources/learning-resources">Learning Resources</a>
+                            <a class="dropdown-item" href="https://support.opensciencegrid.org/support/home">OSG Connect User Docs</a>
+                            <a class="dropdown-item" href="https://opensciencegrid.org/docs/">Sys Admin Docs</a>
+                            <a class="dropdown-item" href="https://opensciencegrid.org/security/">Security Docs</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="container-xxl pt-5">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>Deploying an OSDF Origin</h1>
+        
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p>
+    Our mental model for an OSDF Origin is that of a filesystem, possibly composed of
+    many servers, that is mounted on a host managed via Kubernetes. Both the filesystem
+    and that host is the responsibility of the owner institution. The
+    <a href="https://path-cc.io/">PATh</a> team has access
+    to that host to instantiate the origin services by deploying a container.
+</p>
+<p>
+    The institution owning the hardware on which the filesystem is implemented is
+    responsible for communicating with PATh via the PATh ticketing system what parts
+    of the filesystem they want to export into the OSDF, and who should have read/write
+    access to it. The owner can change this unilaterally any time, but we request
+    notification ideally a few days prior, if possible.
+</p>
+<p>
+    The PATh services team is responsible for operating the origin service as requested.
+    This includes communicating the absolute path the owners exported filesystems show
+    up in the OSG runtime environment to the institution owning the exported filesystem.
+</p>
+<p>
+    <a href="#figure-1">Figure 1</a> below depicts this architectural arrangement.
+    PATh is responsible for services in red. This figure shows an arrangement where
+    the actual exported filesystem sits behind an institutional firewall, while the
+    Kubernetes host is dual homed, straddling this firewall.
+</p>
+<p>
+    We suggest that the institution owning the filesystem and the Kubernetes host work
+    with the
+    <a href="https://pacificresearchplatform.org/">Pacific Research Platform (PRP)</a>
+    project to operate the Kubernetes host. This
+    is by far the least effort way forward for the institution. We are happy to introduce
+    you.
+</p>
+<p>
+    If the institution insists to deploy and operate the origin themselves, we can provide
+    appropriate RPMs. However, we strongly suggest to leave operations of this service to
+    the experts in the PATh operations team.
+</p>
+
+
+<figure id="figure-1" class="figure p-2 bg-light">
+    <img src="/web-preview/preview-learning-resources/assets/images/OSDF_Image.png" class="figure-img img-fluid rounded" alt="Map of the Open Science Data Federation">
+    <figcaption class="p-1 bg-light">Figure 1: Depicting the architectural arrangement of the OSDF.</figcaption>
+</figure>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+    </main>
+    <footer>
+    <div class="container-xxl my-5">
+        <hr/>
+        Funded by the National Science Foundation under Grant Nos. 2030508, 1836650, and 1148698. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+    </div>
+</footer>
+  </body>
+</html>
