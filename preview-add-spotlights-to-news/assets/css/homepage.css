@@ -1,0 +1,3 @@
+#hero-image{background:url(https://raw.githubusercontent.com/CHTC/Articles/main/images/CLAS12-Banner.jpg) no-repeat center;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover}#hero-content-container{background-color:rgba(0,0,0,0.6);border-radius:5px;min-height:300px;color:white}#hero-content-container p{min-height:150px}@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none){#hero-content-container{-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px)}}
+
+/*# sourceMappingURL=homepage.css.map */
