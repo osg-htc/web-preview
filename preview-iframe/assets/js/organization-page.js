@@ -50,7 +50,7 @@ class Institution {
         if(this.labs){
             let labHeader = document.createElement("h5")
             labHeader.textContent = "Labs"
-            labHeader.classList.add("rounded", "bg-light", "ps-0", "my-2")
+            labHeader.classList.add("rounded", "ps-0", "my-2")
             container.appendChild(labHeader)
 
             let labUL = document.createElement("ul")
