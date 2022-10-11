@@ -1,23 +1,224 @@
+import ElasticSearchQuery, {ENDPOINT, DATE_RANGE, SUMMARY_INDEX, DEBUG} from "./elasticsearch.js";
+
 function makeDelay(ms) {
     let timer = 0;
     return function(callback){
         clearTimeout (timer);
         timer = setTimeout(callback, ms);
     };
-};
+}
 
-function populate_project_node(project, node){
-    node.getElementsByClassName("project-Name")[0].textContent = project["Name"]
-    node.getElementsByClassName("project-PIName")[0].textContent = project["PIName"]
-    node.getElementsByClassName("project-FieldOfScience")[0].textContent = project["FieldOfScience"]
-    node.getElementsByClassName("project-Organization")[0].textContent = project["Organization"]
-    node.getElementsByClassName("project-Description")[0].textContent = project["Description"]
-    document.getElementById("cpu-core-hours-bar-graph").src = `https://gracc.opensciencegrid.org/d-solo/tFUN4y44z/projects?orgId=1&var-Project=${project["Name"]}&from=1657307185834&to=1665083185834&panelId=2`
-    document.getElementById("cpu-core-hours-int").src = `https://gracc.opensciencegrid.org/d-solo/tFUN4y44z/projects?orgId=1&var-Project=${project["Name"]}&from=1657307185834&to=1665083185834&panelId=4`
-    document.getElementById("gpu-hours-bar-graph").src = `https://gracc.opensciencegrid.org/d-solo/tFUN4y44z/projects?orgId=1&var-Project=${project["Name"]}&from=1657307185834&to=1665083185834&panelId=14`
-    document.getElementById("gpu-hours-int").src = `https://gracc.opensciencegrid.org/d-solo/tFUN4y44z/projects?orgId=1&var-Project=${project["Name"]}&from=1657307185834&to=1665083185834&panelId=16`
-    document.getElementById("facilities-bar-graph").src = `https://gracc.opensciencegrid.org/d-solo/tFUN4y44z/projects?orgId=1&var-Project=${project["Name"]}&from=1657307185834&to=1665083185834&panelId=10`
-    document.getElementById("facilities-int").src = `https://gracc.opensciencegrid.org/d-solo/tFUN4y44z/projects?orgId=1&var-Project=${project["Name"]}&from=1657307185834&to=1665083185834&panelId=12`
+/**
+ * A suite of Boolean functions deciding the visual status of a certain grafana graph
+ *
+ * true results in the graph being shown, false the opposite
+ */
+const elasticSearch = new ElasticSearchQuery(SUMMARY_INDEX, ENDPOINT)
+
+class UsageToggles {
+
+    static async getUsage() {
+        if (this.usage) {
+            return this.usage
+        }
+
+        let usageQueryResult = await elasticSearch.search({
+            size: 0,
+            query: {
+                range: {
+                    EndTime: {
+                        lte: DATE_RANGE['now'],
+                        gte: DATE_RANGE['ninetyDaysAgo']
+                    }
+                }
+            },
+            aggs: {
+                projects: {
+                    "terms": {
+                        field: "ProjectName",
+                        size: 99999999
+                    },
+                    aggs: {
+                        projectCpuUse: {
+                            sum: {
+                                field: "CoreHours"
+                            }
+                        },
+                        projectGpuUse: {
+                            sum: {
+                                field: "GPUHours"
+                            }
+                        }
+                    }
+                }
+            }
+        })
+
+        let projectBuckets = usageQueryResult.aggregations.projects.buckets
+
+        this.usage = projectBuckets.reduce((p, v) => {
+            p[v['key']] = {
+                cpu: v['projectCpuUse']['value'] != 0,
+                gpu: v['projectGpuUse']['value'] != 0
+            }
+            return p
+        }, {})
+
+        return this.usage
+    }
+
+    static async usedCpu(projectName) {
+        let usage = await UsageToggles.getUsage()
+        if (projectName in usage) {
+            return usage[projectName]["cpu"]
+        }
+        return false
+    }
+
+    static async usedGpu(projectName) {
+        let usage = await UsageToggles.getUsage()
+        if (projectName in usage) {
+            return usage[projectName]["gpu"]
+        }
+        return false
+    }
+}
+
+
+/**
+ * A node to create and interact with a Grafana embedded graph
+ *
+ * A single node handles one graph which should be updated on the fly rather then recreated
+ */
+class GraccDisplay {
+    constructor({srcUrl, showDisplay, searchParams}) {
+        this.showDisplay = showDisplay
+        this.srcUrl = srcUrl
+        this.searchParams = searchParams
+    }
+
+    get node() {
+        if(!this._node){
+            let node = document.createElement("iframe")
+            node.width = "100%"
+            node.src = this.src
+            this._node = node
+        }
+        return this._node
+    }
+
+    get searchParams(){
+        return this._searchParams
+    }
+
+    set searchParams(searchParams){
+        this._searchParams = searchParams
+        this.update()
+    }
+
+    get src() {
+        let url = new URL(this.srcUrl)
+        let searchParams = {...this.searchParams}
+        Object.entries(searchParams).forEach( ([k,v], i) => url.searchParams.append(k, v))
+        return url.toString()
+    }
+
+    async update(){
+        this.node.src = this.src
+        this.toggle()
+    }
+
+    updateSearchParams(searchParams){
+        this.searchParams = {
+            ...this.searchParams,
+            ...searchParams
+        }
+    }
+
+    async toggle(){
+        this.node.hidden = !(await this.showDisplay(this.searchParams["var-Project"]))
+    }
+}
+
+const GRAFANA_PROJECT_BASE_URL = "https://gracc.opensciencegrid.org/d-solo/tFUN4y44z/projects"
+const GRAFANA_BASE = {
+    orgId: 1,
+    from: DATE_RANGE['ninetyDaysAgo'],
+    to: DATE_RANGE['now']
+}
+
+/**
+ * A node wrapping the project information break down
+ */
+class ProjectDisplay{
+    constructor(parentNode) {
+        this.parentNode = parentNode
+        this.grafanaGraphInfo = [
+            {
+                className: "facilities-int",
+                panelId: 12,
+                showDisplay: UsageToggles.usedCpu,
+                ...GRAFANA_BASE
+            },{
+                className: "facilities-bar-graph",
+                panelId: 10,
+                showDisplay: UsageToggles.usedCpu,
+                ...GRAFANA_BASE
+            },{
+                className: "gpu-hours-int",
+                panelId: 16,
+                showDisplay: UsageToggles.usedGpu,
+                ...GRAFANA_BASE
+            },{
+                className: "gpu-hours-bar-graph",
+                panelId: 14,
+                showDisplay: UsageToggles.usedGpu,
+                ...GRAFANA_BASE
+            },{
+                className: "cpu-core-hours-int",
+                panelId: 4,
+                showDisplay: UsageToggles.usedCpu,
+                ...GRAFANA_BASE
+            },{
+                className: "cpu-core-hours-bar-graph",
+                panelId: 2,
+                showDisplay: UsageToggles.usedCpu,
+                ...GRAFANA_BASE
+            }
+        ]
+
+        this.graphDisplays = this.grafanaGraphInfo.map(graph => {
+            let wrapper = document.getElementsByClassName(graph['className'])[0]
+            let graphDisplay = new GraccDisplay({
+                srcUrl: GRAFANA_PROJECT_BASE_URL,
+                showDisplay: graph['showDisplay'],
+                searchParams: {
+                    to: graph['to'],
+                    from: graph['from'],
+                    orgId: graph['orgId'],
+                    panelId: graph['panelId']
+                }
+            })
+            wrapper.appendChild(graphDisplay.node)
+
+            return graphDisplay
+        })
+    }
+
+    updateTextValue(className, value){
+        this.parentNode.getElementsByClassName(className)[0].textContent = value
+    }
+
+    update({Name, PIName, FieldOfScience, Organization, Description}) {
+        this.updateTextValue("project-Name", Name)
+        this.updateTextValue("project-PIName", PIName)
+        this.updateTextValue("project-FieldOfScience", FieldOfScience)
+        this.updateTextValue("project-Organization", Organization)
+        this.updateTextValue("project-Description", Description)
+        this.graphDisplays.forEach(gd => {
+            gd.updateSearchParams({"var-Project": Name})
+        })
+    }
 }
 
 class Search {
@@ -70,8 +271,10 @@ class Table {
         this.grid = undefined
         this.data_function = data_function
         this.wrapper = wrapper
-        this.display_node = document.getElementById("project-display")
-        this.display_modal = new bootstrap.Modal(document.getElementById("project-display"), {
+
+        let projectDisplayNode = document.getElementById("project-display")
+        this.projectDisplay = new ProjectDisplay(projectDisplayNode)
+        this.display_modal = new bootstrap.Modal(projectDisplayNode, {
             keyboard: true
         })
         this.columns = [
@@ -136,7 +339,7 @@ class Table {
         }).forceRender();
     }
     toggle_row = (toggled_row, project) => {
-        populate_project_node(project, this.display_node)
+        this.projectDisplay.update(project)
         this.display_modal.show()
     }
     row_click = async (PointerEvent, e) => {
@@ -183,8 +386,8 @@ class CardDisplay{
 }
 
 class Wrapper {
-    constructor() {
-        this.node = document.getElementById("wrapper")
+    constructor(id){
+        this.node = document.getElementById(id)
     }
     remove_children = () => {
         while(this.node.hasChildNodes()){
@@ -198,7 +401,7 @@ class ProjectPage{
         this.mode = undefined
         this.data = undefined
         this.filtered_data = undefined
-        this.wrapper = new Wrapper()
+        this.wrapper = new Wrapper("wrapper")
         this.search = new Search(this.get_data, this.update_data)
         this.table = new Table(this.wrapper, this.get_data)
         this.card_display = new CardDisplay(this.wrapper, this.get_data)
@@ -225,7 +428,15 @@ class ProjectPage{
             }
         }
 
-        this.data = await response.json()
+        let usageJson = await UsageToggles.getUsage()
+        let responseJson = await response.json()
+
+        this.data = Object.entries(responseJson).reduce((p, [k,v]) => {
+            if(k in usageJson){
+                p[k] = v
+            }
+            return p
+        }, {})
 
         this.search.initialize()
 
@@ -262,4 +473,5 @@ class ProjectPage{
     }
 }
 
+UsageToggles.getUsage()
 const project_page = new ProjectPage()
