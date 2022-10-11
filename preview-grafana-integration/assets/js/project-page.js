@@ -95,13 +95,19 @@ class GraccDisplay {
         this.showDisplay = showDisplay
         this.srcUrl = srcUrl
         this.searchParams = searchParams
+        this.loaded = false
     }
 
     get node() {
         if(!this._node){
             let node = document.createElement("iframe")
             node.width = "100%"
+            node.height = "200px"
             node.src = this.src
+            node.addEventListener("load", () => {
+                this.loaded = true;
+                this.toggle()
+            })
             this._node = node
         }
         return this._node
@@ -125,6 +131,7 @@ class GraccDisplay {
 
     async update(){
         this.node.src = this.src
+        this.loaded = false
         this.toggle()
     }
 
@@ -136,7 +143,7 @@ class GraccDisplay {
     }
 
     async toggle(){
-        this.node.hidden = !(await this.showDisplay(this.searchParams["var-Project"]))
+        this.node.hidden = !(await this.showDisplay(this.searchParams["var-Project"]) && this.loaded)
     }
 }
 
@@ -290,36 +297,16 @@ class Table {
             }, {
                 id: 'FieldOfScience',
                 name: 'Field Of Science'
-            }, {
-                id: "Department",
-                name: "Department",
-                hidden: true
-            }, {
-                id: "Description",
-                name: "Description",
-                hidden: true
-            }, {
-                id: "ID",
-                name: "ID",
-                hidden: true
-            }, {
-                id:  "Organization",
-                name: "Organization",
-                hidden: true
-            }, {
-                id: "ResourceAllocations",
-                name: "Resource Allocations",
-                hidden: true
             }
         ]
     }
-    initialize = async () => {
+    initialize = (data) => {
         let table = this;
         this.grid =  new gridjs.Grid({
             columns: table.columns,
             sort: true,
             className: {
-                container: "table-responsive",
+                container: "",
                 table: "table table-hover",
                 td: "pointer",
                 paginationButton: "mt-2 mt-sm-0"
@@ -329,8 +316,9 @@ class Table {
                 enabled: true,
                 limit: 50,
                 buttonsCount: 1
-            }
-        }).render(table.wrapper.node);
+            },
+            width: "1000px"
+        }).render(table.wrapper);
         this.grid.on('rowClick', this.row_click);
     }
     update = (data) => {
@@ -350,67 +338,15 @@ class Table {
     }
 }
 
-class CardDisplay{
-    constructor(wrapper, data_function) {
-        this.wrapper = wrapper
-        this.data_function = data_function
-        this.template_card = document.getElementById("template-card")
-    }
-    initialize = async () => {
-        let data = await this.data_function()
-
-        let projects = Object.values(data)
-
-        this.update(projects)
-    }
-    update = async (data) => {
-        this.wrapper.remove_children()
-
-        for(const project of data){
-            let clone = this.template_card.cloneNode(true)
-            clone.removeAttribute('id')
-
-            populate_project_node(project, clone)
-
-            let card_key = project['Name'].replace(/\s|\./g, '')
-
-            clone.setAttribute("href", "#" + card_key)
-            clone.setAttribute("aria-controls", card_key)
-            clone.getElementsByClassName("project-Description-container")[0].setAttribute("id", card_key)
-
-            this.wrapper.node.appendChild(clone)
-
-            clone.hidden = false
-        }
-    }
-}
-
-class Wrapper {
-    constructor(id){
-        this.node = document.getElementById(id)
-    }
-    remove_children = () => {
-        while(this.node.hasChildNodes()){
-            this.node.removeChild(this.node.firstChild)
-        }
-    }
-}
-
 class ProjectPage{
     constructor(props) {
         this.mode = undefined
         this.data = undefined
         this.filtered_data = undefined
-        this.wrapper = new Wrapper("wrapper")
+        this.wrapper = document.getElementById("wrapper")
         this.search = new Search(this.get_data, this.update_data)
         this.table = new Table(this.wrapper, this.get_data)
-        this.card_display = new CardDisplay(this.wrapper, this.get_data)
-        window.addEventListener("resize", this.update_width)
-
-        this.initialize()
-    }
-    initialize = async () => {
-        await this.update_width() // update_width ~= initialize based on width
+        this.table.initialize()
     }
     get_data = async () => {
 
@@ -448,27 +384,7 @@ class ProjectPage{
 
         if(JSON.stringify(this.filtered_data) != JSON.stringify(new_filtered_data)){
             this.filtered_data = new_filtered_data
-            this.update_page_data()
-        }
-    }
-    update_page_data = () => {
-        if(this.mode == "mobile"){
-            this.card_display.update(Object.values(this.filtered_data))
-        } else {
             this.table.update(Object.values(this.filtered_data))
-        }
-    }
-    update_width = async () => {
-        let new_mode = window.innerWidth < 576 ? "mobile" : "desktop";
-        if( new_mode != this.mode){
-            this.mode = new_mode
-            this.wrapper.remove_children()
-            if(this.mode == "mobile"){
-                await this.card_display.initialize()
-            } else {
-                await this.table.initialize()
-            }
-            this.update_data()
         }
     }
 }
