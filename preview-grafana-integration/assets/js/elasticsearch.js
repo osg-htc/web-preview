@@ -8,7 +8,7 @@ const SUMMARY_INDEX = "gracc.osg.summary"
 const ENDPOINT = "https://gracc.opensciencegrid.org/q"
 const DEBUG=true
 const DATE_RANGE = {
-    ninetyDaysAgo: new Date(new Date().setDate(new Date().getDate()-90)).getTime(), // Gets date object 90 days in advance
+    oneYearAgo: new Date(new Date().setDate(new Date().getDate()-365)).getTime(), // Gets date object 90 days in advance
     now: new Date().getTime()
 }
 

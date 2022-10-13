@@ -28,7 +28,7 @@ class UsageToggles {
                 range: {
                     EndTime: {
                         lte: DATE_RANGE['now'],
-                        gte: DATE_RANGE['ninetyDaysAgo']
+                        gte: DATE_RANGE['oneYearAgo']
                     }
                 }
             },
