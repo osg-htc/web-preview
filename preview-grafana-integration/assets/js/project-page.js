@@ -100,14 +100,28 @@ class GraccDisplay {
 
     get node() {
         if(!this._node){
-            let node = document.createElement("iframe")
-            node.width = "100%"
-            node.height = "200px"
-            node.src = this.src
-            node.addEventListener("load", () => {
+            let iframe = document.createElement("iframe")
+            iframe.width = "100%"
+            iframe.height = "100%"
+            iframe.src = this.src
+            iframe.addEventListener("load", () => {
                 this.loaded = true;
                 this.toggle()
             })
+
+            let loadDisplay = document.createElement("div")
+            loadDisplay.classList.add("spinner-grow")
+            loadDisplay.role = "status"
+
+            let node = document.createElement("div")
+            node.classList.add("justify-content-center")
+            node.style.width = "100%"
+            node.style.height = "200px"
+            node.iframe = iframe
+            node.appendChild(iframe)
+            node.loadDisplay = loadDisplay
+            node.appendChild(loadDisplay)
+
             this._node = node
         }
         return this._node
@@ -130,7 +144,7 @@ class GraccDisplay {
     }
 
     async update(){
-        this.node.src = this.src
+        this.node.iframe.src = this.src
         this.loaded = false
         this.toggle()
     }
@@ -143,14 +157,17 @@ class GraccDisplay {
     }
 
     async toggle(){
-        this.node.hidden = !(await this.showDisplay(this.searchParams["var-Project"]) && this.loaded)
+        let showDisplay = await this.showDisplay(this.searchParams["var-Project"])
+        this.node.style.display = showDisplay ? "flex" : "none";
+        this.node.iframe.hidden = !this.loaded
+        this.node.loadDisplay.hidden = this.loaded
     }
 }
 
 const GRAFANA_PROJECT_BASE_URL = "https://gracc.opensciencegrid.org/d-solo/tFUN4y44z/projects"
 const GRAFANA_BASE = {
     orgId: 1,
-    from: DATE_RANGE['ninetyDaysAgo'],
+    from: DATE_RANGE['oneYearAgo'],
     to: DATE_RANGE['now']
 }
 
@@ -193,23 +210,28 @@ class ProjectDisplay{
                 ...GRAFANA_BASE
             }
         ]
+    }
 
-        this.graphDisplays = this.grafanaGraphInfo.map(graph => {
-            let wrapper = document.getElementsByClassName(graph['className'])[0]
-            let graphDisplay = new GraccDisplay({
-                srcUrl: GRAFANA_PROJECT_BASE_URL,
-                showDisplay: graph['showDisplay'],
-                searchParams: {
-                    to: graph['to'],
-                    from: graph['from'],
-                    orgId: graph['orgId'],
-                    panelId: graph['panelId']
-                }
+    get graphDisplays(){
+        // Create these when they are needed and not before
+        if(!this._graphDisplays){
+            this._graphDisplays = this.grafanaGraphInfo.map(graph => {
+                let wrapper = document.getElementsByClassName(graph['className'])[0]
+                let graphDisplay = new GraccDisplay({
+                    srcUrl: GRAFANA_PROJECT_BASE_URL,
+                    showDisplay: graph['showDisplay'],
+                    searchParams: {
+                        to: graph['to'],
+                        from: graph['from'],
+                        orgId: graph['orgId'],
+                        panelId: graph['panelId']
+                    }
+                })
+                wrapper.appendChild(graphDisplay.node)
+                return graphDisplay
             })
-            wrapper.appendChild(graphDisplay.node)
-
-            return graphDisplay
-        })
+        }
+        return this._graphDisplays
     }
 
     updateTextValue(className, value){
@@ -339,7 +361,7 @@ class Table {
 }
 
 class ProjectPage{
-    constructor(props) {
+    constructor() {
         this.mode = undefined
         this.data = undefined
         this.filtered_data = undefined
