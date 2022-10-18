@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>OSDF Data Origin Hardware Examples | OSG</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="OSDF Data Origin Hardware Examples" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Community provided storage system architectures for OSDF Data Origins" />
+<meta property="og:description" content="Community provided storage system architectures for OSDF Data Origins" />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="/web-preview/preview-training-event/assets/images/UCSD_Data_Origin_Proposal.png" />
+<meta property="og:image:alt" content="Image of the UCSD Proposal" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-18T17:58:15+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/web-preview/preview-training-event/assets/images/UCSD_Data_Origin_Proposal.png" />
+<meta name="twitter:image:alt" content="Image of the UCSD Proposal" />
+<meta property="twitter:title" content="OSDF Data Origin Hardware Examples" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-18T17:58:15+00:00","datePublished":"2022-10-18T17:58:15+00:00","description":"Community provided storage system architectures for OSDF Data Origins","headline":"OSDF Data Origin Hardware Examples","image":{"alt":"Image of the UCSD Proposal","url":"/web-preview/preview-training-event/assets/images/UCSD_Data_Origin_Proposal.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"/web-preview/preview-training-event/organization/osdf/example_data_origin.html"},"url":"/web-preview/preview-training-event/organization/osdf/example_data_origin.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-training-event/assets/css/style.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/web-preview/preview-training-event/assets/js/bootstrap.bundle.min.js" ></script>
+
+
+
+
+
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-training-event/"><img height="55" src="/web-preview/preview-training-event/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-training-event/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-training-event/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-training-event/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-training-event/about/publications/">Publications</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-training-event/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-training-event/services/access-point.html">OSG-Operated Access Points</a>
+                                
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-training-event/services/open_science_pool.html">Open Science Pool</a>
+                                
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-training-event/services/osdf.html">Open Science Data Federation</a>
+                                
+                            
+                                
+                            
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-training-event/campus-cyberinfrastructure.html">Campuses</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-training-event/spotlight.html">Spotlight</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-training-event/news.html">News</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-training-event/events.html">Events</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-training-event/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+    <main>
+      <div class="container-xxl py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-9 col-lg-8 col-xl-9 col-xxl-8">
+            <div>
+                <h1 id="osdf-data-origin-hardware-examples">OSDF Data Origin Hardware Examples</h1>
+
+<p class="fs-5">We are actively collecting hardware examples for OSDF, if you would like to submit one
+email us at <a href="mailto:support@osg-htc.org">support@osg-htc.org</a> to be featured.</p>
+
+<p class="fs-5">OSG has no official recommendation for hardware or storage system architectures, all examples below are
+from community submissions.</p>
+
+<h1 class="mb-4 mb-3" id="us-cms-tier-2-center---university-of-california-san-diego">US CMS Tier-2 Center - University of California, San Diego</h1>
+
+<p class="fs-5"><a href="https://docs.ceph.com/en/quincy/">Ceph storage system</a> for the US CMS Tier-2 Center in the experimental
+particle physics group at the University of California, San Diego.</p>
+
+<h2 class="mt-4 mb-3" id="overview">Overview</h2>
+
+<div class="rounded bg-light p-2 fs-5">
+
+  <h4 id="budget">Budget</h4>
+  <p>$400,000</p>
+
+  <h4 id="pros">Pros</h4>
+
+  <ul>
+    <li>Cheap large volume storage (7.2PB usable) at a good performance (288Gbit/sec theoretical max IO, 100Gbit/sec to WAN)</li>
+    <li>Not too effort-intensive to operate.</li>
+  </ul>
+
+  <h4 id="cons">Cons</h4>
+
+  <ul>
+    <li>All redundancy is disk level instead of node level.</li>
+    <li>When Ceph crashes it can be painful to rebuild in its entirety. This and possible solutions are discussed <a href="#currently-in-operation-at-ucsd">below</a>.</li>
+  </ul>
+
+</div>
+
+<h2 class="mt-4 mb-3" id="implementation">Implementation</h2>
+
+<div class="rounded bg-light p-2 fs-5">
+
+  <p>$400k allows the purchase of 6 storage systems, two headnodes each, a 25Gbps switch with 6x100Gbps uplinks, and a Kubernetes (K8S) node with a single 100Gbps NIC. With 3 disk redundancy erasure encoding this provides a total of roughly 1.2PB of Real Byte Capacity of usable storage per array, or 7.2PB usable storage total.</p>
+
+  <div class="d-flex py-3">
+  <figure style="max-width: 600px" class="mx-auto">
+    <img class="img-fluid" src="/web-preview/preview-training-event/assets/images/UCSD_Data_Origin_Proposal.png" alt="Figure 1: Showing storage architecture of the proposed OSDF origin at UCSD" />
+    <figcaption>Figure 1: Storage architecture overview</figcaption>
+  </figure>
+</div>
+
+  <p>The individual storage chassis include 102 20TB enterprise quality HDDs. These are extra long chassis that require special racks to accommodate them.</p>
+
+  <p>We have recent quotes for one of these from multiple vendors at $50k. We connect them up to the network via 2 headnodes. Each headnode is connected to the disk array via 2x12Gbps special connectors. Each storage node thus theoretically can bring 4x12=48Gbps to the headnodes combined, and we connect each head node at 25Gbps to the top of the rack switch. Each disk array thus has 48Gbps theoretical capacity to the K8S node on the top-of-rack (TOR) switch.</p>
+
+  <p>For the purpose of an OSDF data origin, it is plenty sufficient to have 100Gbps theoretical bandwidth via the K8S host. 6 disk arrays would provide 6x48=288Gbit/sec, plenty enough headroom for the storage arrays to be able to serve a local cluster, and WAN traffic never negatively affecting the local data access.</p>
+
+  <p>We estimate the other components to cost $6k per head node, $30k for a TOR  switch each for data and control, $10k for the K8S node with 100Gbps NIC, and a few thousand for the rack and power installation, etc. The data switch was mentioned previously as providing 25Gbps ports, or just multiple 10Gbps, whatever is more convenient. The control switch can be something really simple, say a 1Gbit/sec switch that is inexpensive. These are all rough numbers that should fit into the budget given that the bulk of the cost is in the storage infrastructure. Whether or not a 7th disk array fits into the price depends on detailed pricing. Also, whether or not 18TB or 20TB are more cost-effective for disks depends on the details of actual quotes. We used a 20TB HDD for the size calculations.</p>
+
+  <p>We chose to implement Ceph such that we get triple disk redundancy but not system redundancy. We chose to do that in order to maximize storage by minimizing costs for chassis &amp; headnodes. I.e. we based our infrastructure on the largest disk arrays we could find for sale. If you wanted Ceph to be deployed with system redundancy then you need more and smaller systems, and thus invariably will be spending more money on enclosures, CPUs, RAM, headnodes, etc.</p>
+
+  <p>For 102 disks deployed with triple-redundant erasure encoding into two arrays, one for each headnode, we arrive at roughly 1.2PB usable disk space per disk array, or 7.2PB total for the 6 arrays together.</p>
+  <ul>
+    <li>The storage headnodes only run services required to operate CephFS.</li>
+    <li>We deliberately chose to isolate the OSDF Data Origin on a separate piece of hardware to be conservative, and to meet the architecture described in the OSG documentation, i.e. the K8S node straddles a potential firewall.</li>
+  </ul>
+</div>
+
+<h2 class="mt-4 mb-3" id="storage-use">Storage Use</h2>
+
+<div class="rounded bg-light p-2 fs-5">
+  <p>We support primarily data analysis of <a href="https://www.cms.gov/">CMS</a> data from the <a href="https://home.cern/science/accelerators/large-hadron-collider">LHC</a>.</p>
+
+  <p>Roughly <strong>50 active users</strong> with significant storage accounts.</p>
+
+  <p>Roughly <strong>1,000 users that use the cluster and read data from storage</strong> that they process. None of these users have accounts on our systems. They use OSG middleware to use the cluster via CMS’s HTCondor pool of the Open Science Compute Federation ( OSCF ).</p>
+
+  <p>The data that is read by the bulk of the users has typical file sizes between 100MB to ~2GB.</p>
+
+  <p>We impose a <strong>minimum filesize of 10MB</strong> onto the users. The actual policy was chosen in some negotiation with the users to allow all things reasonable that they need to do, but also to disallow unreasonably small files that could hurt performance for all. We do not have real evidence for this being an issue but wanted to play it safe as we started our Ceph adventure. In addition, having millions of small files wastes storage if the files are smaller than the default minimal size in Ceph. We have limited system management effort (one person to operate all storage, all services, a set of login nodes, and a 10,000 core cluster, and a large number of eclectic hardware for R&amp;D purposes), and felt that we needed to put a policy in place to minimize operational headaches.</p>
+
+</div>
+
+<h2 class="mt-4 mb-3" id="currently-in-operation-at-ucsd">Currently in Operation at UCSD</h2>
+
+<div class="rounded bg-light p-2 fs-5">
+  <p>We presently operate a system that includes 5 such disk arrays instead of the 6 proposed above. The only difference to the proposed above is that we are short on 10Gbps ports in our infrastructure, and don’t have a 100Gbps K8S host. Instead, we connect each head node at 10Gbps, and have 6x10Gbps origin servers from a hardware purchase many years ago.</p>
+
+  <p>Our TOR switching infrastructure supports 2x100 Gbit to the network edge of UC San Diego. This is more than the 5x20 provisioned to support Ceph because we have other needs for bandwidth out of our computer room in the physics department.</p>
+
+  <p>We have seen sustained peak IO at 80-90% of the theoretical as long as there are lots of clients hitting the system, all reading/writing reasonably sequentially reasonably large files from the file system. See our filesize policy above.</p>
+
+</div>
+
+<h3 class="mt-4 mb-3" id="what-we-have-learned">What we have learned</h3>
+
+<div class="rounded bg-light p-2 fs-5">
+
+  <p>We are very new to using <a href="https://docs.ceph.com/en/quincy/">Ceph</a> with only a few months of experience.</p>
+  <ul>
+    <li>So far had one painful crash of Ceph requiring a few days of maintenance to fix it.</li>
+    <li>We are following other more experienced people in our Ceph deployment.
+      <ul>
+        <li>Most notably Caltech and the Flatiron Institute. See this <a href="https://www.youtube.com/watch?v=9CVZnY-txmY">seminar by Pataki</a> on YouTube.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>In hindsight maybe we would have been better off having each headnode its own erasure encoded independent filesystem and not aggregate all of them into one CephFS namespace. We could have made a single namespace at the OSDF out of our origins, and thus have a much smaller entity to rebuild upon failure.</p>
+
+  <p>Such an arrangement would still have its own drawbacks, as it bifurcates the total volume with all the issues of having individual size limits of each individual CephFS filesystem. Maybe something worth trying out if the current deployment needs to be rebuilt too often.</p>
+
+</div>
+
+            </div>
+        </div>
+        <div class="d-none d-lg-block col-lg-4 col-xl-3">
+            <div class="sticky-top top-5">
+                <div class="me-auto">
+                    <div class="">
+                        <h3>Contents</h3>
+                        
+<ul>
+
+    <li><a href="#us-cms-tier-2-center---university-of-california-san-diego">Ceph Storage for US CMS</a></li>
+    
+        
+<ul>
+
+    <li><a href="#overview">Overview</a></li>
+    
+
+    <li><a href="#implementation">Implementation</a></li>
+    
+
+    <li><a href="#storage-use">Storage Use</a></li>
+    
+
+    <li><a href="#currently-in-operation-at-ucsd">Currently in operation at UCSD</a></li>
+    
+
+</ul>
+    
+
+</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </main>
+    <footer>
+    <div class="container-xxl my-5">
+        <hr/>
+        Funded by the National Science Foundation under Grant Nos. 2030508, 1836650, and 1148698. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+    </div>
+</footer>
+  </body>
+</html>
