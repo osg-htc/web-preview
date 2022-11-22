@@ -1,6 +1,5 @@
 let counter = async (id, endValue, numIncrements, decimals=0) => {
     let node = document.getElementById(id)
-    let startValue = parseInt(node.innerText)
 
     let valueArray = [...Array(numIncrements).keys()].map((value, index) => {
         return Math.floor(endValue * (Math.sqrt((index+1)/numIncrements)))
@@ -28,7 +27,6 @@ async function initialize_ospool_report () {
         counter("ospool-file-transfers", json['total_files_xferd'], 20)
         counter("ospool-core-hours", json['all_cpu_hours'], 20)
         counter("ospool-users", json['num_users'], 20)
-        counter("ospool-projects", json['num_projects'], 20)
     } catch(e) {
         document.getElementById("ospool-statistics-display").hidden = true
     }
