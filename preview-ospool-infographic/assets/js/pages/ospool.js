@@ -21,7 +21,8 @@ async function initialize_ospool_report () {
         let response = await fetch("https://osg-htc.org/ospool-data/data/daily_reports/latest.json")
         let json = await response.json()
 
-        document.getElementById("ospool-date").textContent = json['date']
+        let dataDate = new Date(json['date'])
+        document.getElementById("ospool-date").textContent = `${dataDate.getDate()}/${dataDate.getMonth()}`
 
         counter("ospool-jobs", json['num_uniq_job_ids'], 20)
         counter("ospool-file-transfers", json['total_files_xferd'], 20)
