@@ -1,3 +1,5 @@
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 let counter = async (id, endValue, numIncrements, decimals=0) => {
     let node = document.getElementById(id)
 
@@ -22,7 +24,7 @@ async function initialize_ospool_report () {
         let json = await response.json()
 
         let dataDate = new Date(json['date'])
-        document.getElementById("ospool-date").textContent = `${dataDate.getDate()}/${dataDate.getMonth()}`
+        document.getElementById("ospool-date").textContent = `${months[dataDate.getMonth()]} ${dataDate.getDate()}`
 
         counter("ospool-jobs", json['num_uniq_job_ids'], 20)
         counter("ospool-file-transfers", json['total_files_xferd'], 20)
