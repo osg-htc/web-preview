@@ -30,6 +30,7 @@ async function initialize_ospool_report () {
         counter("ospool-file-transfers", json['total_files_xferd'], 20)
         counter("ospool-core-hours", json['all_cpu_hours'], 20)
         counter("ospool-users", json['num_users'], 20)
+        counter("ospool-sites", json['num_sites'], 20)
     } catch(e) {
         document.getElementById("ospool-statistics-display").hidden = true
     }
