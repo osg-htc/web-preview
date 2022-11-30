@@ -221,7 +221,10 @@ class Search {
             return data
         } else {
             let table_keys = this.lunr_idx.search("*" + this.node.value + "*").map(r => r.ref)
-            return table_keys.map(key => data[key])
+            return table_keys.reduce((pv, k) => {
+                pv[k] = data[k]
+                return pv
+            }, {})
         }
     }
 }
