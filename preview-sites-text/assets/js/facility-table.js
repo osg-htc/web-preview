@@ -1,5 +1,5 @@
 import {DATE_RANGE} from "./elasticsearch.js";
-import {GraccDisplay} from "./util.js";
+import {GraccDisplay, locale_int_string_sort, string_sort, hideNode} from "./util.js";
 
 const GRAFANA_PROJECT_BASE_URL = "https://gracc.opensciencegrid.org/d-solo/axV4YtN4k/facility-public"
 const GRAFANA_BASE = {
@@ -146,19 +146,23 @@ class Table {
         this.columns = [
             {
                 id: 'Name',
-                name: 'Name'
+                name: 'Name',
+                sort: { compare: string_sort }
             }, {
-                id: 'cpuProvided',
-                name: 'Contributed CPU Hours',
-                data: (row) => Math.floor(row.cpuProvided).toLocaleString()
+                id: 'jobsRan',
+                name: 'Jobs Ran',
+                data: (row) => Math.floor(row.jobsRan).toLocaleString(),
+                sort: { compare: locale_int_string_sort }
             }, {
                 id: 'numFieldsOfScience',
                 name: 'Impacted Fields of Science',
-                data: (row) => row.numFieldsOfScience.toLocaleString()
+                data: (row) => row.numFieldsOfScience.toLocaleString(),
+                sort: { compare: locale_int_string_sort }
             }, {
                 id: 'numProjects',
                 name: 'Impacted Research Projects',
-                data: (row) => row.numProjects.toLocaleString()
+                data: (row) => row.numProjects.toLocaleString(),
+                sort: { compare: locale_int_string_sort }
             }
         ]
     }
@@ -174,7 +178,7 @@ class Table {
                 td: "pointer",
                 paginationButton: "mt-2 mt-sm-0"
             },
-            data: async () => Object.values(await table.data_function()),
+            data: async () => Object.values(await table.data_function()).sort((a, b) => b.cpuProvided - a.cpuProvided),
             pagination: {
                 enabled: true,
                 limit: 10,
