@@ -1,5 +1,0 @@
-{  
-   "issuer":"https://osg-htc.org/ospool",
-   "jwks_uri":"https://osg-htc.org/ospool/oauth2/certs",
-   "token_endpoint":"https://ospool.osg-htc.org/token"
-}
