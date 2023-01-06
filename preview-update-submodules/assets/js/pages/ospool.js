@@ -34,7 +34,7 @@ async function initialize_ospool_report () {
         counter("ospool-users", json['num_users'], 20)
 
         counter("ospool-site-jobs", json['num_uniq_job_ids'], 20)
-        counter("ospool-sites", json['num_sites'], 20)
+        counter("ospool-sites", json['num_facilitys'], 20)
     } catch(e) {
         document.getElementById("ospool-statistics-display").hidden = true
     }
