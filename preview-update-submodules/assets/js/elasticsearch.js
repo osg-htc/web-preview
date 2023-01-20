@@ -13,6 +13,12 @@ const DATE_RANGE = {
     now: new Date().getTime()
 }
 
+const OSPOOL_FILTER = {
+        regexp: {
+            ProbeName: {"value": ".*(osgconnect\.net|grid\.uchicago\.edu|ci-connect\.net|xd-login\.opensciencegrid.org|SUBMIT.MIT.EDU|csiu.grid.iu.edu|otsgrid.iit.edu|workflow.isi.edu|lsst-glidein.rcac.purdue.edu|scosg16.jlab.org|gluex.phys.uconn.edu|login.duke.ci-connect.net|huxley-osgsub-001.sdmz.amnh.org|pcf-osg.t2.ucsd.edu|login.ci-connect.uchicago.edu|pcf-osg.t2.ucsd.edu|login.ci-connect.uchicago.edu|aragon.cyverse.org|akbul.cyverse.org|glidein-1.sbgrid.org|ce1.opensciencegrid.org|descmp3.cosmology.illinois.edu|osg-learn.chtc.wisc.edu|xd-submit0000.chtc.wisc.edu|login.snowmass21.io|nsgosg.sdsc.edu|osgsub01.sdcc.bnl.gov)"}
+        }
+    }
+
 class ElasticSearchQuery {
     constructor(index, endpoint) {
         this.index = index
@@ -60,7 +66,7 @@ class ElasticSearchQuery {
     }
 }
 
-export { ENDPOINT, DEBUG, SUMMARY_INDEX, DATE_RANGE }
+export { ENDPOINT, DEBUG, SUMMARY_INDEX, DATE_RANGE, OSPOOL_FILTER }
 export default ElasticSearchQuery;
 
 

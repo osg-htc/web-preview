@@ -20,15 +20,12 @@ class GraccDisplay {
             let iframe = document.createElement("iframe")
             iframe.width = "100%"
             iframe.height = "100%"
-            iframe.src = this.src
+            iframe.src = this.buildIframeSrc()
+            iframe.setAttribute("frameBorder", true)
             iframe.addEventListener("load", () => {
                 this.loaded = true;
                 this.toggle()
             })
-
-            let loadDisplay = document.createElement("div")
-            loadDisplay.classList.add("spinner-grow")
-            loadDisplay.role = "status"
 
             let node = document.createElement("div")
             node.classList.add("justify-content-center")
@@ -37,8 +34,6 @@ class GraccDisplay {
             node.style.height = this.height ? this.height : "200px"
             node.iframe = iframe
             node.appendChild(iframe)
-            node.loadDisplay = loadDisplay
-            node.appendChild(loadDisplay)
 
             this._node = node
         }
@@ -54,7 +49,11 @@ class GraccDisplay {
         this.update()
     }
 
-    get src() {
+    set src(src) {
+        this.node.iframe.src = src
+    }
+
+    buildIframeSrc() {
         let url = new URL(this.srcUrl)
         let searchParams = {...this.searchParams}
         Object.entries(searchParams).forEach( ([k,v], i) => url.searchParams.append(k, v))
@@ -62,7 +61,7 @@ class GraccDisplay {
     }
 
     async update(){
-        this.node.iframe.src = this.src
+        this.src = this.buildIframeSrc()
         this.loaded = false
         this.toggle()
     }
@@ -77,8 +76,6 @@ class GraccDisplay {
     async toggle(){
         let showDisplay = await this.showDisplay(this.searchParams[this.varKey])
         this.node.parentNode.style.display = showDisplay ? "flex" : "none";
-        this.node.iframe.hidden = !this.loaded
-        this.node.loadDisplay.hidden = this.loaded
     }
 }
 
