@@ -96,6 +96,23 @@ let hideNode = (e) => {
     e.currentTarget.hidden = true
 }
 
+/**
+ *
+ * @param tagName
+ * @param children {Array}
+ * @param options
+ * @returns {HTMLElement}
+ */
+let createNode = ({tagName, children = [], ...options}) => {
+    let node = document.createElement(tagName)
+
+    Object.entries(options).forEach(([k, v]) => {
+        node.setAttribute(k, v);
+        node[k] = v;
+    })
+    children.forEach(n => node.appendChild(n))
+    return node
+}
 
 
-export {GraccDisplay, string_sort, locale_int_string_sort, hideNode}
+export {GraccDisplay, string_sort, locale_int_string_sort, hideNode, createNode}

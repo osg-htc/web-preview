@@ -258,19 +258,31 @@ class Table {
             {
                 id: 'Name',
                 name: 'Name',
-                sort: { compare: string_sort }
+                sort: { compare: string_sort },
+                attributes: {
+                    className: "gridjs-th gridjs-td pointer gridjs-th-sort text-start"
+                }
             }, {
                 id: 'PIName',
                 name: 'PI Name',
-                sort: { compare: string_sort }
+                sort: { compare: string_sort },
+                attributes: {
+                    className: "gridjs-th gridjs-td pointer gridjs-th-sort text-start"
+                }
             }, {
                 id: 'Organization',
                 name: 'Organization',
-                sort: { compare: string_sort }
+                sort: { compare: string_sort },
+                attributes: {
+                    className: "gridjs-th gridjs-td pointer gridjs-th-sort text-start"
+                }
             }, {
                 id: 'FieldOfScience',
                 name: 'Field Of Science',
-                sort: { compare: string_sort }
+                sort: { compare: string_sort },
+                attributes: {
+                    className: "gridjs-th gridjs-td pointer gridjs-th-sort text-start"
+                }
             }
         ]
 

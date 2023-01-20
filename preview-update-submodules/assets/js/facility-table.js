@@ -1,6 +1,6 @@
 import ElasticSearchQuery, {DATE_RANGE, ENDPOINT, OSPOOL_FILTER, SUMMARY_INDEX} from "./elasticsearch.js";
-import {GraccDisplay, locale_int_string_sort, string_sort, hideNode} from "./util.js";
-
+import {GraccDisplay, locale_int_string_sort, string_sort, createNode} from "./util.js";
+import {Grid, BaseComponent, h} from "https://unpkg.com/gridjs@5.1.0/dist/gridjs.module.js"
 
 const GRAFANA_BASE = {
     orgId: 1,
@@ -155,14 +155,14 @@ class Search {
         if (this.node.value == "") {
             return Object.values(await this.data_function()).sort((a,b) => b['jobsRan'] - a['jobsRan'])
         } else {
-            let table_keys = this.lunr_idx.search("*" + this.node.value + "*").map(r => r.ref)
+            let table_keys = this.lunr_idx.search("*" + this.node.value + "*~2").map(r => r.ref)
             return table_keys.map(key => data[key])
         }
     }
 }
 
 class Table {
-    constructor(wrapper, data_function, updateDisplay, tableOptions = {}) {
+    constructor(wrapper, data_function, updateDisplay, tableOptions = {}, summaryData = {}) {
         this.grid = undefined
         this.data_function = data_function
         this.wrapper = wrapper
@@ -173,6 +173,9 @@ class Table {
                 id: 'Name',
                 name: 'Name',
                 sort: { compare: string_sort },
+                attributes: {
+                    className: "gridjs-th gridjs-td pointer gridjs-th-sort text-start"
+                }
             }, {
                 id: 'jobsRan',
                 name: 'Jobs Ran',
@@ -190,11 +193,9 @@ class Table {
                 sort: { compare: locale_int_string_sort }
             }
         ]
-    }
 
-    initialize = () => {
         let table = this;
-        this.grid = new gridjs.Grid({
+        this.grid = new Grid({
             columns: table.columns,
             sort: true,
             className: {
@@ -205,6 +206,9 @@ class Table {
             },
             data: async () => Object.values(await this.data_function()).sort((a,b) => b['jobsRan'] - a['jobsRan']),
             width: "100%",
+            search: {
+                enabled: true
+            },
             style: {
                 td: {
                     'text-align': 'right'
@@ -213,6 +217,10 @@ class Table {
             ...table.tableOptions
         }).render(table.wrapper);
         this.grid.on('rowClick', this.row_click);
+    }
+
+    render () {
+        this.grid.forceRender()
     }
 
     update = (data) => {
@@ -235,15 +243,11 @@ class FacilityPage {
         this.data = undefined
         this.filtered_data = undefined
         this.wrapper = document.getElementById("wrapper")
-        this.search = new Search(this.dataFunction, this.update_data)
         this.facilityDisplay = new FacilityDisplay("display", this.dataFunction, grafanaUrl)
         this.table = new Table(this.wrapper, this.dataFunction, this.facilityDisplay.update.bind(this.facilityDisplay), tableOptions)
         this.initialize()
     }
     initialize = async () => {
-        await this.dataFunction()
-        await this.table.initialize()
-        await this.search.initialize()
         await this.usePopulatedFacility()
     }
     update_data = async () => {
@@ -281,7 +285,32 @@ async function getFacilityEsData(ospoolOnly = false){
                     { "term" : {"ProjectName" : "GLOW"} },
                 ]
             }
-        }, "aggs": {"facilities": {"terms": {"field": "OIM_Facility", "size": 99999999}, "aggs": {"facilityCpuProvided": {"sum": {"field": "CoreHours"}}, "facilityJobsRan": {"sum": {"field": "Count"}}, "facilityGpuProvided": {"sum": {"field": "GPUHours"}}, "countProjectsImpacted": {"cardinality": {"field": "ProjectName"}}, "countFieldsOfScienceImpacted": {"cardinality": {"field": "OIM_FieldOfScience"}}, "countOrganizationImpacted": {"cardinality": {"field": "OIM_Organization"}}, "gpu_bucket_filter": {"bucket_selector": {"buckets_path": {"totalGPU": "facilityGpuProvided", "totalCPU": "facilityCpuProvided"}, "script": "params.totalGPU > 0 || params.totalCPU > 0"}}}}}})
+        },
+        "aggs": {
+            "fieldsOfScience": { "cardinality": { "field": "OIM_FieldOfScience" }, },
+            "jobsRan": { "sum": { "field": "Count" } },
+            "projects": { "cardinality": { "field": "ProjectName" } },
+            "facilities": {
+                "terms": {
+                    "field": "OIM_Facility", "size": 99999999
+                },
+                "aggs": {
+                    "facilityCpuProvided": {"sum": {"field": "CoreHours"}},
+                    "facilityJobsRan": {"sum": {"field": "Count"}},
+                    "facilityGpuProvided": {"sum": {"field": "GPUHours"}},
+                    "countProjectsImpacted": {"cardinality": {"field": "ProjectName"}},
+                    "countFieldsOfScienceImpacted": {"cardinality": {"field": "OIM_FieldOfScience"}},
+                    "countOrganizationImpacted": {"cardinality": {"field": "OIM_Organization"}},
+                    "gpu_bucket_filter": {
+                        "bucket_selector": {
+                            "buckets_path": {"totalGPU": "facilityGpuProvided", "totalCPU": "facilityCpuProvided"},
+                            "script": "params.totalGPU > 0 || params.totalCPU > 0"
+                        }
+                    }
+                }
+            }
+        }
+    })
 
     // Decompose this data into information we want, if they provided GPU or CPU
     let facilityBuckets = response.aggregations.facilities.buckets
@@ -301,6 +330,44 @@ async function getFacilityEsData(ospoolOnly = false){
     return facilityData
 }
 
+async function getFacilitySummaryData(ospoolOnly=false) {
+
+    let es = new ElasticSearchQuery(SUMMARY_INDEX, ENDPOINT)
+
+    // Query ES and ask for Sites that have provided resources in the last year
+    let response = await es.search({
+        "size": 0,
+        "query": {
+            "bool": {
+                "filter": [
+                    {"term": {"ResourceType": "Payload"}},
+                    {"range": {"EndTime": {"lte": DATE_RANGE['now'], "gte": DATE_RANGE['oneYearAgo']}}},
+                    ...(ospoolOnly ? [OSPOOL_FILTER] : []) // Cryptic but much cleaner
+                ],
+                "must_not": [
+                    { "term" : {"ProjectName" : "GLOW"} },
+                ]
+            }
+        },
+        "aggs": {
+            "numFacilities": { "cardinality": { "field": "OIM_Facility" }, },
+            "numFieldsOfScience": { "cardinality": { "field": "OIM_FieldOfScience" }, },
+            "jobsRan": { "sum": { "field": "Count" } },
+            "numProjects": { "cardinality": { "field": "ProjectName" } }
+        }
+    })
+
+    // Pull out the summary data as well
+    let summaryData = {
+        numFacilities: `${response.aggregations.numFacilities.value.toLocaleString()}`,
+        jobsRan: response.aggregations.jobsRan.value.toLocaleString(),
+        numFieldsOfScience: response.aggregations.numFieldsOfScience.value.toLocaleString(),
+        numProjects: response.aggregations.numProjects.value.toLocaleString()
+    }
+
+    return summaryData
+}
+
 async function getTopologyData() {
     let response;
 
@@ -316,5 +383,5 @@ async function getTopologyData() {
     return await response.json()
 }
 
-export { getFacilityEsData, getTopologyData }
+export { getFacilityEsData, getFacilitySummaryData, getTopologyData }
 export default FacilityPage
