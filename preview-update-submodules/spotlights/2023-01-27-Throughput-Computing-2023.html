@@ -7,19 +7,23 @@
 <link rel="icon" href="/favicon.ico">
 
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Open Science Data Federation | OSG</title>
+<title>Save the dates for Throughput Computing 2023 - a joint HTCondor/OSG event | OSG</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="Open Science Data Federation" />
+<meta property="og:title" content="Save the dates for Throughput Computing 2023 - a joint HTCondor/OSG event" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="US Map featuring the locations of current OSDF architectural components." />
-<meta property="og:description" content="US Map featuring the locations of current OSDF architectural components." />
+<meta name="description" content="Save the dates for Throughput Computing 2023 - a joint HTCondor/OSG event to be held July 10-14, 2023 in Madison, Wisconsin." />
+<meta property="og:description" content="Save the dates for Throughput Computing 2023 - a joint HTCondor/OSG event to be held July 10-14, 2023 in Madison, Wisconsin." />
 <meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/images/capital.jpeg" />
+<meta property="og:image:alt" content="Madison, Wisconsin" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2023-01-27T20:29:55+00:00" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Open Science Data Federation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/images/capital.jpeg" />
+<meta name="twitter:image:alt" content="Madison, Wisconsin" />
+<meta property="twitter:title" content="Save the dates for Throughput Computing 2023 - a joint HTCondor/OSG event" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-01-27T20:29:55+00:00","datePublished":"2023-01-27T20:29:55+00:00","description":"US Map featuring the locations of current OSDF architectural components.","headline":"Open Science Data Federation","mainEntityOfPage":{"@type":"WebPage","@id":"/web-preview/preview-update-submodules/services/osdf.html"},"url":"/web-preview/preview-update-submodules/services/osdf.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-01-27T20:29:55+00:00","datePublished":"2023-01-27T20:29:55+00:00","description":"Save the dates for Throughput Computing 2023 - a joint HTCondor/OSG event to be held July 10-14, 2023 in Madison, Wisconsin.","headline":"Save the dates for Throughput Computing 2023 - a joint HTCondor/OSG event","image":{"alt":"Madison, Wisconsin","url":"https://raw.githubusercontent.com/images/capital.jpeg","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://htcondor.org/featured-users/2023-01-27-Throughput-Computing-2023.html"},"url":"http://htcondor.org/featured-users/2023-01-27-Throughput-Computing-2023.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -135,165 +139,56 @@
       <div class="py-5">
     <div class="container-xxl">
     <div class="row justify-content-center">
-    <div class="col-12 col-xl-7 col-lg-8 col-md-10">
-        <figure class="w-100 figure">
-    <iframe width="100%" height="500px" frameBorder="0" style="margin-top:1em" src="https://map.opensciencegrid.org/map/iframe?view=OpenScienceDataFederation"></iframe>
-    <figcaption>US Map featuring the locations of current OSDF <a href="/docs/data/stashcache/overview/#architecture">architectural components</a>.</figcaption>
-</figure>
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>Save the dates for Throughput Computing 2023 - a joint HTCondor/OSG event</h1>
+        <div class="row justify-content-between">
+          
+          <div class="col-auto">
+            <h4 class="text-muted">January 27, 2023</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
 
-<div class="rounded px-3 py-2 bg-light">
-    <p class="fs-5" >
-        The Open Science Data Federation (OSDF) is an OSG service designed to support the
-        sharing of files staged in autonomous “origins”, for efficient access to those
-        files from anywhere in the world via a global namespace and network of caches.
-        The OSDF may be used either standalone - allowing data to be downloaded via HTTPS
-        - or with HTCondor managing data transfer for compute jobs running on one of the
-        many resource pools supported by OSG.
-    </p>
-    <p class="fs-5" >
-        For the sake of concreteness, the OSG documentation focuses on implementation
-        and usage of the OSDF from within OSG resource pools, and provides examples
-        of appropriate HTTP addresses for accessing data in OSG-supported data origins
-        from other locations.
-    </p>
-    <p class="fs-5 mb-0">
-        To learn how to utilize OSDF as a standalone infrastructure,
-        please reach out to the OSG Team through
-        <a href="mailto:support@osg-htc.org">support@osg-htc.org</a>.
-    </p>
-</div>
+      <div class="fs-5">
+        <p style="font-size: larger; font-weight: bold;">Don't miss these in-person learning opportunities in beautiful Madison, Wisconsin!</p>
 
-<h2 id="how-is-the-open-science-data-federation-integrated-with-other-osg-services" class="mt-5 mb-4">How is the Open Science Data Federation integrated with other OSG Services?</h2>
-<div class="rounded px-3 py-2 bg-light">
-    <p class="fs-5" >
-        The Open Science Data Federation (OSDF) enables users and institutions to make datasets
-        available to compute jobs running in distributed high-throughput computing (dHTC)
-        environments such as the
-        <a href="/services/open_science_pool.html">Open Science Pool (OSPool)</a>. Compute jobs submitted from an
-        HTCondor access point (e.g.
-        <a href="https://connect.osg-htc.org">OSG Connect</a>) can access data stored in data origins, with
-        HTCondor managing  data transfer via the OSDF’s global namespace and data caches.
-    </p>
-    <p class="fs-5 mb-0" >
-        By providing the distributed data access layer via these data caches,
-        jobs running in the OSPool (or any other resource pool) can reduce wide-area
-        network consumption, load on the data origins, and latency of data access.
-    </p>
-</div>
+Save the dates for **Throughput Computing 2023!** For the first time, HTCondor Week and the OSG All-Hands Meeting will join together as a single, integrated event from July 10–14 to be held at the University of Wisconsin–Madison’s [Fluno Center](https://fluno.com/). **Throughput Computing 2023** is sponsored by the OSG Consortium, the HTCondor team, and the UW-Madison Center for High Throughput Computing. 
 
-<h2 id="example-osdf-use-cases" class="mt-5 mb-4">Example OSDF Use Cases</h2>
-<div class="rounded px-3 py-2 bg-light">
-    <ul class="fs-5">
-        <li>
-            A researcher wants to share a dataset with their community such that others may process it.
-        </li>
-        <li>
-            A researcher produces data on the OSPool that they need
-            to store for future processing or sharing with the community.
-        </li>
-        <li>
-            A researcher has a GB to TB-scale dataset that they want
-            to analyze. Their workflow processes the same data many times,
-            thus benefiting greatly from the caching within OSDF.
-        </li>
-        <li>
-            A researcher curated a dataset they produced, and are hosting on
-            their data origin within OSDF. They now want to free up their disk
-            space at their origin by transferring responsibility for this dataset
-            to somebody else’s data origin without any changes in how the
-            community accesses the data.
-        </li>
-    </ul>
-    <p class="fs-5 mb-0" >
-        To learn more details about these or other use cases, please reach out to our team
-        of Research Computing Facilitators through
-        <a href="mailto:support@osg-htc.org">support@osg-htc.org</a>.
-    </p>
+This will primarily be an in-person event, but remote participation (via Zoom) for the many plenary events will also be offered. Required registration for both components will open in March 2023.
+
+If you register for the in-person event at the University of Wisconsin–Madison, you can attend plenary and non-plenary sessions, mingle with colleagues, and have planned or ad hoc meetings. Evening events are also planned throughout the week.
+
+All the topics typically covered by HTCondor Week and the OSG All-Hands Meeting will be included:
+
+- Science Enabled by the OSPool and the HTCondor Software Suite (HTCSS)
+- OSG Technology
+- HTCSS  Technology
+- HTCSS and OSG Tutorials
+- State of the OSG
+- Campus  Services and Perspectives
+
+The **U.S. ATLAS and U.S. CMS high-energy physics projects** are also planning parallel OSG-related topics during the event on Wednesday, July 12. (For other attendees, Wedneday's schedule will also include parallel HTCondor and OSG tutorials and OSG Collaborations sessions.)
+
+For questions, please contact us at [events@osg-htc.org](events@osg-htc.org) or [htcondor-week@cs.wisc.edu](htcondor-week@cs.wisc.edu). 
+
+View last year’s schedules for 
+
+- [OSG All-Hands Meeting](https://osg-htc.org/all-hands/2022/schedule/)
+- [HTCondor Week 2022](https://agenda.hep.wisc.edu/event/1733/timetable/#20220523)
+
+
+
+      </div>
+    </section>
+  </div>
 </div>
 
 
 
-
-<h2 class="mt-5 mb-4">Who can use the OSDF?</h2>
-<div class="rounded px-3 py-2 bg-light">
-    <p class="fs-5 mb-0" >
-        Any US-based academic, government, or non-profit institution may operate a data origin to
-        export their users’ data. Researchers using the
-        <a href="/services/open_science_pool.html">OSPool</a>
-        from an
-        <a href="https://connect.osg-htc.org">OSG Connect</a>
-        access point may also use the OSG Connect origin.
-    </p>
-</div>
-
-<h2 id="who-can-access-data-in-the-osdf" class="mt-5 mb-4">Who can access data in the OSDF?</h2>
-<div class="rounded px-3 py-2 bg-light">
-    <p class="fs-5" >
-        Each
-        <a href="/docs/data/stashcache/overview/#architecture"><em>origin</em></a>
-        can be configured to make data public or private, and can control the rules for sharing.
-        For example, the
-        <a href="https://connect.osg-htc.org">OSG Connect</a>
-        service allows users to make their data accessible to all (public)
-    </p>
-    <p class="fs-5 mb-0" >
-        Cached and transferred portions of the data may additionally be visible to the administrators
-        of the
-        <a href="/docs/data/stashcache/overview/#architecture"><em>cache</em></a>
-        services and of the execution points where a user’s jobs run. Non-public data is
-        encrypted when sent over the network, but not on disk.
-    </p>
-</div>
-
-<h2 id="who-manages-the-osdf" class="mt-5 mb-4">Who manages the OSDF?</h2>
-<div class="rounded px-3 py-2 bg-light">
-    <p class="fs-5" >
-        Origins in the OSDF are generally managed by the projects or institutions that own the
-        underlying storage. Additionally the
-        <a href="https://path-cc.io">PATh project</a>
-        (which funds many core OSG technologies
-        and services) offers options for PATh-hosted origins otherwise owned by and configured
-        specifically for relevant organizations, as described
-        <a href="/about/osdf/deploying_an_osdf_origin.html">here</a>.
-    </p>
-    <p class="fs-5 mb-0" >
-        The caches are largely managed by OSG staff, who remotely operate the services. Some
-        caches are dedicated to a research community or access point; a number of caches are
-        specific to the LIGO experiment. For example, the PATh project operates the OSDF data
-        origin associated with the PATh-operated
-        <a href="https://connect.osg-htc.org">OSG Connect</a>
-        service for US-associated research
-        projects accessing the
-        <a href="/services/open_science_pool.html">OSPool</a>.
-        The cache hardware is distributed throughout
-        the US, including points of presence in the Internet2 and ESNet networks and
-        university facilities such as UW-Madison, Chicago, Syracuse, UCSD, and Nebraska.
-    </p>
-</div>
-
-<h2 id="what-hardware-is-necessary-for-an-osdf-origin" class="mt-5 mb-4">What hardware is necessary for an OSDF Data Origin?</h2>
-<div class="rounded px-3 py-2 bg-light">
-    <p class="fs-5" >
-        There are many ways to architect filesystems, including those relevant to an
-        OSDF data origin. Possible solutions include commercial and open source options.
-    </p>
-    <p class="fs-5 mb-0" >
-        To provide the community some guidance, we are offering to host your suggested
-        solutions <a href="/organization/osdf/example_data_origin.html">here</a>.
-    </p>
-</div>
-
-
-<div class="fs-5 p-5 border border-5 border-secondary rounded-3 mt-5">
-    <h2 class="mb-4">Want to learn more about the OSDF?</h2>
-    <ul>
-        <li><a href="https://youtu.be/5JOBCW0x8AE?t=18">Frank Wuerthwein on "The Open Science Data Federation" at HTCondor Week 2022</a></li>
-    </ul>
-</div>
-
-
-    </div>
-</div>
 </div>
 </div>
     </main>
