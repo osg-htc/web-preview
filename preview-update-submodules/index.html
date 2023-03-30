@@ -25,7 +25,7 @@
 
 
 <!-- Bootstrap 5 -->
-<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style.css?v=">
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v1.css?v=">
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -163,7 +163,7 @@
 <div class="container-xxl mt-4">
   <div class="row mb-4">
     <div class="col-md-8">
-      <h1>The OSG Consortium</h1>
+      <h1 class="mini-bar">The OSG Consortium</h1>
       <p class="fst-italic">
         Established in 2005, the OSG Consortium operates a fabric of distributed High
         Throughput Computing (dHTC) services in support of the National Science & Engineering
@@ -171,11 +171,11 @@
         providers that form the consortium are unified in their commitment to advance
         open science via these services.
       </p>
-      <div class="row gx-2">
-          <div class="col-12 col-lg-6">
-            <div class="p-3 mb-1 mb-lg-4 bg-white-offset rounded shadow">
-              <h3 class="mt-0 fw-bold text-center"><a href="https://www.nsf.gov/publications/pub_summ.jsp?ods_key=nsf23526&org=NSF">NSF (CC*) Proposal (NSF 23-526)</a></h3>
-              <p class="">
+      <div class="row justify-content-center gx-2 mb-3">
+          <div class="col-12">
+            <div class="p-3 mb-1 mb-lg-4 bg-light rounded shadow">
+              <h4 class="mt-0 fw-bold text-center"><a href="https://www.nsf.gov/publications/pub_summ.jsp?ods_key=nsf23526&org=NSF">NSF (CC*)<br> Proposal (NSF 23-526)</a></h4>
+              <p class="text-align-justify">
                 Campuses with awards from the
                 <a href="https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=504748">NSF Campus Cyberinfrastructure (CC*)</a>
                 Program play an important role in supporting Open Science. To date, 25 CC* campuses contribute to the processing and storage capacity of the
@@ -183,31 +183,16 @@
                 harnessed weekly by more than 2M jobs.
               </p>
               </p>
-              <p class="mb-0 d-flex justify-content-center pt-3">
+              <p class="mb-0 d-flex justify-content-center">
                 <a class="btn btn-outline-dark" href="mailto:cc-star-proposals@osg-htc.org">Contact Us</a>
                 <a class="btn btn-outline-dark ms-1" href="/campus-cyberinfrastructure.html#let-osg-help-with-your-cc-proposal">How We Can Help</a>
               </p>
             </div>
           </div>
-          <div class="col-12 col-lg-6">
-            <div class="p-3 mb-4 bg-white-offset rounded shadow">
-              <h3 class="mt-0 fw-bold text-center"><a href="https://beta.nsf.gov/funding/opportunities/geosciences-open-science-ecosystem-geo-ose">NSF (GEO OSE) Proposal (NSF 23-534)</a></h3>
-              <p class="">
-                The PATh Facility provides CPU and GPU high throughput computing capacity for the NSF community.
-                Proposals to the NSF GEO Open Science Ecosystem solicitation can request credits on the
-                <a href="https://path-cc.io/facility/index">Facility</a>.
-                Please reach out to <a href="mailto:geo-ose-proposals@path-cc.io">geo-ose-proposals@path-cc.io</a>
-                for any questions or consultations.
-              </p>
-              <p class="mb-0 d-flex justify-content-center pt-3">
-                <a class="btn btn-outline-dark" href="mailto:geo-ose-proposals@path-cc.io">Contact Us</a>
-              </p>
-            </div>
-          </div>
         </div>
-      <h5 id="open-science-pool-ospool"><a href="/web-preview/preview-update-submodules/services/open_science_pool.html">Open Science Pool (OSPool)</a></h5>
+      <h5 id="open-science-pool-ospool"><a href="/web-preview/preview-update-submodules/services/open_science_pool.html">Open Science Pool</a></h5>
       <p>
-        Any researcher performing Open Science in the US can become an OSPool user. The OSPool
+        Any researcher performing Open Science in the US can become an <a href="/web-preview/preview-update-submodules/services/open_science_pool.html">OSPool</a> user. The OSPool
         provides its users with fair-share access (no allocation needed!) to processing and
         storage capacity contributed by university campuses, government-supported
         supercomputing institutions and research collaborations. Using state-of-the-art
@@ -215,7 +200,11 @@
         Throughput workloads that consist of large ensembles of independent computations.
       </p>
       <h5 id="open-science-data-federation"><a href="/web-preview/preview-update-submodules/services/osdf.html">Open Science Data Federation (OSDF)</a></h5>
-      <p>The OSDF enables users and institutions to share data files and storage capacity, making them both accessible in dHTC environments such as the OSPool.</p>
+      <p>
+        The <a href="/web-preview/preview-update-submodules/services/osdf.html">Open Science Data Federation (OSDF)</a> enables users
+        and institutions to share data files and storage capacity, making them both accessible in dHTC environments
+        such as the OSPool.
+      </p>
       <ul>
         <li>Provides campuses and researchers with the ability to manage their data files, input and output, in support of running their dHTC workloads.</li>
         <li>Improves file access performance, resource consumption and reliability.</li>
@@ -224,7 +213,8 @@
       <h5 id=""><a href="/web-preview/preview-update-submodules/events/2022-All-Hands-Meeting/">OSG All-Hands (AH) Meetings</a></h5>
       <p>
         If you are a current or potential consumer, provider or executive, of dHTC, you are welcome to
-        attend the annual OSG AH meetings. The more than 250 attendees of the 2022 meeting were offered 38
+        attend the annual <a href="/web-preview/preview-update-submodules/events/2022-All-Hands-Meeting/">OSG All-Hands (AH) Meetings</a>.
+        The more than 250 attendees of the 2022 meeting were offered 38
         presentations from researchers who reviewed their use of OSG services, executives who
         discussed the current state and future plans for the OSG services, and administrators
         who reported on the adoption of HTC by faculty and students on their campuses.
@@ -316,18 +306,74 @@
           
         </div>
       </div>
+      <div class="mt-3 d-none d-md-block">
+        <a class="twitter-timeline" data-height="400" href="https://twitter.com/osg_htc?ref_src=twsrc%5Etfw">Tweets by osg_htc</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
     </div>
   </div>
 </div>
-<div class="bg-light py-4 mb-4">
+<div class="bg-light py-4">
   <div class="container-xxl">
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-8 col-md-6 col-xl-4 order-2 order-md-1 mt-3 mt-md-0">
-        <div class="card hover-shadow p-3 bg-white">
-          <a class="twitter-timeline" data-height="550" href="https://twitter.com/osg_htc?ref_src=twsrc%5Etfw">Tweets by osg_htc</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
+    <h2 id="osg-by-maps" class="mini-bar my-3">OSG By Maps</h2>
+      <div class="row gx-2">
+        
+          <div class="col-12 col-sm-6 col-lg-3 ">
+            <a href="https://map.opensciencegrid.org#45.737115,-90.140436|2">
+              <div class="rounded bg-white hover-shadow border-dark border">
+                <h4 class="m-0 p-2">All Sites</h4>
+                <picture>
+                  <source srcset="/assets/images/osg_map_previews/Sites.webp">
+                  <img class="img-fluid rounded-bottom" src="/assets/images/osg_map_previews/Sites.png">
+                </picture>
+              </div>
+            </a>
+          </div>
+        
+          <div class="col-12 col-sm-6 col-lg-3 d-none d-sm-block">
+            <a href="https://map.opensciencegrid.org?view=OSPool#15.737115,-90.140436|3">
+              <div class="rounded bg-white hover-shadow border-dark border">
+                <h4 class="m-0 p-2">OSPool Contributors</h4>
+                <picture>
+                  <source srcset="/assets/images/osg_map_previews/OSPool_Contributors.webp">
+                  <img class="img-fluid rounded-bottom" src="/assets/images/osg_map_previews/OSPool_Contributors.png">
+                </picture>
+              </div>
+            </a>
+          </div>
+        
+          <div class="col-12 col-sm-6 col-lg-3 d-none d-lg-block">
+            <a href="https://map.opensciencegrid.org?view=OpenScienceDataFederation#45.737115,-90.140436|2">
+              <div class="rounded bg-white hover-shadow border-dark border">
+                <h4 class="m-0 p-2">OSDF Contributors</h4>
+                <picture>
+                  <source srcset="/assets/images/osg_map_previews/OSDF.webp">
+                  <img class="img-fluid rounded-bottom" src="/assets/images/osg_map_previews/OSDF.png">
+                </picture>
+              </div>
+            </a>
+          </div>
+        
+          <div class="col-12 col-sm-6 col-lg-3 d-none d-lg-block">
+            <a href="https://map.opensciencegrid.org?view=CCStar#38.737115,-90.140436|5">
+              <div class="rounded bg-white hover-shadow border-dark border">
+                <h4 class="m-0 p-2">CC* Sites</h4>
+                <picture>
+                  <source srcset="/assets/images/osg_map_previews/CC-Star.webp">
+                  <img class="img-fluid rounded-bottom" src="/assets/images/osg_map_previews/CC-Star.png">
+                </picture>
+              </div>
+            </a>
+          </div>
+        
       </div>
-      
+  </div>
+</div>
+<div class="bg-dark py-4 mb-4">
+  <div class="container-xxl">
+    <h2 class="mini-bar my-3 text-light">User Spotlights</h2>
+    <div class="border border-light rounded-3 p-2">
+      <div class="row justify-content-center gx-2">
+        
 
 
 
@@ -335,19 +381,18 @@
 
 
 
-      
+        
         <div class="col-12 col-md-6 col-xl-4 order-1 order-md-2">
           
-<a class="text-decoration-none" href="/web-preview/preview-update-submodules/spotlights/Messick.html">
+<a class="text-reset text-decoration-none" href="/web-preview/preview-update-submodules/spotlights/Messick.html">
     <div class="card hover-shadow border-0 h-100">
         
-        <img height="150" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/Messick-card.png" class="card-img-top" alt="article">
+        <img height="150" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/Messick-card.png" class="object-fit-cover rounded-top" alt="article">
         
         <div class="card-body d-flex flex-column">
-            <h3 class="text-decoration-none">LIGO's Search for Gravitational Waves Signals Using HTCondor</h3>
+            <h3 class="mini-bar mt-3 mb-3">LIGO's Search for Gravitational Waves Signals Using HTCondor</h3>
             
-            <hr/>
-            <span class="text-decoration-none text-dark">
+            <span class="text-dark text-align-justify">
                 
                     Cody Messick, a Postdoc at the Massachusetts Institute of Technology (MIT) working for the LIGO lab, describes LIGO’s use of HTCondor to search for new gravitational wave sources.
 
@@ -357,19 +402,18 @@
     </div>
 </a>
         </div>
-      
-        <div class="col-12 col-md-6 col-xl-4 d-none d-xl-block order-3">
+        
+        <div class="col-12 col-md-6 col-xl-4 d-none d-md-block order-3">
           
-<a class="text-decoration-none" href="/web-preview/preview-update-submodules/spotlights/Johri.html">
+<a class="text-reset text-decoration-none" href="/web-preview/preview-update-submodules/spotlights/Johri.html">
     <div class="card hover-shadow border-0 h-100">
         
-        <img height="150" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/dna.jpeg" class="card-img-top" alt="article">
+        <img height="150" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/dna.jpeg" class="object-fit-cover rounded-top" alt="article">
         
         <div class="card-body d-flex flex-column">
-            <h3 class="text-decoration-none">The role of HTC in advancing population genetics research</h3>
+            <h3 class="mini-bar mt-3 mb-3">The role of HTC in advancing population genetics research</h3>
             
-            <hr/>
-            <span class="text-decoration-none text-dark">
+            <span class="text-dark text-align-justify">
                 
                     Postdoctoral researcher Parul Johri uses OSG services, the HTCondor Software Suite, and the population genetics simulation program SLiM to investigate historical patterns of genetic variation.
 
@@ -379,7 +423,29 @@
     </div>
 </a>
         </div>
-      
+        
+        <div class="col-12 col-md-6 col-xl-4 d-none d-xl-block order-3">
+          
+<a class="text-reset text-decoration-none" href="/web-preview/preview-update-submodules/spotlights/EHT.html">
+    <div class="card hover-shadow border-0 h-100">
+        
+        <img height="150" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/SagA-black-hole.jpg" class="object-fit-cover rounded-top" alt="article">
+        
+        <div class="card-body d-flex flex-column">
+            <h3 class="mini-bar mt-3 mb-3">High-throughput computing as an enabler of black hole science</h3>
+            
+            <span class="text-dark text-align-justify">
+                
+                    The stunning new image of a supermassive black hole in the center of the Milky Way was created by eight telescopes, 300 international astronomers and more than 5 million computational tasks. This Morgridge Institute article describes how the Wisconsin-based Open Science Pool helped make sense of it all.
+
+                
+            </span>
+        </div>
+    </div>
+</a>
+        </div>
+        
+      </div>
     </div>
   </div>
 </div>
