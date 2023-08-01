@@ -86,13 +86,23 @@ const htmlLegendPlugin = {
 };
 
 export class PieChart {
-	constructor(id, data) {
+	constructor(id, dataGetter) {
 		this.id = id
-		this.data = data
+		this.dataGetter = dataGetter
+		this.initialize()
+	}
 
+	async initialize() {
+		this.data = await this.dataGetter()
 		this.createHtmlElements()
-
 		this.createGraph()
+	}
+
+	update = async () => {
+		this.data = await this.dataGetter()
+		this.chart.data.labels = this.data['labels']
+		this.chart.data.datasets[0].data = this.data['data']
+		this.chart.update()
 	}
 
 	createHtmlElements() {
@@ -118,7 +128,7 @@ export class PieChart {
 	}
 
 	async createGraph() {
-		new Chart(this.canvas, {
+		this.chart = new Chart(this.canvas, {
 			type: 'pie',
 			data: {
 				labels: this.data['labels'],

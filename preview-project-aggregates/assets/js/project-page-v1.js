@@ -241,7 +241,8 @@ class Search {
         if(this.node.value == ""){
             return data
         } else {
-            let table_keys = this.lunr_idx.search("*" + this.node.value + "*").map(r => r.ref)
+            console.log(this.node.value)
+            let table_keys = this.lunr_idx.search("" + this.node.value + "~2").map(r => r.ref)
             return table_keys.reduce((pv, k) => {
                 pv[k] = data[k]
                 return pv
@@ -410,7 +411,7 @@ class DataManager {
     }
 
     reduceByKey = async (key) => {
-        let data = await this.getData()
+        let data = await this.getFilteredData()
         let reducedData = Object.values(data).reduce((p, v) => {
             if(v[key] in p) {
                 p[v[key]] += v['jobs']
@@ -445,14 +446,17 @@ class ProjectPage{
         this.mode = undefined
         this.dataManager = new DataManager()
 
-        new PieChart(
+        this.orgPieChart = new PieChart(
             "project-institution-summary",
-            (await this.dataManager.reduceByKey("Organization"))
+            this.dataManager.reduceByKey.bind(this.dataManager, "Organization")
         )
-        new PieChart(
+        this.FosPieChart = new PieChart(
             "project-fos-summary",
-            (await this.dataManager.reduceByKey("FieldOfScience"))
+            this.dataManager.reduceByKey.bind(this.dataManager, "FieldOfScience")
         )
+
+        this.dataManager.consumerToggles.push(this.orgPieChart.update)
+        this.dataManager.consumerToggles.push(this.FosPieChart.update)
 
         let projectDisplayNode = document.getElementById("project-display")
         this.projectDisplay = new ProjectDisplay(projectDisplayNode)
@@ -461,7 +465,7 @@ class ProjectPage{
         this.table = new Table(this.wrapper, this.dataManager.getFilteredData, this.projectDisplay.update.bind(this.projectDisplay))
         this.dataManager.consumerToggles.push(this.table.update)
 
-        this.search = new Search(Object.values(await this.dataManager.getData()), this.table.update)
+        this.search = new Search(Object.values(await this.dataManager.getData()), this.dataManager.toggleConsumers)
         this.dataManager.addFilter("search", this.search.filter)
         this.dataManager.addFilter("minimumJobsFilter", this.minimumJobsFilter)
 
