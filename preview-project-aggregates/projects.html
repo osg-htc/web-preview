@@ -8,7 +8,7 @@
 
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>OSPool Active Projects | OSG</title>
-<meta name="generator" content="Jekyll v4.3.2" />
+<meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="OSPool Active Projects" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="These projects were active in the last year across reporting pools in the OSG Consortium. Some represent a small research group, while others represent a large collaboration or campus with numerous researchers using resources in OSG pools." />
@@ -171,7 +171,13 @@
 </style>
 <div class="container-xxl">
     <h1>OSPool Active Projects</h1>
-    <div class="row">
+    <div>
+        <h6>Data updated: <span id="last-updated"></span></h6>
+        <script>
+            document.getElementById('last-updated').textContent = new Date().toLocaleString();
+        </script>
+    </div>
+    <div class="row pb-4">
         <div class="col-12 col-xl-7 col-lg-8 col-md-10">
             <p>
                 The below projects used OSPool resources to advance their research in the past year and ran more than 100 jobs.
@@ -180,18 +186,101 @@
         </div>
     </div>
 </div>
-<div class="container-xxl">
-    <div class="row">
-        <div class="col-12 col-xl-7 col-lg-8 col-md-10">
-            <h2 class="mini-bar">Project Aggregates</h2>
+<div class="bg-dark text-light pb-3">
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-12 col-xl-12 col-lg-12 col-md-12">
+                <h2 class="mini-bar" id="project-overview">Project Overview</h2>
+            </div>
+            <div class="col-md-4 col-12">
+                <h4 class="mt-3">
+                    By Jobs
+
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Completed Jobs by Project">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                        </svg>
+                    </span>
+                </h4>
+                <div id="project-job-summary">
+                    <div class="spinner-grow text-light" style="width: 5rem; height: 5rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <h4 class="mt-3">
+                    By CPU Hours
+
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Used CPU Hours by Project">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                        </svg>
+                    </span>
+                </h4>
+                <div id="project-cpu-summary">
+                    <div class="spinner-grow text-light" style="width: 5rem; height: 5rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <h4 class="mt-3">
+                    By GPU Hours
+
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Used GPU Hours by Project">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                        </svg>
+                    </span>
+                </h4>
+                <div id="project-gpu-summary">
+                    <div class="spinner-grow text-light" style="width: 5rem; height: 5rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 col-12">
-            <h4 class="mt-3">Project Institutions</h4>
-            <div id="project-institution-summary"></div>
-        </div>
-        <div class="col-md-6 col-12">
-            <h4 class="mt-3">Project Fields of Science</h4>
-            <div id="project-fos-summary"></div>
+        <div class="row">
+            <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+                <h2 class="mini-bar">Job Aggregates</h2>
+            </div>
+            <div class="col-md-6 col-12">
+                <h4 class="mt-3">
+                    By Project Institutions
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Job Aggregates by Project Institutions">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                        </svg>
+                    </span>
+                </h4>
+                <div id="project-institution-summary">
+                    <div class="spinner-grow text-light" style="width: 5rem; height: 5rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <h4 class="mt-3">
+                    By Project Fields of Science
+
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Job Aggregates by Project Field Of Science">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+                        </svg>
+                    </span>
+                </h4>
+                <div id="project-fos-summary">
+                    <div class="spinner-grow text-light" style="width: 5rem; height: 5rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -200,7 +289,8 @@
         <div class="col-12 col-xl-7 col-lg-8 col-md-10">
 
             <h2 class="mini-bar">By Project</h2>
-            <p class="d-none d-sm-block">
+            <h5 class="pb-3"><span class="badge bg-secondary text-dark"><span id="project-count">X</span> Projects</span></h6>
+            <p class="d-none d-sm-block mb-2">
                 <b>Click on a row to view project details and their resource usage.</b>
             </p>
         </div>

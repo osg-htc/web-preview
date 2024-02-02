@@ -1,4 +1,4 @@
-import ElasticSearchQuery, {ENDPOINT, DATE_RANGE, SUMMARY_INDEX, OSPOOL_FILTER} from "./elasticsearch-v1.js";
+import ElasticSearchQuery, {ENDPOINT, DATE_RANGE, SUMMARY_INDEX, OSPOOL_FILTER} from "./elasticsearch.js";
 import {GraccDisplay, locale_int_string_sort, string_sort, hideNode} from "./util.js";
 import {PieChart} from "./components/pie-chart.js";
 
@@ -211,6 +211,20 @@ class ProjectDisplay{
     }
 }
 
+class ProjectCount {
+    constructor(dataGetter, node) {
+        this.node = node
+        this.dataGetter = dataGetter
+        this.update()
+    }
+
+    update = async () => {
+        let data = await this.dataGetter()
+        this.node.textContent = Object.keys(data).length
+        console.log(Object.keys(data).length)
+    }
+}
+
 class Search {
     constructor(data, listener) {
         this.node = document.getElementById("project-search")
@@ -410,22 +424,23 @@ class DataManager {
         return filteredData
     }
 
-    reduceByKey = async (key) => {
+    reduceByKey = async (key, value) => {
         let data = await this.getFilteredData()
         let reducedData = Object.values(data).reduce((p, v) => {
             if(v[key] in p) {
-                p[v[key]] += v['jobs']
+                p[v[key]] += v[value]
             } else {
-                p[v[key]] = v['jobs']
+                p[v[key]] = v[value]
             }
             return p
         }, {})
         let sortedData = Object.entries(reducedData)
-            .map(([k,v]) => {return {label: k, jobs: v}})
-            .sort((a, b) => b.jobs - a.jobs)
+            .filter(([k,v]) => v > 0)
+            .map(([k,v]) => {return {label: k, [value]: Math.round(v)}})
+            .sort((a, b) => b[value] - a[value])
         return {
             labels: sortedData.map(x => x.label),
-            data: sortedData.map(x => x.jobs)
+            data: sortedData.map(x => x[value])
         }
     }
 
@@ -446,18 +461,6 @@ class ProjectPage{
         this.mode = undefined
         this.dataManager = new DataManager()
 
-        this.orgPieChart = new PieChart(
-            "project-institution-summary",
-            this.dataManager.reduceByKey.bind(this.dataManager, "Organization")
-        )
-        this.FosPieChart = new PieChart(
-            "project-fos-summary",
-            this.dataManager.reduceByKey.bind(this.dataManager, "FieldOfScience")
-        )
-
-        this.dataManager.consumerToggles.push(this.orgPieChart.update)
-        this.dataManager.consumerToggles.push(this.FosPieChart.update)
-
         let projectDisplayNode = document.getElementById("project-display")
         this.projectDisplay = new ProjectDisplay(projectDisplayNode)
 
@@ -472,10 +475,54 @@ class ProjectPage{
         this.toggleActiveFilterButton = document.getElementById("toggle-active-filter")
         this.toggleActiveFilterButton.addEventListener("click", this.toggleActiveFilter)
 
+        this.projectCount = new ProjectCount(this.dataManager.getFilteredData, document.getElementById("project-count"))
+
         let urlProject = new URLSearchParams(window.location.search).get('project')
         if(urlProject){
             this.projectDisplay.update((await this.dataManager.getData())[urlProject])
         }
+
+        this.orgPieChart = new PieChart(
+            "project-institution-summary",
+            this.dataManager.reduceByKey.bind(this.dataManager, "Organization", "jobs"),
+            "# of Jobs by Institution"
+        )
+        this.FosPieChart = new PieChart(
+            "project-fos-summary",
+            this.dataManager.reduceByKey.bind(this.dataManager, "FieldOfScience", "jobs"),
+            "# of Jobs by Field Of Science"
+        )
+        this.jobPieChart = new PieChart(
+            "project-job-summary",
+            this.dataManager.reduceByKey.bind(this.dataManager, "Name", "jobs"),
+            "# of Jobs by Project",
+            ({label, value}) => {
+                this.table.updateProjectDisplay(this.dataManager.data[label])
+            }
+        )
+        this.cpuPieChart = new PieChart(
+            "project-cpu-summary",
+            this.dataManager.reduceByKey.bind(this.dataManager, "Name", "cpuHours"),
+            "# of CPU Hours by Project",
+            ({label, value}) => {
+                this.table.updateProjectDisplay(this.dataManager.data[label])
+            }
+        )
+        this.gpuPieChart = new PieChart(
+            "project-gpu-summary",
+            this.dataManager.reduceByKey.bind(this.dataManager, "Name", "gpuHours"),
+            "# of GPU Hours by Project",
+            ({label, value}) => {
+                this.table.updateProjectDisplay(this.dataManager.data[label])
+            }
+        )
+
+        this.dataManager.consumerToggles.push(this.orgPieChart.update)
+        this.dataManager.consumerToggles.push(this.FosPieChart.update)
+        this.dataManager.consumerToggles.push(this.jobPieChart.update)
+        this.dataManager.consumerToggles.push(this.cpuPieChart.update)
+        this.dataManager.consumerToggles.push(this.gpuPieChart.update)
+        this.dataManager.consumerToggles.push(this.projectCount.update)
     }
 
 
