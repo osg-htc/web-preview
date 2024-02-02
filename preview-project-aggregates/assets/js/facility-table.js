@@ -1,4 +1,4 @@
-import ElasticSearchQuery, {DATE_RANGE, ENDPOINT, OSPOOL_FILTER, SUMMARY_INDEX} from "./elasticsearch.js";
+import ElasticSearchQuery, {DATE_RANGE, ENDPOINT, OSPOOL_FILTER, SUMMARY_INDEX} from "./elasticsearch-v1.js";
 import {GraccDisplay, locale_int_string_sort, string_sort, createNode} from "./util.js";
 import {Grid, BaseComponent, h} from "https://unpkg.com/gridjs@5.1.0/dist/gridjs.module.js"
 
