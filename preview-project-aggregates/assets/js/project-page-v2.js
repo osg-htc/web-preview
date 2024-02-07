@@ -484,12 +484,12 @@ class ProjectPage{
         }
 
         this.orgPieChart = new PieChart(
-            "project-institution-summary",
-            this.dataManager.reduceByKey.bind(this.dataManager, "Organization", "jobs"),
-            "# of Jobs by Institution"
+            "project-fos-cpu-summary",
+            this.dataManager.reduceByKey.bind(this.dataManager, "FieldOfScience", "cpuHours"),
+            "# of CPU Hours by Field of Science"
         )
         this.FosPieChart = new PieChart(
-            "project-fos-summary",
+            "project-fos-job-summary",
             this.dataManager.reduceByKey.bind(this.dataManager, "FieldOfScience", "jobs"),
             "# of Jobs by Field Of Science"
         )
