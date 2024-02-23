@@ -64,7 +64,7 @@ If so, find us at the [support desk](https://support.opensciencegrid.org).
 
 To make changes to the website clone the files and run the below line to run the container. 
 ```
-docker run -it -p 8002:8000 -v $PWD:/app -w /app ruby:2.8 /bin/bash
+docker run -it -p 8002:8000 -v $PWD:/app -w /app ruby:3.0 /bin/bash
 ```
 In the container run the below line to build the website. 
 ```
