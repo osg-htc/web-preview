@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Training a dog and training a robot aren’t so different | OSG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Training a dog and training a robot aren’t so different" />
+<meta name="author" content="Sarah Matysiak" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In the Hanna Lab, researchers use high throughput computing as a critical tool for training robots with reinforcement learning." />
+<meta property="og:description" content="In the Hanna Lab, researchers use high throughput computing as a critical tool for training robots with reinforcement learning." />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/hannalab.PNG" />
+<meta property="og:image:alt" content="Group photo of members of the Hanna Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/hannalab.PNG" />
+<meta name="twitter:image:alt" content="Group photo of members of the Hanna Lab" />
+<meta property="twitter:title" content="Training a dog and training a robot aren’t so different" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Sarah Matysiak"},"dateModified":"2023-11-17T00:00:00+00:00","datePublished":"2023-11-17T00:00:00+00:00","description":"In the Hanna Lab, researchers use high throughput computing as a critical tool for training robots with reinforcement learning.","headline":"Training a dog and training a robot aren’t so different","image":{"alt":"Group photo of members of the Hanna Lab","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/hannalab.PNG","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://chtc.cs.wisc.edu/hanna-lab.html"},"url":"https://chtc.cs.wisc.edu/hanna-lab.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v2.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+
+
+
+
+
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-update-submodules/"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/access-point.html">OSG-Operated Access Points</a>
+                                
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool.html">Open Science Pool</a>
+                                
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool/institutions.html">OSPool Contributing Institutions</a>
+                                
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf.html">Open Science Data Federation</a>
+                                
+                            
+                                
+                            
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Proposals</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-update-submodules/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            
+            <span class="navbar-text">
+                
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>Training a dog and training a robot aren’t so different</h1>
+        <div class="row justify-content-between">
+          
+            <div class="col-auto">
+                <h4 class="text-muted">By: Sarah Matysiak</h4>
+            </div>
+          
+          <div class="col-auto">
+            <h4 class="text-muted">November 17, 2023</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p><strong>For AI and robotics researcher Josiah Hanna and his lab, high throughput computing is a critical tool in reinforcement learning.</strong></p>
+
+<p><img src="https://lh7-us.googleusercontent.com/Zcf4iUkUE9DGnTyeEwlSEB7C3kIG7ZJBjpmrinZg5fOePfSDyUlswdbP-vtX6afLo6feWMpdWdtmADolBVAk59YIr8ML2mNviSuUWxlLcyt_fOzr47IWl8fTe6IyeAH4Pvuorvthm4KJA5olu69F62A" alt="" /></p>
+
+<p>Artificial intelligence (AI) robotics expert <a href="https://pages.cs.wisc.edu/~jphanna/">Josiah Hanna</a>’s research has a lot in common with training dogs: Both robotics training and dog
+training use a type of reinforcement learning to encourage the desired behavior. With computers or robots, however, this type of reinforcement learning is a branch of machine learning (ML) that models an intelligent agent interacting with a task environment.</p>
+
+<p>Comparing robotic reinforcement learning to training a dog how to sit, Hanna explains that “you don’t explicitly tell the dog how to sit, but you coax the dog into sitting, and when it
+shows that behavior, you reward that. Over time, the robot dog learns these are the actions that lead to getting the reward, and it learns to avoid actions that don’t lead to the reward. 
+We want to give computers and robots the ability to learn through experience, by seeing what works and what leads to them achieving the goals we set for them. Then, when they see the 
+actions that lead to reaching their goals, they know that they should do that again in the future.”</p>
+
+<p>In other words, Hanna’s research specifically seeks to develop algorithms that enable computers to learn goal-oriented behavior in order to better accomplish their goals. Unlike a dog, 
+robots aren’t necessarily rewarded but instead learn from past mistakes and take that information to determine what a successful action is. Through trial and error, the agent learns 
+which actions it needs to take to achieve its goals. “It’s critical that they’re [computers] able to learn through their experience. That’s what my research and the whole field of 
+reinforcement learning studies — the kinds of algorithms which will enable this to happen,” Hanna elaborates.</p>
+
+<p>Another way that UW–Madison Computer Sciences Ph.D. student <a href="https://nicholascorrado.github.io/">Nicholas Corrado</a> describes it is like teaching a robot how to walk. Initially, the
+robot moves its legs randomly and likely falls over. Through trial and error, however, the robot eventually discovers that it can make forward progress by moving its legs to take 
+only a single step forward. Wanting to maximize its forward progress, the robot then increases the probability of executing this stepping behavior and eventually learns how to walk.
+“It requires a lot of computing to do this because starting from random movements, and getting to walking behavior is not super straightforward,” Corrado elaborates.</p>
+
+<p>Unlike other types of ML that are classification-based, a lot of reinforcement learning relies on simulations because it’s based on modeling agents performing some task. The difference
+between other areas of ML and reinforcement learning, Corrado explains, is that with reinforcement learning, “You have this multi-step decision-making process that you must learn how 
+to solve optimally. It’s so much harder because the agent needs to learn how its action right now affects its performance way down the road, so reinforcement learning feels like a much
+harder problem to focus on than what we call supervised learning methods.”</p>
+
+<p>Since learning on physical robots is difficult, Hanna’s lab will sometimes use simulations as a “surrogate” for physical robots. This is where high throughput computing (HTC) becomes 
+a valuable tool. Hanna shares that “it’s really useful to have high throughput computing so you can run your simulation or learning algorithm for many different processes. You can see
+how different learning algorithms or different parameters for learning algorithms affect the ability of an algorithm to produce robust behavior or high-performing behavior.” In this
+sense, the <a href="https://chtc.github.io/">Center for High Throughput Computing (CHTC)</a> is a “huge resource” for Hanna’s students who evaluate a wide variety of different algorithms they 
+think might work better than previous ones. It’s a great enabler of increasing experimentation bandwidth, or how many experiments they can run. In fact, for the Hanna Lab, its CHTC 
+usage is nearly 5.7 million hours.</p>
+
+<p>One project the Hanna lab is working on is enabling robots to learn to play soccer, Corrado says. With reinforcement learning, researchers programmed robots to play soccer and then
+entered an annual <a href="https://www.robocup.org/">international competition</a> where they placed third despite it being their first time participating, “greatly exceeding our expectations,”
+Corrado highlights. The end goal isn’t necessarily to train robots how to play soccer but rather “develop reinforcement learning techniques that enable us to train agents to work 
+cooperatively” and “develop techniques that improve the data efficiency of reinforcement learning. If we can reduce the data requirement, reinforcement learning is going to be much,
+much more practical for industrial applications.”</p>
+
+<figure class="figure float-end" style="margin-center: 1em">
+  <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/robotsoccer.jpeg" height="667" width="1186" class="figure-img img-fluid rounded" alt="From the annual RoboCup
+Standard Platform League (SPL) competition, a research competition that aims to advance the capabilities of robotics in challenging, real-time domains." />
+  <figcaption class="figure-caption">From the annual RoboCup Standard Platform League (SPL) competition, a research competition that aims to advance the capabilities of robotics 
+in challenging, real-time domains.
+<br /></figcaption>
+</figure>
+
+<p><br />Even before Hanna came to UW–Madison, he had experience with <a href="https://htcondor.org/">HTCondor Software Suite (HTCSS)</a> from graduate school. It was a “critical resource” for Hanna then
+and remains as such today in his role as a researcher and professor at UW–Madison. “One of the first things I did when I got here [UW–Madison] was tap into HTC resources,” Hanna recalls.
+As a new principal investigator (PI), Hanna also had a meeting with a CHTC facilitator to learn how to obtain access and what resources it provides.</p>
+
+<p>Since he found the tool so valuable while he was a graduate student, Hanna also tries to set up his students with the CHTC early on instead of running experiments locally on their 
+computers. Hanna shares “It’s a great resource we have to leverage that helps speed things up.” For the research group, running a high volume of simulations and experiments is a 
+key enabler of progress. This means Hanna encourages his students to run experiments whenever they reach uncertainties, which can help provide clarity. “Oftentimes it’s just easier
+to run the experiment. Something I try to guide the students on is knowing when some experiments just need to be run to understand some aspect of designing reinforcement learning 
+algorithms.” His students are developing their own pipelines with CHTC, learning how to work more efficiently with it, and writing scripts to launch experiments with it.</p>
+
+<p>To put into context exactly how many experiments reinforcement learning requires, Corrado says, “Benchmarks contain anywhere from 5–10 tasks, and maybe you need to compare four 
+different algorithms and run 20 independent runs of each algorithm on each task. At that point, you’re running hundreds of experiments. I’ve even had to run thousands of experiments.”
+In fact, for a paper currently under review, through performing a hyperparameter sweep of an algorithm — which determines the hyperparameter combination that performs best out of 
+many combinations — Corrado had submitted enough jobs to hit the default CHTC limit of a 10,000-job submission. This was something he definitely could not have accomplished on his 
+personal laptop or with a lab-specific server.</p>
+
+<p>Hanna says he is also seeing a shift toward more high-performance computing with GPUs in his lab, which CHTC has helped enable. “Up until recently, reinforcement learning was 
+separate from other forms of deep learning that were going on, and you really couldn’t benefit that much from a GPU unless you had a lot of CPUs as well, which is what high 
+throughput computing is really good for,” Hanna explains.</p>
+
+<p>When asked about the future use of CHTC in his lab, Hanna imagines spending more time with multi-processing and networking several CPUs together, both of which reinforcement 
+learning experiments could benefit from. As CHTC continues increasing its GPU capacity, Hanna says he plans to use that more in their work as well.</p>
+
+<p>Without the CHTC, the type of large-scale experimentation the Hanna Lab uses would be impractical, Corrado says. For this type of work, HTC is almost always necessary and continues
+to expand the horizons of the lab.</p>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-auto me-4 d-none d-md-flex">
+                    <a class="my-auto" href="/web-preview/preview-update-submodules/"><img style="height:5rem" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/open_science_pool">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
