@@ -11,6 +11,8 @@ status: Leadership
 osg:
     title: OSG Technology Lead
     website: "https://opensciencegrid.org"
+    promoted: true
+    weight: 3
 pelican:
     title: Principal Investigator
 organizations: 
