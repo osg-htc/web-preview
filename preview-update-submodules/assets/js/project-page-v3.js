@@ -350,9 +350,11 @@ class Table {
 }
 
 class DataManager {
-    constructor(filters, consumerToggles) {
+    constructor(filters, consumerToggles, errorNode) {
         this.filters = filters ? filters : {}
         this.consumerToggles = consumerToggles ? consumerToggles : []
+        this.errorNode = errorNode ? errorNode : document.getElementById("error")
+        this.error = undefined
     }
 
     toggleConsumers = () => {
@@ -376,30 +378,48 @@ class DataManager {
         return this.data
     }
 
-    /**
-     * Compiles the project data and does some prefilters to dump unwanted data
-     * @returns {Promise<*>}
-     */
+    set error(error){
+        if(error){
+            this.errorNode.textContent = error
+            this.errorNode.style.display = "block"
+        } else {
+            this.errorNode.style.display = "none"
+        }
+    }
+
+    _fetch = async (url, options = {}) => {
+
+        try {
+            let response = await fetch(url, options)
+
+            if(!response.ok){
+                throw new Error(response.statusText)
+            }
+
+            return response.json()
+
+        } catch(error) {
+            this.error = "Error fetching data, reloading page in 5 seconds."
+            setTimeout(() => {window.location.reload()}, 5000)
+        }
+    }
+
     _getData = async () => {
 
-        let response;
+        let responseJson = await this._fetch("https://topology.opensciencegrid.org/miscproject/json")
 
-        try{
-            response = await fetch("https://topology.opensciencegrid.org/miscproject/json")
-        } catch(error) {
-            try{
-                response = await fetch("/web-preview/preview-update-submodules/assets/data/project.json")
-            } catch(error){
-                console.error("Topology and Back Up data fetch failed: " + error)
-            }
-        }
-
-        let ospool_projects = new Set(await (await fetch("https://osg-htc.org/ospool-data/data/ospool_projects.json")).json())
-        let osgconnect_projects = new Set(await (await fetch("/assets/data/osgconnect_projects.json")).json())
+        let ospool_projects = new Set(await this._fetch("https://osg-htc.org/ospool-data/data/ospool_projects.json"))
+        let osgconnect_projects = new Set(await this._fetch("/assets/data/osgconnect_projects.json"))
 
         let projects = new Set([...ospool_projects, ...osgconnect_projects])
-        let usageJson = await UsageToggles.getUsage()
-        let responseJson = await response.json()
+
+        let usageJson;
+        try {
+            usageJson = await UsageToggles.getUsage()
+        } catch(e) {
+            this.error = "Error fetching usage data, reloading page in 5 seconds."
+            setTimeout(() => {window.location.reload()}, 5000)
+        }
 
         this.data = Object.entries(responseJson).reduce((p, [k,v]) => {
             if(k in usageJson && projects.has(k)){
@@ -407,8 +427,6 @@ class DataManager {
             }
             return p
         }, {})
-
-        console.log(this.data)
 
         return this.data
     }
