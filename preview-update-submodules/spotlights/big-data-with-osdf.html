@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Addressing the challenges of transferring large datasets with the OSDF | OSG</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Addressing the challenges of transferring large datasets with the OSDF" />
+<meta name="author" content="Sarah Matysiak" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Aashish Tripathee has used multiple file transfer systems and experienced challenges with each before using the Open Science Data Federation (OSDF). With the OSDF, Tripathee has already seen an improvement in data transfers." />
+<meta property="og:description" content="Aashish Tripathee has used multiple file transfer systems and experienced challenges with each before using the Open Science Data Federation (OSDF). With the OSDF, Tripathee has already seen an improvement in data transfers." />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/sites-use-of-osdf.png" />
+<meta property="og:image:alt" content="HTCondor logo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/sites-use-of-osdf.png" />
+<meta name="twitter:image:alt" content="HTCondor logo" />
+<meta property="twitter:title" content="Addressing the challenges of transferring large datasets with the OSDF" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Sarah Matysiak"},"dateModified":"2024-05-14T00:00:00+00:00","datePublished":"2024-05-14T00:00:00+00:00","description":"Aashish Tripathee has used multiple file transfer systems and experienced challenges with each before using the Open Science Data Federation (OSDF). With the OSDF, Tripathee has already seen an improvement in data transfers.","headline":"Addressing the challenges of transferring large datasets with the OSDF","image":{"alt":"HTCondor logo","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/sites-use-of-osdf.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://pelicanplatform.org/user-stories/2024/05/14/big-data-with-osdf"},"url":"https://pelicanplatform.org/user-stories/2024/05/14/big-data-with-osdf"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v3.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+
+
+
+
+
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-update-submodules/"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/access-point.html">OSG-Operated Access Points</a>
+                                
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool.html">Open Science Pool</a>
+                                
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool/institutions.html">OSPool Contributing Institutions</a>
+                                
+                            
+                                
+                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf.html">Open Science Data Federation</a>
+                                
+                            
+                                
+                            
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Proposals</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-update-submodules/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            
+            <span class="navbar-text">
+                
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>Addressing the challenges of transferring large datasets with the OSDF</h1>
+        <div class="row justify-content-between">
+          
+            <div class="col-auto">
+                <h4 class="text-muted">By: Sarah Matysiak</h4>
+            </div>
+          
+          <div class="col-auto">
+            <h4 class="text-muted">May 14, 2024</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p><em>Aashish Tripathee has used multiple file transfer systems and experienced challenges with each before using the Open Science Data Federation (OSDF). With the OSDF, Tripathee has already seen an improvement in data transfers.</em></p>
+
+<figure>
+<img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/sites-use-of-osdf.png" alt="Map of OSDF use" />
+</figure>
+
+<p>Map featuring the locations of current OSDF <a href="https://osg-htc.org/docs/data/stashcache/overview/#architecture">caches in the federation</a>.</p>
+
+<p>When transferring big datasets, researchers may face numerous obstacles. University of Michigan Physics post-doctoral research fellow and <a href="https://osg-htc.org/spotlights/david-swanson-awardees-2023.html">OSG David Swanson Awardee</a>  <a href="https://lsa.umich.edu/physics/people/research-fellows/aashisht.html">Aashish Tripathee</a> faced these challenges too while conducting research on ripples in space-time, or continuous gravitational waves. Due to the sizing of his datasets, Tripathee needed to transfer over 30,000 gigabytes.</p>
+
+<p>Over a year ago, Tripathee began using the <a href="https://osg-htc.org/services/osdf">Open Science Data Federation (OSDF)</a> service that allows for the efficient delivery of data to compute as part of his workflows on the <a href="https://osg-htc.org/">OSPool</a>. The OSDF supports the sharing of datasets staged in autonomous “origins” that can move data to compute resources around the world through a global network of caches.</p>
+
+<p>Before using the OSDF, Tripathee had experimented with a variety of data delivery systems. Though Tripathee saw successes with these systems, he was still encountering problems due to the type of data he was using and the volume he was transferring. Tripathee saw about 2–3% of his jobs failing because of completely halted transfers or far too slow transfers.</p>
+
+<p>Upon switching to the OSDF, Tripathee saw substantial improvements and noticed a significant number of jobs now run to completion while facing far fewer data transfer issues: With the OSDF, only about 0.5% of his jobs still show transfer issues.</p>
+
+<figure class="figure float-end" style="margin-left: 1em">
+ <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/headshot-use-of-osdf.png" height="200" width="200" class="figure-img img-fluid rounded" alt="Physics post-doctoral research fellow at the University of Michigan Aashish Tripathee." />
+  <figcaption class="figure-caption">Physics post-doctoral research fellow at <br />the University of Michigan Aashish Tripathee.</figcaption>
+</figure>
+
+<p>The data transfer and storage problems Tripathee encountered are not isolated — difficulties in combining datasets and computing infrastructure are endemic across science. The OSDF is powered by the <a href="https://pelicanplatform.org/">Pelican Platform</a>, which is supported by a new $7.0 million grant from the <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2331480">National Science Foundation (NSF)</a> (OAC-2331480). The project is led by <a href="https://morgridge.org/profile/brian-bockelman/">Brian Bockelman</a> from the Morgridge Institute for Research, director of the <a href="https://chtc.cs.wisc.edu/">Center for High Throughput Computing (CHTC)</a> at University of Wisconsin–Madison <a href="https://morgridge.org/profile/miron-livny/">Miron Livny</a>, and <a href="https://www.sdsc.edu/research/researcher_spotlight/wuerthwein_frank.html">Frank Würthwein</a>, Executive Director of the San Diego Supercomputing Center at the University of California, San Diego. Through this project, the Pelican software will be enhanced to make the OSDF more reliable, easier to use, and more accessible to other fields of science.</p>
+
+<p>The switch to the new platform was simple given its integration within the OSPool, which is closely related to the Pelican project at the CHTC. Tripathee reports the few changes he did make were well-documented in the <a href="https://portal.osg-htc.org/documentation/htc_workloads/managing_data/osdf/">OSPool documentation</a>, which “tells you exactly what you change depending on, for example, what submit node you’re running from and where you want to store the data.” What it came down to for Tripathee, ultimately, was changing a few lines of code.</p>
+
+<p>Tripathee is part of the <a href="https://www.ligo.caltech.edu/">Laser Interferometer Gravitational-Wave Observatory (LIGO)</a> collaboration, which is starting to adopt the OSDF as part of its computing infrastructure, he mentions. While LIGO’s use of the OSDF is not yet widespread, Tripathee says he’s been using it for a couple of months and plans to continue with it since it’s been working well for him. As more LIGO members begin using the OSDF, Tripathee predicts that it is “definitely going to make a big difference in the jobs’ efficiency and reduce the number of wasted job hours.”</p>
+
+<p>In May 2023, LIGO started its fourth observation run, meaning researchers, including Tripathee, will be able to analyze that data soon, which he looks forward to doing. Tripathee recalls that during the third observation round, the researchers experienced hiccups with file transfers, but now hopes retrieving the data from the OSDF should go more quickly and more smoothly. Tripathee anticipates fewer failed jobs and fewer wasted computing cycles. “As more and more universities start attaching servers, it’s going to make it even faster and faster. I’m very excited about its prospects going into the future,” Tripathee says.</p>
+
+<p>Sharing the results of the work in February 2024, Tripathree’s research from the third observation run was <a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.043049#">published</a> in the “Physical Review D.” Searching for gravitational waves, Tripathree focused on isolated neutron stars, a potential source for these waves. Working alongside Dr. <a href="https://lsa.umich.edu/physics/people/faculty/kriles.html">Keith Riles</a> of the University of Michigan, the duo determined the best upper limits for circular polarization — bringing researchers closer to detecting a continuous wave signal.</p>
+
+<p>What he learned from the other services he used compared to the OSDF was that “for OSDF, people from all over the world are using it — it’s distributed everywhere, so it serves as a more general-purpose storage,” enabling his jobs to access from close by hardware instead of potentially retrieving it from across the world.</p>
+
+<p>When working with big datasets that require a great amount of computing power, researchers — not so different from what Tripathee — will face obstacles that they need to jump over or duck under. Although going through may be the quickest and most direct solution to maneuver around the obstacle, this path often takes more resources. The OSDF wants to be that invaluable resource researchers will reach for when they need to push their way through that obstacle.</p>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-auto me-4 d-none d-md-flex">
+                    <a class="my-auto" href="/web-preview/preview-update-submodules/"><img style="height:5rem" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/open_science_pool">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
