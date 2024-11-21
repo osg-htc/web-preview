@@ -32,6 +32,7 @@
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-update-submodules/assets/js/all.js" defer></script>
 
 
 
@@ -85,25 +86,16 @@
                             Services
                         </a>
                         <div class="dropdown-menu" aria-labelledby="services-dropdown">
-                            
-                                
-                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/access-point.html">OSG-Operated Access Points</a>
-                                
-                            
-                                
-                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool.html">Open Science Pool</a>
-                                
-                            
-                                
-                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool/institutions.html">OSPool Contributing Institutions</a>
-                                
-                            
-                                
-                                    <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf.html">Open Science Data Federation</a>
-                                
-                            
-                                
-                            
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf.html">OSDF</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/htcondor.html">OSG-Operated Access Points</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown active">
