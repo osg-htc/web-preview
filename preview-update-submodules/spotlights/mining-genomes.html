@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Mining millions of genomes for the next powerful antibiotic | OSG</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Mining millions of genomes for the next powerful antibiotic" />
+<meta name="author" content="Morgridge Communications" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Interview of Erik Wright, assistant professor of biomedical informatics at the University of Pittsburgh and his use of the OSPool." />
+<meta property="og:description" content="Interview of Erik Wright, assistant professor of biomedical informatics at the University of Pittsburgh and his use of the OSPool." />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/erik-wright.png" />
+<meta property="og:image:alt" content="Image of Erik Wright" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/erik-wright.png" />
+<meta name="twitter:image:alt" content="Image of Erik Wright" />
+<meta property="twitter:title" content="Mining millions of genomes for the next powerful antibiotic" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Morgridge Communications"},"dateModified":"2024-11-01T00:00:00+00:00","datePublished":"2024-11-01T00:00:00+00:00","description":"Interview of Erik Wright, assistant professor of biomedical informatics at the University of Pittsburgh and his use of the OSPool.","headline":"Mining millions of genomes for the next powerful antibiotic","image":{"alt":"Image of Erik Wright","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/erik-wright.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://chtc.cs.wisc.edu/mining-genomes.html"},"url":"https://chtc.cs.wisc.edu/mining-genomes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v3.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-update-submodules/assets/js/all.js" defer></script>
+
+
+
+
+
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-update-submodules/"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/open_science_pool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf.html">OSDF</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/htcondor.html">OSG-Operated Access Points</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Proposals</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-update-submodules/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            
+            <span class="navbar-text">
+                
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>Mining millions of genomes for the next powerful antibiotic</h1>
+        <div class="row justify-content-between">
+          
+            <div class="col-auto">
+                <h4 class="text-muted">By: Morgridge Communications</h4>
+            </div>
+          
+          <div class="col-auto">
+            <h4 class="text-muted">November  1, 2024</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p>Erik Wright, assistant professor of
+biomedical informatics at the University of
+Pittsburgh, spoke to Fearless Science Magazine
+about how his quest to discover new antibiotics
+to counter resistance — and how that pursuit
+has made him biology’s No. 1 user of the Open
+Science Pool for advanced computing.</p>
+
+<h4 id="how-did-an-electrical-engineer-end-up-as-a-microbiologist">How did an electrical engineer end up as a microbiologist?</h4>
+
+<p>After a few years working at Apple as an electrical
+engineer, I decided to go back to grad school and
+switched to environmental engineering. Studying
+water and wastewater treatment introduced me to
+microbes and bacteria and I just fell in love with it. I
+shifted to microbiology for my Ph.D. at UW–Madison,
+and the prerequisite classes felt like I was being
+fed gold nuggets of information. There’s this whole
+invisible universe out there of microorganisms that I
+was completely oblivious to. I found a little niche for
+myself doing biology tied to computing. And now I
+run what I call soggy lab, which is a hybrid wet and
+dry lab together.</p>
+
+<h4 id="why-did-you-decide-to-make-antibiotic-resistance-the-focus-of-your-research-work">Why did you decide to make antibiotic resistance the focus of your research work?</h4>
+
+<p>The bugs evolve resistance to our drugs. It’s a really
+hard thing to counter, and it’s especially hard to
+reverse. I like that it’s so difficult, that’s probably
+the main draw. I live and breathe the idea that
+resistance is something that can be stopped and
+reversed. I began to study the natural antibiotic producers, the
+microorganisms that we get about 70% of our antibiotics from.
+These organisms have been naturally producing antibiotics for
+about half a billion years at least, and because they’re mostly
+bacteria, they’ve also figured out how to resist them.</p>
+
+<h4 id="what-are-the-areas-of-focus-for-your-lab">What are the areas of focus for your lab?</h4>
+
+<p>We’re one of the few labs that studies what strategies bacteria
+use to avoid resistance. Then we want to understand how to
+use to avoid resistance. Then we want to understand how to
+bring that strategy to the clinic and scale it up.
+We are studying durability, to understand why some antibiotics
+have been able to avoid resistance. And we are exploring how we
+can prescribe them in a multidrug cocktail such as for HIV and
+tuberculosis. The vast majority of the antibiotics we give are pure
+compounds in a high dose, but that’s only one hurdle for the bug
+to jump over, we want to present them with many hurdles.
+We’re trying to figure out how to work with the existing available
+pool of drugs to do something that’s better than what we
+currently do. And we think that by changing the way we treat
+patients — mimicking the biology that currently exists — then
+maybe we can figure out a more sustainable solution.</p>
+
+<h4 id="you-are-the-number-one-biology-user-of-high-throughput-computing-with-the-open-science-pool-how-do-you-integrate-computational-approaches-to-tackle-antibiotic-resistance">You are the number one biology user of high throughput computing with the Open Science Pool. How do you integrate computational approaches to tackle antibiotic resistance?</h4>
+
+<p>I had the extreme advantage of being part of the Wisconsin
+Institute for Discovery at UW–Madison, so I was an early adopter
+and that has completely changed my career. I’ve been using the
+Open Science Pool for 12 years and we simply could not reach
+the kind of computing capacity we need without it. Because it’s
+open, we don’t have to write grant proposals, which allows us to
+do a lot of exploratory work. I can’t overstate how much that is
+worth to me. It is also set up in a way amenable to my research.
+Instead of shared memory computing, the OS Pool is set up
+with a distributed memory. We like to split up our work into tiny
+compartments that each last an hour, so we hit something like 17
+million jobs last year.</p>
+
+<h4 id="why-is-your-lab-so-computationally-intensive">Why is your lab so computationally intensive?</h4>
+
+<p>The main thing my lab’s doing is comparing genomes by
+processing huge data sets in millions of separate computing
+jobs on the grid. We have access to about 2 million bacterial
+genomes, and we have developed software that can draw on
+thousands of computers to quickly compare new genomes to
+those that already exist. Then other computers store the data,
+and thousands more process and analyze the results — all
+through this gigantic set of grid jobs that is always running.
+We end up having groups of genes that are the same gene
+across different organisms, and then we build software that tells
+us which genes work together. From that we can do things like
+find which groups make natural products like antibiotics.
+We aim to build an ecosystem that will live on the grid, which
+is a little bit of a wild idea, but it will continuously update and
+compute new genomes and add them into a giant comparison
+of all genomes versus all genomes. What we’re ultimately
+going to do is take those groups of genes that work together,
+transplant them into a host organism, and then turn them on and
+see what product they make.</p>
+
+<h4 id="what-would-a-dream-outcome-look-like-from-the-research-that-youre-doing-now">What would a dream outcome look like from the research that you’re doing now?</h4>
+
+<p>I would like to discover new small molecules that no one has
+known about. And to find totally new drugs if I could. We’ve
+developed ways of finding genes that work together, that
+nobody’s seen before. But we have no idea what antibiotic or
+other compound that makes. It’s on the order of millions of
+different possible compounds and it’s a dream to bring some of
+those to reality. We have developed ways of handling hundreds
+of thousands of genomes, approaching millions, so this is very
+much possible.</p>
+
+<p>This feature was originally published by the Morgridge Institute for Research in their <a href="https://morgridge.org/wp-content/uploads/Fearless-Science-Mag-Fall-2024-Digital.pdf">“Fearless Science” magazine, Fall 2024</a>.</p>
+
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-auto me-4 d-none d-md-flex">
+                    <a class="my-auto" href="/web-preview/preview-update-submodules/"><img style="height:5rem" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/open_science_pool">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
