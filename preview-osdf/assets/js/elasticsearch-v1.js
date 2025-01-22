@@ -4,6 +4,9 @@
  * This endpoint uses Elasticsearch
  */
 
+const ADSTASH_SUMMARY_INDEX = "ospool-summary-*"
+const ADSTASH_ENDPOINT = "https://elastic.osg.chtc.io/q"
+
 const SUMMARY_INDEX = "gracc.osg.summary"
 const ENDPOINT = "https://gracc.opensciencegrid.org/q"
 const DEBUG=true
@@ -66,7 +69,7 @@ class ElasticSearchQuery {
     }
 }
 
-export { ENDPOINT, DEBUG, SUMMARY_INDEX, DATE_RANGE, OSPOOL_FILTER }
+export { ENDPOINT, DEBUG, SUMMARY_INDEX, DATE_RANGE, OSPOOL_FILTER, ADSTASH_ENDPOINT, ADSTASH_SUMMARY_INDEX }
 export default ElasticSearchQuery;
 
 

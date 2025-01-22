@@ -86,9 +86,13 @@ let string_sort = (a, b) => {
     return a_standardized.localeCompare(b_standardized)
 }
 
+function localeIntToInt (i) {
+    return parseInt(i.replace(/[^0-9\.]/g, ''))
+}
+
 let locale_int_string_sort = (a, b) => {
-    let a_int = parseInt(a.replace(/[^0-9\.]/g, ''))
-    let b_int = parseInt(b.replace(/[^0-9\.]/g, ''))
+    let a_int = parseInt(localeIntToInt(a))
+    let b_int = parseInt(localeIntToInt(b))
     return b_int - a_int
 }
 
@@ -114,5 +118,27 @@ let createNode = ({tagName, children = [], ...options}) => {
     return node
 }
 
+const byteSizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 
-export {GraccDisplay, string_sort, locale_int_string_sort, hideNode, createNode}
+function formatBytes(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1000;
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + byteSizes[i];
+}
+
+function byteStringToBytes(byteString) {
+    const [value, type] = byteString.split(" ")
+    const typeIndex = byteSizes.indexOf(type)
+    const bytes = parseFloat(value) * Math.pow(1000, typeIndex)
+    return bytes
+}
+
+function sortByteString(a, b) {
+    if(byteStringToBytes(a) < byteStringToBytes(b)) return -1
+    if(byteStringToBytes(a) > byteStringToBytes(b)) return 1
+    return 0
+}
+
+
+export {GraccDisplay, string_sort, locale_int_string_sort, hideNode, createNode, formatBytes, sortByteString, byteStringToBytes, localeIntToInt}
