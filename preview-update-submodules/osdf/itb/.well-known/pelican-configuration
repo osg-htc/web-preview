@@ -1,5 +1,0 @@
-{
-  "director_endpoint": "https://itb-osdf-director.osgdev.chtc.io",
-  "namespace_registration_endpoint": "https://itb-osdf-registry.osgdev.chtc.io",
-  "jwks_uri": "https://osg-htc.org/osdf/itb/public_signing_key.jwks"
-}

@@ -1,4 +1,0 @@
-{  
-   "issuer":"https://osg-htc.org/osdf/itb",
-   "jwks_uri":"https://osg-htc.org/osdf/itb/public_signing_key.jwks"
-}

@@ -1,4 +1,0 @@
-{  
-   "issuer":"https://osg-htc.org/ospool/uc-shared",
-   "jwks_uri":"https://osg-htc.org/ospool/uc-shared/public_signing_key.jwks"
-}
