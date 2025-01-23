@@ -275,7 +275,7 @@ class Table {
                 }
             }, {
                 id: 'osdfFileTransferCount',
-                name: 'Files Transferred',
+                name: 'Objects Transferred',
                 data: (row) => Math.floor(row?.osdfFileTransferCount).toLocaleString(),
                 sort: { compare: locale_int_string_sort },
                 attributes: (cell, row, column) => {
@@ -458,7 +458,7 @@ class ProjectPage{
         this.fosFilePieChart = new PieChart(
             "project-fos-file-summary",
             this.dataManager.reduceByKey.bind(this.dataManager, "majorFieldOfScience", "osdfFileTransferCount"),
-            "# of Files Transferred by Field Of Science"
+            "# of Objects Transferred by Field Of Science"
         )
         this.fosBytePieChart = new PieChart(
             "project-fos-byte-summary",
@@ -468,7 +468,7 @@ class ProjectPage{
         this.filePieChart = new PieChart(
             "project-file-summary",
             this.dataManager.reduceByKey.bind(this.dataManager, "projectName", "osdfFileTransferCount"),
-            "# of Files Transferred by Project"
+            "# of Objects Transferred by Project"
         )
         this.bytePieChart = new PieChart(
             "project-byte-summary",
