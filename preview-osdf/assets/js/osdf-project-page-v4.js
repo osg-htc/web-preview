@@ -11,7 +11,7 @@ import {
 import Color from "https://colorjs.io/dist/color.js";
 import {PieChart} from "./components/pie-chart.js";
 
-const orange = new Color("#ecc576")
+const orange = new Color("#f4b627")
 const white = new Color("#ffffff")
 const whiteorange = orange.range("#ffffff", {
     space: "lch", // interpolation space
@@ -508,11 +508,12 @@ const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 const project_page = new ProjectPage()
 
 const populate_aggregate_statistics = async () => {
-    const data = await project_page.dataManager.getData()
+    const data = await project_page.dataManager.getFilteredData()
     document.getElementById("ospool-projects").textContent = Object.keys(data).length
-    document.getElementById("ospool-jobs").textContent = Object.values(data).reduce((p, v) => p + v.jobs, 0).toLocaleString()
-    document.getElementById("ospool-institutions").textContent = new Set(Object.values(data).map(v => v.InstitutionID)).size
-    document.getElementById("ospool-fields-of-science").textContent = new Set(Object.values(data).map(v => v.FieldOfScience)).size
+    document.getElementById("ospool-osdf-files").textContent = Object.values(data).reduce((p, v) => p + v.osdfFileTransferCount, 0).toLocaleString()
+    document.getElementById("ospool-osdf-bytes").textContent = formatBytes(Object.values(data).reduce((p, v) => p + v.osdfByteTransferCount, 0))
+    document.getElementById("ospool-institutions").textContent = new Set(Object.values(data).map(v => v.projectInstitutionName)).size
+    document.getElementById("ospool-fields-of-science").textContent = new Set(Object.values(data).map(v => v.majorFieldOfScience)).size
     document.getElementById("ospool-aggregate-text").hidden = false
 }
 populate_aggregate_statistics()

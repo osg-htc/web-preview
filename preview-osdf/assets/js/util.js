@@ -119,12 +119,19 @@ let createNode = ({tagName, children = [], ...options}) => {
 }
 
 const byteSizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+const bytesSizesLong = ['Bytes', 'Kilobytes', 'Megabytes', 'Gigabytes', 'Terabytes', 'Petabytes', 'Exabytes', 'Zettabytes', 'Yottabytes']
 
-function formatBytes(bytes) {
+function formatBytes(bytes, long=false) {
     if (bytes === 0) return '0 Bytes';
     const k = 1000;
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + byteSizes[i];
+    const byteValue = parseFloat((bytes / Math.pow(k, i)).toFixed(2))
+
+    if(long){
+        return `${byteValue} ${bytesSizesLong[i]}`
+    } else {
+        return `${byteValue} ${byteSizes[i]}`
+    }
 }
 
 function byteStringToBytes(byteString) {

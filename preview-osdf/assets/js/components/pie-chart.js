@@ -38,7 +38,7 @@ function hashCode(str) {
 	return hash;
 }
 
-const getColor = (context) => {
+export const getColor = (context) => {
 
 	const colors = [
 		"#37a2eb",
