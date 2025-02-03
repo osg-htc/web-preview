@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Advancing computational throughput of NSF funded projects with the PATh Facility | OSG</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Advancing computational throughput of NSF funded projects with the PATh Facility" />
+<meta name="author" content="Bryna Goeking" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Since 2022, the Partnership to Advance Throughput Computing (PATh) Facility has provided dedicated high throughput computing (HTC) capacity to researchers nationwide. Following a year of expansion, here’s a look into the researchers’ work and how it has been enabled by the PATh Facility." />
+<meta property="og:description" content="Since 2022, the Partnership to Advance Throughput Computing (PATh) Facility has provided dedicated high throughput computing (HTC) capacity to researchers nationwide. Following a year of expansion, here’s a look into the researchers’ work and how it has been enabled by the PATh Facility." />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/PATh-Facility-Hardware.jpg" />
+<meta property="og:image:alt" content="PATh Facility hardware" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/PATh-Facility-Hardware.jpg" />
+<meta name="twitter:image:alt" content="PATh Facility hardware" />
+<meta property="twitter:title" content="Advancing computational throughput of NSF funded projects with the PATh Facility" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Bryna Goeking"},"dateModified":"2024-05-21T00:00:00+00:00","datePublished":"2024-05-21T00:00:00+00:00","description":"Since 2022, the Partnership to Advance Throughput Computing (PATh) Facility has provided dedicated high throughput computing (HTC) capacity to researchers nationwide. Following a year of expansion, here’s a look into the researchers’ work and how it has been enabled by the PATh Facility.","headline":"Advancing computational throughput of NSF funded projects with the PATh Facility","image":{"alt":"PATh Facility hardware","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/PATh-Facility-Hardware.jpg","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://path-cc.io/news/2024-05-21-path-facility/"},"url":"https://path-cc.io/news/2024-05-21-path-facility/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-osdf-updates/assets/css/style-v3.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/web-preview/preview-osdf-updates/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-osdf-updates/assets/js/all.js" defer></script>
+
+
+
+
+
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-osdf-updates/"><img height="55" src="/web-preview/preview-osdf-updates/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-osdf-updates/services/open_science_pool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-osdf-updates/services/open_science_pool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-osdf-updates/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-osdf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSDF</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-osdf-updates/services/osdf">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-osdf-updates/services/osdf/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/services/access-point">OSG-Operated Access Points</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/campus-cyberinfrastructure.html">CC* Proposals</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-osdf-updates/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-osdf-updates/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            
+            <span class="navbar-text">
+                
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>Advancing computational throughput of NSF funded projects with the PATh Facility</h1>
+        <div class="row justify-content-between">
+          
+            <div class="col-auto">
+                <h4 class="text-muted">By: Bryna Goeking</h4>
+            </div>
+          
+          <div class="col-auto">
+            <h4 class="text-muted">May 21, 2024</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p><em>Since 2022, the <a href="https://path-cc.io/">Partnership to Advance Throughput Computing</a> (PATh) Facility has provided dedicated high throughput
+computing (HTC) 
+capacity to researchers nationwide. Following a year of expansion, here’s a look into the researchers’ work and how it has been enabled by
+the PATh Facility.</em></p>
+
+<p>Searching for more computing capacity, Dr. <a href="https://www.nwmissouri.edu/naturalsciences/directory/chakraborty.htm">Himadri Chakraborty</a> of 
+<a href="https://www.nwmissouri.edu/">Northwest Missouri State University</a> first heard of the <a href="https://path-cc.io/facility/">PATh Facility</a>, a
+purpose-built,
+national-scale distributed high throughput computing (HTC) resource, from his NSF program director. After approaching PATh Research
+Facilitators to 
+acquire an account and computing “credits,” Chakraborty’s team was able to advance their work in physics using computing resources from the
+PATh Facility.
+<a href="https://www.cs.wisc.edu/staff/koch-christina/">Christina Koch</a>, Lead Research Facilitator at CHTC guided Chakraborty’s team in
+transitioning workflows to run within HTCondor.</p>
+
+<p>“As our ambition grew, we were looking out for a larger system, PATh came as a blessing,” Chakraborty reflected. “The ultimate satisfaction is to get 
+some new understanding and learning of the science we are working on. We hope that this will be one of our first major achievements using 
+the PATh Facility.”</p>
+
+<figure class="figure float-end" style="margin-left: 1em">
+  <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/HimadriChakraborty2024.jpg" height="240" width="190" class="figure-img img-fluid rounded" alt="Himadri Chakraborty" />
+  <figcaption class="figure-caption">Himadri Chakraborty. <br /></figcaption>
+</figure>
+
+<p>The PATh Facility, created through the Partnership to Advance Throughput Computing (PATh; NSF grant #2030508), enables researchers of an NSF-funded project 
+to use its dedicated distributed high-throughput computing (HTC) capacity. PATh is an ongoing collaboration between the <a href="https://chtc.cs.wisc.edu/">Center for High Throughput Computing</a> (CHTC) 
+and the <a href="https://osg-htc.org/">OSG Consortium</a> to support HTC-enabled research by improving national cyberinfrastructure. The PATh Facility acquires capacity 
+from six institutions — the <a href="https://www.unl.edu/">University of Nebraska-Lincoln</a>, <a href="https://www.syracuse.edu/">Syracuse University</a>, <a href="https://www.fiu.edu/">Florida International University</a>,
+the <a href="https://www.sdsc.edu/">San Diego Supercomputing Center</a>, the <a href="https://www.wisc.edu/">University of Wisconsin-Madison</a> and the <a href="https://tacc.utexas.edu/">Texas Advanced Computing Center</a> 
+— integrated into a single pool of capacity available to users. After becoming fully operational in mid-2022, it saw “the most growth in terms of new projects 
+joining and getting started in 2023,” Koch said.</p>
+
+<p>The PATh Facility guarantees users access through <a href="https://path-cc.io/services/credit-accounts/">credits</a>. Credits operate as a stand-in unit to ensure no 
+one user is monopolizing the Facility’s capacity. Users receive 1,000 start-up credits to test if the PATh Facility is a good fit for them, available as Central
+Processing Unit (CPU) or Graphic Processing Unit (GPU) charges. After this initial testing period, they can apply for supplemental credits by contacting PATh 
+Facilitators and their NSF officer. If users run through all their credits, they are still able to keep running and facilitators will work with them to request 
+additional credits.</p>
+
+<p>In comparison to the PATh Facility, the <a href="https://osg-htc.org/services/open_science_pool">Open Science Pool</a> (OSPool) — another distributed HTC resource created
+by the OSG Consortium — acquires available capacity from idle resources across <a href="https://osg-htc.org/services/open_science_pool/institutions">70 institutions</a> 
+nationwide. Projects may be better suited for the PATh Facility than the OSPool if they need additional cores, memory, data or dedicated time. “Since the PATh 
+Facility is hardware owned and operated by PATh, we can make more guarantees about how long individual computations can run, that people will be able to get certain 
+resources and run computations of a certain size,” Koch explained.</p>
+
+<p>Following the PATh Facility’s growth, some OSPool users have begun to use the Facility’s dedicated capacity in tandem. One example is <a href="https://www.ncsu.edu/">North Carolina State University</a> 
+Ph.D. candidate Matthew Dorsey, who relied on capacity from the OSPool for two years before expanding his research to the newer <a href="https://path-cc.io/facility/">PATh Facility</a>.
+In doing so, he was able to run larger jobs without worrying about running out of capacity. “The transition to the PATh Facility was extremely easy,” Dorsey said. 
+“I was pleased with how seamless it was.”</p>
+
+<p>Dorsey became interested in the OSPool after attending <a href="https://osg-htc.org/school-2024/">OSG School</a> in the summer of 2022. There, he learned the basics of
+<a href="https://htcondor.org/">HTCondor</a> and got to know Koch and other facilitators. Dorsey’s research specializes in statistical physics. He uses computational models
+to study magnetic materials and how magnetic fields can be used to alter properties made from different kinds of magnetic nanoparticles. His work benefits from the 
+consistent access to computing for runs that accumulate over a long period of time.</p>
+
+<figure class="figure float-end" style="margin-left: 1em">
+  <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/Dorsey-headshot.jpg" height="240" width="190" class="figure-img img-fluid rounded" alt="Matthew Dorsey" />
+  <figcaption class="figure-caption">Matthew Dorsey. <br /></figcaption>
+</figure>
+
+<p>Dorsey acknowledges that each system has its advantages and disadvantages. For Dorsey, the PATh Facility is better equipped for more complex jobs due to capacity and
+allocated time, while the OSPool is better for testing out comparatively smaller runs. “It was really easy to translate what I was doing on the OSPool to the PATh 
+Facility and quickly scale it up,” Dorsey said.</p>
+
+<p>A testament to the strength of the PATh Facility, the <a href="https://public.nrao.edu/">National Radio Astronomy Observatory</a> (NRAO) used its capacity with the OSPool to 
+develop one of the <a href="https://chtc.cs.wisc.edu/nrao.html">oldest radio images</a> of a well-studied area in space. Working alongside PATh and CHTC staff, the capacity
+from the PATh Facility was instrumental in planning when certain jobs would run, without the risk of reduced capacity from the OSPool.</p>
+
+<p>The PATh Facility makes it possible to support projects with larger computational requirements. <a href="https://metallurgy.mines.edu/project/stevanovic-vladan/">Dr. Vladan Stevanovic</a> 
+of the <a href="https://www.mines.edu/">Colorado School of Mines</a> is studying computational material science and relies heavily on the PATh Facility to plan and run data workflows. 
+Stevanovic became familiar with the PATh Facility after receiving a <a href="https://new.nsf.gov/cise/dear-colleague-letters">Dear Colleague Letter</a> from the NSF.</p>
+
+<p>His work requires more cores than what the OSPool alone could offer, and he was drawn to the PATh Facility due to its specialization in HTC and ability to guarantee 
+availability. Stevanovic and his team hope to develop computational tools to reliably predict the metastable states of solid matter. He describes this work as very 
+computational, and has worked with HTC workflows for over 12 years. “PATh is amazing for my research because its primary purpose is HTC, which I rely on,” he said. 
+“I’m grateful because my project critically depends on PATh,” he said.</p>
+
+<p>Stevanovic also appreciates how easy it was to start using the PATh Facility. Start-up credits are typically granted while or directly after meeting with the Facilitation
+team, and Koch’s team continues to support researchers as they ask the NSF for more credits. “The onboarding process was great, and the support from Christina was amazing.
+We were able to get running and get up to speed quickly.”</p>
+
+<p>Chakraborty’s team faced some initial challenges in switching workflows from in-house to distributed, but coming to the PATh Facility nonetheless expanded the capacity
+available to his team. He recounted that his previous in-house system provided about 28 CPUs per node, while the PATh Facility offers up to 150 CPUs. Overall, Chakraborty
+is optimistic that the new capacity will improve his findings for the future. “We are happy we took that plunge because we went through some difficult times and got help 
+from the PATh folks,” he said. “We’ve made some pretty good progress in making our codes run on PATh. It was mostly to be able to use a larger pool of computer power.”</p>
+
+<p>His work focuses on the simulation of electronic and phonontonic coupled ultrafast relaxation of photoexcited large molecules. The PATh Facility’s new capacity allowed 
+his team to make new advances “of a polymer functional system that has a lot of applications,” he said. “It’s not the end, it’s still preliminary and intermediate, and 
+they are so exciting. We are looking forward to the final results and finding out new physics.”</p>
+
+<p>Interested PIs can submit an interest form on the <a href="https://portal.path-cc.io/documentation/">PATh website</a>, to then meet a research computing facilitator for a consultation. 
+If the researcher is a good fit, PATh Facilitators help the researcher log in and begin using their start-up credits. If they wish to continue, the researcher begins 
+drafting a proposal letter to the NSF, requesting credits. Koch notes that the credit proposal is simpler than a typical project proposal, and the Facilitation team provides
+a multitude of resources such as credit calculators and proposal templates. For users who encounter issues, the facilitation team is available through support email address, 
+and weekly <a href="https://portal.path-cc.io/documentation/support_and_training/support/getting-help-from-RCFs/">support hours</a>, as well as maintaining documentation on the website.</p>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-auto me-4 d-none d-md-flex">
+                    <a class="my-auto" href="/web-preview/preview-osdf-updates/"><img style="height:5rem" src="/web-preview/preview-osdf-updates/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/services/open_science_pool">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-osdf-updates/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
