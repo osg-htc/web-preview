@@ -1,4 +1,0 @@
-{  
-    "issuer":"https://osg-htc.org/osdf/ahurt",
-    "jwks_uri":"https://osg-htc.org/osdf/ahurt/oauth2/keys"
-}
