@@ -1,4 +1,0 @@
-{  
-    "issuer":"https://osg-htc.org/osdf/caida",
-    "jwks_uri":"https://osg-htc.org/osdf/caida/oauth2/keys"
-}
