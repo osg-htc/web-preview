@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Unlocking New Frontiers in Drug Discovery: High Throughput Computing in the Thyme Lab | OSG</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Unlocking New Frontiers in Drug Discovery: High Throughput Computing in the Thyme Lab" />
+<meta name="author" content="Kallen Wank" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In 2022, the Thyme Lab faced a computing bottleneck at UAB. Ari Ginsparg, a PhD student, turned to the OSG, gaining access to ten times more resources, which significantly advanced their research." />
+<meta property="og:description" content="In 2022, the Thyme Lab faced a computing bottleneck at UAB. Ari Ginsparg, a PhD student, turned to the OSG, gaining access to ten times more resources, which significantly advanced their research." />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/thyme/structures.png" />
+<meta property="og:image:alt" content="Example of a prospective drug (white) identified by Rosetta in the hypocretin receptor binding pocket. Amino acids identified to interact with the drug are highlighted in pink or brown." />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-04-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/thyme/structures.png" />
+<meta name="twitter:image:alt" content="Example of a prospective drug (white) identified by Rosetta in the hypocretin receptor binding pocket. Amino acids identified to interact with the drug are highlighted in pink or brown." />
+<meta property="twitter:title" content="Unlocking New Frontiers in Drug Discovery: High Throughput Computing in the Thyme Lab" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kallen Wank"},"dateModified":"2025-04-07T00:00:00+00:00","datePublished":"2025-04-07T00:00:00+00:00","description":"In 2022, the Thyme Lab faced a computing bottleneck at UAB. Ari Ginsparg, a PhD student, turned to the OSG, gaining access to ten times more resources, which significantly advanced their research.","headline":"Unlocking New Frontiers in Drug Discovery: High Throughput Computing in the Thyme Lab","image":{"alt":"Example of a prospective drug (white) identified by Rosetta in the hypocretin receptor binding pocket. Amino acids identified to interact with the drug are highlighted in pink or brown.","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/thyme/structures.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://osg-htc.org/spotlights/oral-roberts-ospool-integration.html"},"url":"https://osg-htc.org/spotlights/oral-roberts-ospool-integration.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v5.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-update-submodules/assets/js/all.js" defer></script>
+
+
+
+
+
+
+
+<script>
+	window.fwSettings={
+	'widget_id':12000000602
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}()
+</script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/12000000602.js' async defer></script>
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-update-submodules/"><img height="55" style="filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.2))" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-osdf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSDF</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/projects">Projects</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/data">Data</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/facilitation">Research Computing Facilitation</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Proposals</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/documentation.html">Site Admin Documentation</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/training.html">Training</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-update-submodules/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item " href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            <span class="flex-grow-1 d-flex">
+                <div class=" ms-auto mx-auto me-lg-0 d-flex flex-row">
+                    <a class="text-dark d-flex fs-2 me-2" href="https://portal.osg-htc.org/application" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Apply for Account">
+                        <i class="bi-person-fill-add my-auto"></i>
+                    </a>
+                    <a class="text-dark d-flex fs-3 me-3" href="/contact.html" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Contact Us">
+                        <i class="bi-telephone-fill my-auto"></i>
+                    </a>
+
+                    <a href="https://path-cc.io" class="me-2"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                    <a href="https://iris-hep.org/"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                </div>
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>Unlocking New Frontiers in Drug Discovery: High Throughput Computing in the Thyme Lab</h1>
+        <div class="row justify-content-between">
+          
+            <div class="col-auto">
+                <h4 class="text-muted">By: Kallen Wank</h4>
+            </div>
+          
+          <div class="col-auto">
+            <h4 class="text-muted">April  7, 2025</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p>In 2022, computing challenges arose at the <a href="https://www.umassmed.edu/thymelab/">Thyme Lab</a> when the supercomputer at the University of Alabama at Birmingham (UAB) couldn’t handle running enough parallel jobs for the Thyme Lab’s large data pipeline. Seeking a solution to this computing bottleneck, <a href="https://www.umassmed.edu/bmb/culture/monthly-department-features/monthly-department-features-posts/2023/07/thyme-lab/">Ari Ginsparg</a>, a PhD student working in the lab noted that “a person on my thesis committee recommended the <a href="https://osg-htc.org/">OSG</a>, so we started exploring it. With the OSG, I was able to access more resources — about ten times more — which made a huge difference.”</p>
+
+<figure style="float: right; margin: 0 1rem 0 1rem; width: 350px;">
+ <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/thyme/fish.png" height="500" width="350" class="figure-img img-fluid rounded" alt="Erik in the wet lab" />
+ <figcaption>Top-down and side views of aggregated zebrafish brain images from control and experimental fish. Regions highlighted in pink indicate differences in structure between the control and experimental groups.</figcaption>
+</figure>
+
+<p>The <a href="https://www.umassmed.edu/thymelab/">Thyme Lab</a>, led by Summer Thyme, PhD, assistant professor of biochemistry &amp; molecular technology, has since moved in 2023 to <a href="https://www.umassmed.edu/">UMass Chan Medical School</a>, where it continues its work to uncover the molecular basis of complex neurodevelopmental diseases and to develop therapies.</p>
+
+<p>Ginsparg has focused his work on computational drug discovery. His research centers on developing treatments for diseases like narcolepsy and insomnia. With a background in bioinformatics and computational chemistry, he combines computational techniques with experimental biology to design more effective drugs and advance drug discovery for neurodevelopmental disorders.Using <a href="https://rosettacommons.org/software/">Rosetta</a>, a protein modeling software, Ginsparg created an algorithm to predict potential drugs targeting hypocretin receptor 2 (HCRTR2)— a key player in insomnia and narcolepsy.</p>
+
+<figure style="float: left; margin: 0 1rem 1rem 0; width: 315px;">
+<img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/thyme/grid.png" height="210" width="315" class="figure-img img-fluid rounded" alt="Footage from a zebrafish behavior experiment, showing larvae in a 96-well plate." />
+<figcaption>Footage from a zebrafish behavior experiment, showing larvae in a 96-well plate.</figcaption>
+</figure>
+
+<p>The <a href="https://www.umassmed.edu/thymelab/">Thyme Lab</a> uses zebrafish as an ideal model organism to study a wide range of neurodevelopmental disorders. Zebrafish are a popular animal model in labs because they share roughly 70 percent of their DNA with humans, progress through their life cycle more quickly, and are more cost-effective to maintain in the large numbers required for rigorous biochemical studies.</p>
+
+<p>The zebrafish are analyzed with a variety of techniques to view the responses to certain stimuli. For example, Ginsparg explained that “we have specialized devices where zebrafish are placed in 96-well plates and filmed while swimming around. We can add stimuli like flashing lights or sounds to observe how they react.” They also use programs to quantify the sizes of different brain regions and compare them to wild-type zebrafish to see if there are any changes. The data is all uploaded to applications that analyze the images and output results.</p>
+
+<p>To learn how to use the <a href="https://osg-htc.org/services/open_science_pool.html">OSPool</a>, a source of computing capacity that is accessible to any researcher affiliated with a US academic institution, Ginsparg relied on the OSG Office Hours. These virtual hours*, led by the Research Computing Facilitators (RCFs), provide guidance and support. When transitioning to OSPool, Ginsparg emphasized “that the office hours and resources from OSG were critical to my success. The amount of resources they provide has been essential for progressing with my thesis project.”</p>
+
+<figure style="float: left; margin: 0 1rem 1rem 0; width: 545px;">
+<img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/thyme/structures.png" height="383" width="545" class="figure-img img-fluid rounded" alt="Example of a prospective drug (white) identified by Rosetta in the hypocretin receptor binding pocket. Amino acids identified to interact with the drug are highlighted in pink or brown." />
+<figcaption>Example of a prospective drug (white) identified by Rosetta in the hypocretin receptor binding pocket. Amino acids identified to interact with the drug are highlighted in pink or brown.</figcaption>
+</figure>
+
+<p>The Thyme lab’s setup to modify their systems to use the OSPool was a gradual process. Ginsparg had already set up a workflow with their local supercomputer, so to adapt the workflow to use the OSPool and its software suite <a href="https://htcondor.org/">HTCondor</a>, he transitioned to a new software better suited for OSPool.</p>
+
+<p>“We also had to connect the workflow using the OSPool to our data storage system at UAB, which was a bit of a learning process. Once everything was connected, I was able to scale up the workflow,” Ginsparg said. In the Thyme lab, he is the only one currently using OSPool, but commented that it makes a huge difference. In just the past year, the Thyme Lab has run over <a href="https://osg-htc.org/projects.html?project=UAB_Thyme">4.7 million jobs on the OSPool</a>.</p>
+
+<p>With the jobs running on the OSPool, Ginsparg commented that they have not faced problems or wait times to run jobs. When faced with barriers, Ginsparg returns to OSG Office Hours to get answers to any sort of questions. “The biggest challenge was learning how HTCondor works, but once I got past that, there haven’t been any major issues. The limitations are pretty minimal, and nothing has stopped progress.”</p>
+
+<p>Utilizing the OSPool, Ginsparg, and the Thyme Lab have made discoveries in their search to find new drugs for diseases.“Recently I developed a method to predict drugs that can target a specific pocket in a protein. That’s exciting because it adds new functionality to the Lab’s Rosetta program. We’re on track to develop drugs that could help treat insomnia.” A future direction of the lab includes increasing their usage of OSPool to expand their drug discovery pipeline to identify drugs for other targets.</p>
+
+<p>*OSPool virtual hours occur weekly. Learn more <a href="https://portal.osg-htc.org/documentation/support_and_training/support/getting-help-from-RCFs/">here</a>.</p>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-auto me-4 d-none d-md-flex">
+                    <div class="row my-auto justify-content-center">
+                        <div class="col-12 d-flex mb-3">
+                            <a class="mx-auto" href="/web-preview/preview-update-submodules/"><img style="height:5rem" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://path-cc.io"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://iris-hep.org/"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/ospool/">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
