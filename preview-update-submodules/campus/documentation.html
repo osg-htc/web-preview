@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>OSPool Site Admin Documentation | OSG</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="OSPool Site Admin Documentation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A national, distributed computing partnership for data-intensive research" />
+<meta property="og:description" content="A national, distributed computing partnership for data-intensive research" />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OSPool Site Admin Documentation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A national, distributed computing partnership for data-intensive research","headline":"OSPool Site Admin Documentation","url":"/web-preview/preview-update-submodules/campus/documentation.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v5.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-update-submodules/assets/js/all.js" defer></script>
+
+
+
+
+
+
+
+<script>
+	window.fwSettings={
+	'widget_id':12000000602
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}()
+</script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/12000000602.js' async defer></script>
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-update-submodules/"><img height="55" style="filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.2))" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-osdf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSDF</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/projects">Projects</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/data">Data</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/facilitation">Research Computing Facilitation</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Proposals</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/documentation.html">Site Admin Documentation</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/training.html">Training</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-update-submodules/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item " href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            <span class="flex-grow-1 d-flex">
+                <div class=" ms-auto mx-auto me-lg-0 d-flex flex-row">
+                    <a class="text-dark d-flex fs-2 me-2" href="https://portal.osg-htc.org/application" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Apply for Account">
+                        <i class="bi-person-fill-add my-auto"></i>
+                    </a>
+                    <a class="text-dark d-flex fs-3 me-3" href="/contact.html" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Contact Us">
+                        <i class="bi-telephone-fill my-auto"></i>
+                    </a>
+
+                    <a href="https://path-cc.io" class="me-2"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                    <a href="https://iris-hep.org/"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                </div>
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+    <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+        <h1 id="ospool-site-admin-documentation">OSPool Site Admin Documentation</h1>
+
+<h2 id="supported-cluster-oses-and-htcondor-versions">Supported Cluster OSes and HTCondor Versions</h2>
+
+<table class="my-3">
+  <thead>
+    <tr>
+      <th>OS</th>
+      <th>HTCondor</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EL7 (*)</td>
+      <td>23.10.*</td>
+      <td>EL7 is no longer supported, and thus our ability to support such systems may be removed at any time.</td>
+    </tr>
+    <tr>
+      <td>EL8 (*)</td>
+      <td>24.* (&gt; 24.0)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>EL9 (*)</td>
+      <td>24.* (&gt; 24.0)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Debian 11 (bullseye)</td>
+      <td>24.* (&gt; 24.0)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Debian 12 (bookworm)</td>
+      <td>24.* (&gt; 24.0)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Ubuntu 20.04 (focal)</td>
+      <td>24.0.*</td>
+      <td>Ubuntu 20.04 is no longer supported, and thus our ability to support such systems may be removed at any time.</td>
+    </tr>
+    <tr>
+      <td>Ubuntu 22.04 (jammy)</td>
+      <td>24.* (&gt; 24.0)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Ubuntu 24.04 (noble)</td>
+      <td>24.* (&gt; 24.0)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>(*) Tested variants are RHEL, Alma, and Rocky.</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="monitoring-and-information">Monitoring and Information</h2>
+
+<h3 id="viewing-researcher-jobs-running-within-a-glidein-job">Viewing researcher jobs running within a glidein job</h3>
+
+<ol>
+  <li>
+    <p>Log in to a worker node as the OSPool user (e.g., “osg01” but may be different at your site)</p>
+  </li>
+  <li>
+    <p>Pick a glidein (and its directory):</p>
+
+    <p><strong>Note:</strong> <em>SCRATCH</em> is the path of the scratch directory you gave us to put glideins in.</p>
+
+    <ol>
+      <li>
+        <p>Option 1: List HTCondor processes, pick one, and note its glidein directory:</p>
+
+        <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ ps -u osg01 -f | grep master
+ osg01    4122304 [...] SCRATCH/glide_qJDh7z/main/condor/sbin/condor_master [...]
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Option 2: List glidein directories and pick an active one:</p>
+
+        <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls -l SCRATCH/glide_*/_GLIDE_LEASE_FILE
+</code></pre></div>        </div>
+
+        <p>Pick a “glide_xxxxxx” directory that has a lease file with a timestamp less than about 5 minutes old.</p>
+      </li>
+    </ol>
+
+    <p><strong>Note:</strong> Let <em>GLIDEDIR</em> be the path to the chosen glidein directory, e.g., <code class="language-plaintext highlighter-rouge">SCRATCH/glide_xxxxxx</code></p>
+  </li>
+  <li>
+    <p>Make sure HTCondor is recent enough:</p>
+
+    <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ GLIDEDIR/main/condor/bin/condor_version
+$CondorVersion: 24.6.1 2025-03-20 BuildID: 794846 PackageID: 24.6.1-1 $
+$CondorPlatform: x86_64_AlmaLinux9 $
+</code></pre></div>    </div>
+
+    <p>The Condor Version should be 2.7.0 or later; if not, go back to step 2 and pick a different glidein directory.</p>
+  </li>
+  <li>
+    <p>Pick the PID of an HTCondor “startd” process to query:</p>
+
+    <ol>
+      <li>
+        <p>If you are just exploring, run the following command and pick any “condor_startd” process — it does not matter if it is associated with the HTCondor instance identified in steps 2–3 above:</p>
+
+        <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ps -u osg01 -f | grep condor_startd
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>If you are looking for the “startd” associated with some other process, start with a process tree:</p>
+
+        <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ps -u osg01 -f --forest
+</code></pre></div>        </div>
+
+        <p>Find the process of interest, then work upward in the process tree to the nearest ancestor “condor_startd” process.</p>
+      </li>
+      <li>
+        <p>In either case, note the PID (leftmost number) on the “condor_startd” line you picked.</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Run <code class="language-plaintext highlighter-rouge">condor_who</code> on the PID you picked:</p>
+
+    <pre class="bg-dark text-light p-2 rounded"><code>
+ $ GLIDEDIR/main/condor/bin/condor_who -pid PID -ospool
+ <b>Batch System : SLURM</b>
+ <b>Batch Job    : 346675</b>
+ <b>Birthdate    : 2025-04-07 14:47:02</b>
+ <b>Temp Dir     : /var/lib/condor/execute/osg01/glide_qJDh7z/tmp</b>
+ <b>Startd : glidein_4101601_324283152@spark-a220.chtc.wisc.edu has 1 job(s) running:</b>
+ PROJECT   USER   AP_HOSTNAME         JOBID        RUNTIME    MEMORY    DISK      CPUs EFCY PID     STARTER
+ Inst-Proj jsmith ap20.uc.osg-htc.org 27781234.0   0+00:17:43  512.0 MB  129.0 MB    1 0.00 4124321 4123123
+ …
+ </code></pre>
+  </li>
+</ol>
+
+<p>Definitions of fields in the header (before the PROJECT USER … row):</p>
+
+<table class="my-3">
+  <thead>
+    <tr>
+      <th style="text-align: left">Batch System</th>
+      <th style="text-align: left">HTCondor’s name for the type of batch system you are running.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Batch Job</td>
+      <td style="text-align: left">The identifier for this glidein job in your batch system.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Birthdate</td>
+      <td style="text-align: left">When HTCondor began running within this glidein; typically, this is a few minutes after the glidein job itself began running.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Temp Dir</td>
+      <td style="text-align: left">The path to the glidein job directory (remove the trailing “/tmp”)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Startd</td>
+      <td style="text-align: left">HTCondor’s identifier for its “startd” process within the glidein job.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Definitions of fields in each row of the researcher job table:</p>
+
+<table class="my-3">
+  <thead>
+    <tr>
+      <th style="text-align: left">PROJECT</th>
+      <th style="text-align: left">The OSPool project identifier for this researcher job</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">USER</td>
+      <td style="text-align: left">The OSPool AP’s user identifier for this researcher job</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">AP_HOSTNAME</td>
+      <td style="text-align: left">The OSPool AP’s hostname</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JOBID</td>
+      <td style="text-align: left">HTCondor’s identifier for this researcher job on its AP</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RUNTIME</td>
+      <td style="text-align: left">HTCondor’s value for the runtime of the researcher job</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MEMORY</td>
+      <td style="text-align: left">The amount of memory (RAM), in MB, that HTCondor <strong>allocated</strong> to this researcher job</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">DISK</td>
+      <td style="text-align: left">The amount of disk, in KB, that HTCondor <strong>allocated</strong> to this researcher job</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CPUs</td>
+      <td style="text-align: left">The number of CPU cores that HTCondor <strong>allocated</strong> to this researcher job</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">EFCY</td>
+      <td style="text-align: left">An HTCondor measure of the efficiency of the job, roughly calculated as CPU time / wallclock time; a value noticeably greater than the CPUs value may mean the researcher job is using more cores than requested</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">PID</td>
+      <td style="text-align: left">The local PID of the researcher job, or more often, of the root of the process tree for the researcher job (e.g., this could be a wrapper script or even Singularity or Apptainer for a researcher job in a container)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">STARTER</td>
+      <td style="text-align: left">The local PID of the HTCondor “starter” process that owns this research job</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="viewing-researcher-jobs-running-within-all-ospool-glidein-jobs">Viewing researcher jobs running within all OSPool glidein jobs</h3>
+
+<p>Note: Steps 1–3 are the same as above.</p>
+
+<ol>
+  <li>
+    <p>Log in to a worker node as the OSPool user (e.g., “osg01” but may be different at your site)</p>
+  </li>
+  <li>
+    <p>Pick a glidein (and its directory):</p>
+
+    <p><strong>Note:</strong> <em>SCRATCH</em> is the path of the scratch directory you gave us to put glideins in.</p>
+
+    <ol>
+      <li>
+        <p>Option 1: List HTCondor processes, pick one, and note its glidein directory:</p>
+
+        <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ps -u osg01 -f | grep master
+osg01    4122304 [...] SCRATCH/glide_qJDh7z/main/condor/sbin/condor_master [...]
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Option 2: List glidein directories and pick an active one:</p>
+
+        <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls -l SCRATCH/glide_*/_GLIDE_LEASE_FILE
+</code></pre></div>        </div>
+
+        <p>Pick a “glide_xxxxxx” directory that has a lease file with a timestamp less than about 5 minutes old.</p>
+      </li>
+    </ol>
+
+    <p><strong>Note:</strong> Let <em>GLIDEDIR</em> be the path to the chosen glidein directory, e.g., <code class="language-plaintext highlighter-rouge">SCRATCH/glide_xxxxxx</code></p>
+  </li>
+  <li>
+    <p>Make sure HTCondor is recent enough:</p>
+
+    <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ GLIDEDIR/main/condor/bin/condor_version
+$CondorVersion: 24.6.1 2025-03-20 BuildID: 794846 PackageID: 24.6.1-1 $
+$CondorPlatform: x86_64_AlmaLinux9 $
+</code></pre></div>    </div>
+
+    <p>The Condor Version should be 2.7.0 or later; if not, go back to step 2 and pick a different glidein directory.</p>
+  </li>
+  <li>
+    <p>Run <code class="language-plaintext highlighter-rouge">condor_who</code> on all discoverable glideins on this host running as the current user:</p>
+
+    <div class="language-plaintext bg-dark text-light p-2 rounded highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ GLIDEDIR/main/condor/bin/condor_who -allpids -ospool
+   
+ Batch System : SLURM
+ Batch Job    : 346675
+ Birthdate    : 2025-04-07 14:47:02
+ Temp Dir     : /var/lib/condor/execute/osg01/glide_qJDh7z/tmp
+ Startd : glidein_4101601_324283152@spark-a220.chtc.wisc.edu has 1 job(s) running:
+ PROJECT   USER   AP_HOSTNAME         JOBID        RUNTIME    MEMORY    DISK      CPUs EFCY PID     STARTER
+ Inst-Proj jsmith ap20.uc.osg-htc.org 27781234.0   0+00:17:43  512.0 MB  129.0 MB    1 0.00 4124321 4123123
+ …
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>For each glidein job, there will be one set of heading lines (“Batch System”, etc.) and a table of researcher jobs, one per line; format and definitions are as above.</p>
+
+    </div>
+</div>
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-auto me-4 d-none d-md-flex">
+                    <div class="row my-auto justify-content-center">
+                        <div class="col-12 d-flex mb-3">
+                            <a class="mx-auto" href="/web-preview/preview-update-submodules/"><img style="height:5rem" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://path-cc.io"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://iris-hep.org/"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/ospool/">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
