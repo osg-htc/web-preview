@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Testing GPU/ML Framework Compatibility | OSG</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Testing GPU/ML Framework Compatibility" />
+<meta name="author" content="Hannah Cheren" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Justin Hiemstra, a Machine Learning Application Specialist for CHTC’s GPU Lab, discusses the testing suite developed to test CHTC’s support for GPU and ML framework compatibility." />
+<meta property="og:description" content="Justin Hiemstra, a Machine Learning Application Specialist for CHTC’s GPU Lab, discusses the testing suite developed to test CHTC’s support for GPU and ML framework compatibility." />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/Hiemstra-card.png" />
+<meta property="og:image:alt" content="Justin Hiemstra, a Machine Learning Application Specialist for CHTC’s GPU Lab, discusses the testing suite developed to test CHTC's support for GPU and ML framework compatibility." />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-07-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/Hiemstra-card.png" />
+<meta name="twitter:image:alt" content="Justin Hiemstra, a Machine Learning Application Specialist for CHTC’s GPU Lab, discusses the testing suite developed to test CHTC's support for GPU and ML framework compatibility." />
+<meta property="twitter:title" content="Testing GPU/ML Framework Compatibility" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hannah Cheren"},"dateModified":"2022-07-06T00:00:00+00:00","datePublished":"2022-07-06T00:00:00+00:00","description":"Justin Hiemstra, a Machine Learning Application Specialist for CHTC’s GPU Lab, discusses the testing suite developed to test CHTC’s support for GPU and ML framework compatibility.","headline":"Testing GPU/ML Framework Compatibility","image":{"alt":"Justin Hiemstra, a Machine Learning Application Specialist for CHTC’s GPU Lab, discusses the testing suite developed to test CHTC's support for GPU and ML framework compatibility.","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/Hiemstra-card.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://chtc.cs.wisc.edu/Hiemstra.html"},"url":"https://chtc.cs.wisc.edu/Hiemstra.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v5.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-update-submodules/assets/js/all.js" defer></script>
+
+
+
+
+
+
+
+<script>
+	window.fwSettings={
+	'widget_id':12000000602
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}()
+</script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/12000000602.js' async defer></script>
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-update-submodules/"><img height="55" style="filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.2))" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-osdf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSDF</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/projects">Projects</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/data">Data</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/facilitation">Research Computing Facilitation</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Proposals</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-docs/">Site Admin Documentation</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/training.html">Training</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-update-submodules/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item " href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            <span class="flex-grow-1 d-flex">
+                <div class=" ms-auto mx-auto me-lg-0 d-flex flex-row">
+                    <a class="text-dark d-flex fs-2 me-2" href="https://portal.osg-htc.org/application" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Apply for Account">
+                        <i class="bi-person-fill-add my-auto"></i>
+                    </a>
+                    <a class="text-dark d-flex fs-3 me-3" href="/contact.html" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Contact Us">
+                        <i class="bi-telephone-fill my-auto"></i>
+                    </a>
+
+                    <a href="https://path-cc.io" class="me-2"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                    <a href="https://iris-hep.org/"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                </div>
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>Testing GPU/ML Framework Compatibility</h1>
+        <div class="row justify-content-between">
+          
+            <div class="col-auto">
+                <h4 class="text-muted">By: Hannah Cheren</h4>
+            </div>
+          
+          <div class="col-auto">
+            <h4 class="text-muted">July  6, 2022</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p><strong><em>Justin Hiemstra, a Machine Learning Application Specialist for CHTC’s GPU Lab, discusses the testing suite developed to test CHTC’s support for GPU and ML framework compatibility.</em></strong></p>
+
+<figure>
+  <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/Hiemstra-card.png" alt="Photo by Ali Shah Lakhani on Unsplash." />
+  <figcaption class="figure-caption">Photo by Ali Shah Lakhani <a href="https://unsplash.com/photos/sp1BZ1atp7M">on Unsplash.</a><br /></figcaption>
+</figure>
+
+<p>Researchers at UW–Madison have increasingly required graphics processing units (GPUs) for their work. GPUs are specialized computing hardware that drives different data science technologies, including machine learning (ML). But what actually goes into running an ML job on the UW-Madison Center for High Throughput Computing (CHTC) using GPU capacity?</p>
+
+<p><a href="https://justinhiemstra.com/">Justin Hiemstra</a>, a graduate student in the Department of Electrical and Computer Engineering at the University of Wisconsin-Madison and currently working as an ML Application Specialist for CHTC’s GPU Lab, outlined the steps for running an ML job on CHTC using GPU capacity during <a href="https://agenda.hep.wisc.edu/event/1733/timetable/?view=standard">HTCondor Week 2022</a>.</p>
+
+<p>Whenever a researcher has an ML job that they want to run on CHTC with a GPU, they need three things:</p>
+
+<p>First, the researcher must write their ML code using a deep learning framework, such as PyTorch or TensorFlow.</p>
+
+<p>Second, the researcher needs to pick a GPU type. “You can run ML jobs on a normal server without GPUs, but certain machine learning processes (e.g., neural networks) run much faster if you use one,” notes Christina Koch, one of Hiemstra’s supervisors for his work. When using the HTCondor Software Suite, the researcher <a href="https://portal.osg-htc.org/documentation/htc_workloads/specific_resource/gpu-jobs/">can choose a specific GPU type by specifying a CUDA compute capability</a> in the HTCondor job submit file.</p>
+
+<p>Third, the researcher has to pick a CUDA runtime library. This library handles communication between the GPU and the application space, allowing the ML code to run its computations.</p>
+
+<p>For an ML job to complete successfully, these components (ML framework, GPU type, CUDA runtime) must be compatible.</p>
+
+<p>Some issues come into play with this setup. The first issue is a lack of documentation.“There’s no central resource we can go to to look at and see if different versions of deep learning frameworks, GPUs, and capabilities are compatible with each other,” Hiemstra notes.</p>
+
+<p>The second issue is that as these frameworks and GPU hardware evolves, Hiemstra and his team have noticed they’ve started to drop support for older frameworks and compute capabilities.</p>
+
+<p>The third issue is “whenever you have computing resources made up of discrete servers in a computing pool, you run into the issue of heterogeneous server configurations.” This issue adds to the problem and confusion of trying to pick compatible versions.</p>
+
+<p>Hiemstra has put together a suite of test jobs to explore this compatibility issue. The jobs test whether a single tuple of CUDA runtime, framework, and compute capability versions are compatible on a CHTC resource. He looks at three things to do so:</p>
+
+<p>First, did the jobs match, meaning, was it able to find the resources that they requested? Second, did the Conda Environment resolve, meaning, was it able to match all of the versions without finding any conflicting dependencies? Finally, was the framework able to communicate with GPUs? The job should run as expected if all three of these things happen. The test job will print out an error file if any of these fail.</p>
+
+<p>When a job fails, it’ll give some indication as to where the error occurred. These messages get recorded and later reviewed by Hiemstra so he can try to understand better what’s happening on the GPU Servers in the CHTC GPU Lab.</p>
+
+<p>The goal now for Hiemstra and his team is to “look at all of the different versions we might be interested in combining to see which ranges of compute capabilities, frameworks, and CUDA runtime libraries might work with each other.”</p>
+
+<p>Issues arise when trying to analyze the entire version space. First, the version space to test grows combinatorially. “On an active system where research is being done, that’ll start gobbling up capacity and taking it away from the researchers,” Hiemstra remarks.</p>
+
+<p>To prune the version space, so they’re not testing tens of thousands of different versions, they know that the CHTC has certain compute capabilities available. Knowing this, Hiemstra and his team can limit the number of versions they test only to include those that the CHTC has available. In addition, they assume that researchers use tools, such as Conda, to install their software, so they focus on framework and CUDA runtime versions that are available through Conda.</p>
+
+<p>The second issue is that the team needs some way of automatically collecting the different test parameters. Essentially, the goal is to have it so that someone in CHTC doesn’t have to update this by hand continuously. Each job needs several files to run, so to dynamically generate these files, the team uses Python String formatting to build these files.</p>
+
+<p>Finally, they’d like to find a way to manage all the jobs since they will continue to “fire off” hundreds of jobs during this process. To do this, they decided on a “timeout” period of 24 hours so that they don’t have scripts running on the CHTC Access Point indefinitely.</p>
+
+<p>Hiemstra and his team use DAGman, a tool for Directed Acyclic Graph (DAG) workflows, to first spawn a parent process.</p>
+
+<p>That parent process will do all the version space pruning and file generation. It’ll then submit all the jobs for testing, wait 24 hours for that timeout, and “run a postscript to interpret the output of those jobs.”</p>
+
+<p>Next, they process all the output files to gain further insight into how the system works.</p>
+
+<p>Currently, they’re running it quarterly, looking at the output table, and seeing if anything unexpected pops up. Hiemstra explains that going through this process “should give us some tools to debug the system if something suddenly crashes or if different versions a researcher is using are not compatible with each other.</p>
+
+<p>Hiemstra is curious to see and examine for the future how the choice of versions that a researcher picks affects the runtime of their ML model or whether or not it affects the outcome or performance of that model.</p>
+
+<p>“Everything about machine learning approaches is diverse and changing quickly,” Koch remarks, “having information about compatible frameworks and GPUs allows us to be more responsive and helpful to researchers who may be new to the field.”</p>
+
+<p>The implementation of this tool that Hiemstra and his team have developed can be found on the <a href="https://github.com/chTC/gpu-compatibility-testing">CHTC GitHub Repository</a>.</p>
+
+<p>…</p>
+
+<p><em>Watch a video recording of Justin Hiemstra’s talk at HTCondor Week 2022, and browse his <a href="https://agenda.hep.wisc.edu/event/1733/contributions/25477/attachments/8296/9571/Testing%20GPU_ML%20Framework%20Compatibility.pdf">slides</a>.</em></p>
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/pb6ooJ4-VJM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-auto me-4 d-none d-md-flex">
+                    <div class="row my-auto justify-content-center">
+                        <div class="col-12 d-flex mb-3">
+                            <a class="mx-auto" href="/web-preview/preview-update-submodules/"><img style="height:5rem" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://path-cc.io"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://iris-hep.org/"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/ospool/">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
