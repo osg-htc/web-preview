@@ -1,4 +1,0 @@
-{  
-    "issuer":"https://osg-htc.org/osdf/pelicanplatform",
-    "jwks_uri":"https://osg-htc.org/osdf/pelicanplatform/oauth2/keys"
-}
