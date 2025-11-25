@@ -1,0 +1,4 @@
+{
+    "issuer":"https://osg.htc.org/collabs/gluex",
+    "jwks_uri":"https://osg.htc.org/collabs/gluex/.well-known/vo-frontend-gluex-scitokens-key.public.jwks"
+ }
