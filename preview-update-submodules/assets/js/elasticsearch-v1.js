@@ -13,7 +13,8 @@ const DEBUG=true
 const DATE_RANGE = {
     oneYearAgo: new Date(new Date().setDate(new Date().getDate()-365)).getTime(), // Gets last years timestamp
     threeMonthsAgo: new Date(new Date().setDate(new Date().getDate()-90)).getTime(), // Gets date object 90 days in advance
-    now: new Date().getTime()
+    now: new Date().getTime(),
+    yesterday: new Date(new Date().setDate(new Date().getDate()-1)).getTime(),
 }
 
 const OSPOOL_FILTER = {

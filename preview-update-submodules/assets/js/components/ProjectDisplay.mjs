@@ -1,6 +1,7 @@
 import {PieChart} from "./pie-chart.js";
 import {getProjectOverview} from "../adstash.mjs";
 import Count from "./Count.mjs";
+import { fetchWithBackup } from "../backup.js";
 
 class ProjectDisplay{
 	constructor(parentNode) {
@@ -79,7 +80,7 @@ class ProjectDisplay{
 	}
 
 	async getData(Name){
-		return await getProjectOverview(Name)
+		return (await fetchWithBackup(getProjectOverview, Name))['data']
 	}
 }
 

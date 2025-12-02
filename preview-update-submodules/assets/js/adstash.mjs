@@ -3,7 +3,19 @@
  */
 import ElasticSearchQuery, {ADSTASH_ENDPOINT, ADSTASH_SUMMARY_INDEX, DATE_RANGE} from "./elasticsearch-v1.js";
 
-export const getInstitutionsOverview = async () => {
+export async function getLatestOSPoolOverview() {
+    let json = undefined
+    let d = new Date()
+    d.setUTCHours(0,0,0,0)
+    while (!json || json['numJobs'] == 0) {
+        d.setUTCDate(d.getUTCDate() - 1)
+        json = await getInstitutionsOverview(d.getTime(), d.getTime())
+        json['date'] = d
+    }
+    return json
+}
+
+export const getInstitutionsOverview = async (startTime = DATE_RANGE['oneYearAgo'], endTime = DATE_RANGE['now']) => {
 	const elasticSearch = new ElasticSearchQuery(ADSTASH_SUMMARY_INDEX, ADSTASH_ENDPOINT)
 
 	let usageQueryResult = await elasticSearch.search({
@@ -11,8 +23,8 @@ export const getInstitutionsOverview = async () => {
 		query: {
 			range: {
 				Date: {
-					lte: DATE_RANGE['now'],
-					gte: DATE_RANGE['oneYearAgo']
+                    gte: startTime,
+					lte: endTime
 				}
 			}
 		},
@@ -110,7 +122,7 @@ export const getInstitutionsOverview = async () => {
 	return {}
 }
 
-export const getInstitutions = async () => {
+export const getInstitutions = async (startTime = DATE_RANGE['oneYearAgo'], endTime = DATE_RANGE['now']) => {
 	const elasticSearch = new ElasticSearchQuery(ADSTASH_SUMMARY_INDEX, ADSTASH_ENDPOINT)
 
 	let usageQueryResult = await elasticSearch.search({
@@ -118,8 +130,8 @@ export const getInstitutions = async () => {
 		query: {
 			range: {
 				Date: {
-					lte: DATE_RANGE['now'],
-					gte: DATE_RANGE['oneYearAgo']
+          gte: startTime,
+          lte: endTime
 				}
 			}
 		},
@@ -235,7 +247,7 @@ export const getInstitutions = async () => {
 	return {}
 }
 
-export const getProjects = async () => {
+export const getProjects = async (startTime = DATE_RANGE['oneYearAgo'], endTime = DATE_RANGE['now']) => {
 	const elasticSearch = new ElasticSearchQuery(ADSTASH_SUMMARY_INDEX, ADSTASH_ENDPOINT)
 
 	let usageQueryResult = await elasticSearch.search({
@@ -243,8 +255,8 @@ export const getProjects = async () => {
 		query: {
 			range: {
 				Date: {
-					lte: DATE_RANGE['now'],
-					gte: DATE_RANGE['oneYearAgo']
+          gte: startTime,
+          lte: endTime
 				}
 			}
 		},

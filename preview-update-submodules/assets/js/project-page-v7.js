@@ -1,3 +1,4 @@
+import { fetchForBackup, fetchWithBackup } from "./backup.js";
 import {getProjects} from "./adstash.mjs"
 import {locale_int_string_sort, string_sort} from "./util.js";
 import {PieChart} from "./components/pie-chart.js";
@@ -125,28 +126,17 @@ class DataManager {
         }
     }
 
-    _fetch = async (url, options = {}) => {
-
-        try {
-            let response = await fetch(url, options)
-
-            if(!response.ok){
-                throw new Error(response.statusText)
-            }
-
-            return response.json()
-
-        } catch(error) {
-            this.error = "Error fetching usage data, learn more on the OSG status page: status.osg-htc.org"
-        }
-    }
-
     _getData = async () => {
 
-        let topologyData = await this._fetch("https://topology.opensciencegrid.org/miscproject/json")
+        let topologyData = [];
+        try {
+          topologyData = (await fetchWithBackup(fetchForBackup, "https://topology.opensciencegrid.org/miscproject/json"))['data']
+        } catch (e) {
+          this.error = "Error fetching topology data, learn more on the OSG status page: status.osg-htc.org"
+        }
         let usageJson;
         try {
-            usageJson = await getProjects()
+            usageJson = (await fetchWithBackup(getProjects))['data']
         } catch(e) {
             this.error = "Error fetching usage data, learn more on the OSG status page: status.osg-htc.org"
         }

@@ -2,6 +2,7 @@ import {getInstitutions, getInstitutionsOverview, getProjects} from "../adstash.
 import {Grid, PluginPosition, BaseComponent, h} from "https://unpkg.com/gridjs@5.1.0/dist/gridjs.module.js"
 import {GraccDisplay, locale_int_string_sort, string_sort, createNode} from "../util.js";
 import InstitutionDisplay from "../components/InstitutionDisplay.mjs";
+import { fetchWithBackup, fetchForBackup } from "../backup.js";
 
 class DataManager {
     constructor(filters, consumerToggles, errorNode) {
@@ -44,7 +45,7 @@ class DataManager {
     }
 
     _getData = async () => {
-        return await getInstitutions()
+        return (await fetchWithBackup(getInstitutions))['data']
     }
 
     /**
@@ -172,8 +173,8 @@ class FacilitySummaryPlugin extends BaseComponent {
     }
 
     setTotal() {
-        getInstitutionsOverview().then(data => {
-            this.setState(data);
+        fetchWithBackup(getInstitutionsOverview).then(data => {
+            this.setState(data['data']);
         });
     }
 

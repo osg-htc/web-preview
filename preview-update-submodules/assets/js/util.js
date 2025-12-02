@@ -148,4 +148,13 @@ function sortByteString(a, b) {
     return 0
 }
 
-export {GraccDisplay, string_sort, locale_int_string_sort, hideNode, createNode, formatBytes, sortByteString, byteStringToBytes, localeIntToInt}
+function generateHash(string) {
+  let hash = 0;
+  for (const char of string) {
+    hash = (hash << 5) - hash + char.charCodeAt(0);
+    hash |= 0; // Constrain to 32bit integer
+  }
+  return hash;
+}
+
+export {GraccDisplay, string_sort, locale_int_string_sort, hideNode, createNode, formatBytes, sortByteString, byteStringToBytes, localeIntToInt, generateHash}

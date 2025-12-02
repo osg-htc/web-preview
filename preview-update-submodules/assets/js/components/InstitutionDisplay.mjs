@@ -1,6 +1,7 @@
-import {PieChart} from "./pie-chart.js";
-import {getInstitutionOverview, getProjectOverview} from "../adstash.mjs";
+
+import {getInstitutionOverview} from "../adstash.mjs";
 import Count from "./Count.mjs";
+import { fetchWithBackup } from "../backup.js";
 
 class InstitutionDisplay{
 	constructor(parentNode) {
@@ -87,7 +88,7 @@ class InstitutionDisplay{
 	}
 
 	async getData(Name){
-		return await getInstitutionOverview(Name)
+    return (await fetchWithBackup(getInstitutionOverview, Name))['data']
 	}
 
 	fillTable(id, data) {
