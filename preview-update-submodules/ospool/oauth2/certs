@@ -16,6 +16,24 @@
             "kty": "RSA",
             "n": "wq-65sR14rvKbwV2DK-HdRJlQQKUUPxIZ_vcCgu4dLGQWhNNWI6YSbqF8e2dLPf8E6Chp5Q3Ari69T8a8X1s5b35pIxe_Q1c7a2_q0U1Kvv1uxFo_6Fg3AqXhoRqB950sMg2sgvDzSCDTgX46Zbf-QSRPtdhcGuituGyyj5j1RQ4EJ1YKJo5Qof24ysMm5celTJxoitlOd_r8ma9mnz0pJqt98JL2DvrQs-Md7AzOAadA6LJXddV-c0lYC_ube_6YDRe6LXXVqqSShI5reeu2EoY8AAHcM9f6-bmNUMGw1kURUY5vsI3QmYeWkgUyDKi51SwhvZU0D_tvrdcQCG27w==",
             "use": "sig"
+        },
+        {
+            "alg": "ES256",
+            "crv": "P-256",
+            "kid": "abcc",
+            "kty": "EC",
+            "use": "sig",
+            "x": "sAKYrT9un9HYeQOIiZK5ohf5By5Ih9GMmNjkKEROhhA=",
+            "y": "vscfD41VgVK1GXX_DKPYmOuDx0T0U_W8_s-sTA6daJU="
+        },
+        {
+            "alg": "ES256",
+            "crv": "P-256",
+            "kid": "778d",
+            "kty": "EC",
+            "use": "sig",
+            "x": "o1lYa85UDIrND5P0GhqbgL7ZUOArh0ec9GCt3JZcRmQ=",
+            "y": "gmPVYGB3-ZDPRKl3AvGVMFjKNCEjJo1yEjMZ1E8wKY8="
         }
     ]
 }
