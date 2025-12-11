@@ -205,16 +205,16 @@
         <p><strong>There’s a new feature for submitting jobs with HTCondor.</strong> 
 Now you can use shell = <your script=""> instead of using executable and arguments!</your></p>
 
-<blockquote>
-  <p>Before:
-executable = hello-world.sh
-arguments = $(Process)</p>
-</blockquote>
+<p>Before:</p>
 
-<blockquote>
-  <p>After: 
-shell = ./hello-world.sh $(Process)</p>
-</blockquote>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>executable = hello-world.sh
+arguments = $(Process)
+</code></pre></div></div>
+
+<p>After:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell = ./hello-world.sh $(Process)
+</code></pre></div></div>
 
 <p><strong>Notable differences</strong></p>
 
