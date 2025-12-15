@@ -3,6 +3,21 @@
  */
 import ElasticSearchQuery, {ADSTASH_ENDPOINT, ADSTASH_SUMMARY_INDEX, DATE_RANGE} from "./elasticsearch-v1.js";
 
+export const getDateOfLatestData = async () => {
+    const elasticSearch = new ElasticSearchQuery(ADSTASH_SUMMARY_INDEX, ADSTASH_ENDPOINT)
+    let usageQueryResult = await elasticSearch.search({
+        size: 1,
+        sort: [
+            {
+                "Date": {
+                    "order": "desc"
+                }
+            }
+        ],
+    })
+    return new Date(usageQueryResult.hits.hits[0]._source.Date)
+}
+
 export async function getLatestOSPoolOverview() {
     let json = undefined
     let d = new Date()

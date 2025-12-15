@@ -1,5 +1,5 @@
 import { fetchForBackup, fetchWithBackup } from "./backup.js";
-import {getProjects} from "./adstash.mjs"
+import {getDateOfLatestData, getProjects} from "./adstash.mjs"
 import {locale_int_string_sort, string_sort} from "./util.js";
 import {PieChart} from "./components/pie-chart.js";
 import ProjectDisplay from "./components/ProjectDisplay.mjs";
@@ -136,7 +136,14 @@ class DataManager {
         }
         let usageJson;
         try {
-            usageJson = (await fetchWithBackup(getProjects))['data']
+            const recordEnd = await getDateOfLatestData()
+            const oneYearAgo = new Date(new Date(recordEnd).setFullYear(new Date(recordEnd).getFullYear() -1))
+
+            document.getElementById("year-timeline").textContent = `${oneYearAgo.toISOString().slice(0, 10)} to ${recordEnd.toISOString().slice(0, 10)}`
+
+
+
+            usageJson = (await fetchWithBackup(getProjects, oneYearAgo.getTime(), recordEnd.getTime()))['data']
         } catch(e) {
             this.error = "Error fetching usage data, learn more on the OSG status page: status.osg-htc.org"
         }
@@ -197,6 +204,7 @@ class ProjectPage{
      * @returns {Promise<void>}
      */
     initialize = async () => {
+
         this.mode = undefined
         this.dataManager = new DataManager()
 
