@@ -1,5 +1,5 @@
 import { fetchWithBackup } from "./backup.js";
-import {getProjects} from "./adstash.mjs"
+import {getDateOfLatestData, getProjects} from "./adstash.mjs"
 import {
     GraccDisplay,
     locale_int_string_sort,
@@ -170,9 +170,14 @@ class DataManager {
 
         let usageJson;
         try {
-            usageJson = (await fetchWithBackup(getProjects))['data']
+            const recordEnd = new Date((await fetchWithBackup(getDateOfLatestData))['data'])
+            const oneYearAgo = new Date(new Date(recordEnd).setFullYear(new Date(recordEnd).getFullYear() -1))
+
+            document.getElementById("year-timeline").textContent = `${oneYearAgo.toISOString().slice(0, 10)} to ${recordEnd.toISOString().slice(0, 10)}`
+
+            usageJson = (await fetchWithBackup(getProjects, oneYearAgo.getTime(), recordEnd.getTime()))['data']
         } catch(e) {
-            this.error = "Error fetching usage data, learn more on the status page: status.osg-htc.org"
+            this.error = "Error fetching usage data, learn more on the OSG status page: status.osg-htc.org"
         }
 
         this.data = usageJson

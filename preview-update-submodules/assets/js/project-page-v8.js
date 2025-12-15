@@ -136,12 +136,10 @@ class DataManager {
         }
         let usageJson;
         try {
-            const recordEnd = await getDateOfLatestData()
+            const recordEnd = new Date((await fetchWithBackup(getDateOfLatestData))['data'])
             const oneYearAgo = new Date(new Date(recordEnd).setFullYear(new Date(recordEnd).getFullYear() -1))
 
             document.getElementById("year-timeline").textContent = `${oneYearAgo.toISOString().slice(0, 10)} to ${recordEnd.toISOString().slice(0, 10)}`
-
-
 
             usageJson = (await fetchWithBackup(getProjects, oneYearAgo.getTime(), recordEnd.getTime()))['data']
         } catch(e) {

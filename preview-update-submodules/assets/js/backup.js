@@ -4,7 +4,7 @@
 import {generateHash} from './util.js';
 import {
     getProjects, getInstitutions, getInstitutionOverview, getProjectOverview, getLatestOSPoolOverview,
-    getInstitutionsOverview
+    getInstitutionsOverview, getDateOfLatestData
 } from './adstash.mjs';
 
 const BACKUP_DIRECTORY = '/assets/data/backups/'
@@ -21,6 +21,10 @@ const BACKUP_DIRECTORY = '/assets/data/backups/'
 const fetchForBackup = (url) => fetch(url).then(res => res.json())
 
 const backupMap = async () => {
+
+  const recordEnd = await getDateOfLatestData()
+  const oneYearAgo = new Date(new Date(recordEnd).setFullYear(new Date(recordEnd).getFullYear() -1))
+
   return [
     {
       function: fetchForBackup,
@@ -34,7 +38,11 @@ const backupMap = async () => {
       function: getLatestOSPoolOverview
     },
     {
+      function: getDateOfLatestData
+    },
+    {
       function: getProjects,
+      args: [oneYearAgo.getTime(), recordEnd.getTime()]
     },
     {
       function: getInstitutions,
@@ -96,13 +104,13 @@ const updateTimelines = async (d) => {
     }
 
     // If there is a timeline for a year that needs to be updated
-    const yearTimelineNode = document.getElementById("year-timeline");
-    if (yearTimelineNode) {
-        const lastUpdatedDate = new Date(d);
-        const yearAgoDate = new Date(d);
-        yearAgoDate.setFullYear(yearAgoDate.getFullYear() - 1);
-        yearTimelineNode.textContent = `${yearAgoDate.toLocaleDateString("en-US")} - ${lastUpdatedDate.toLocaleDateString("en-US")}`;
-    }
+    // const yearTimelineNode = document.getElementById("year-timeline");
+    // if (yearTimelineNode) {
+    //     const lastUpdatedDate = new Date(d);
+    //     const yearAgoDate = new Date(d);
+    //     yearAgoDate.setFullYear(yearAgoDate.getFullYear() - 1);
+    //     yearTimelineNode.textContent = `${yearAgoDate.toLocaleDateString("en-US")} - ${lastUpdatedDate.toLocaleDateString("en-US")}`;
+    // }
 }
 
 /**
