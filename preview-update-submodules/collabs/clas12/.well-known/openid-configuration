@@ -1,0 +1,4 @@
+{
+   "issuer":"https://osg.htc.org/collabs/clas12",
+   "jwks_uri":"https://osg.htc.org/collabs/clas12/.well-known/vo-frontend-jlab-clas12-scitokens-key.public.jwks"
+}
