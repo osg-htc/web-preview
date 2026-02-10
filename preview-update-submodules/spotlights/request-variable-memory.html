@@ -99,7 +99,7 @@
                         <div class="dropdown-menu" aria-labelledby="campusNavLink">
                             <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
                             <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Proposals</a>
-                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-docs/">Site Admin Documentation</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-docs/">Contributor Documentation</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown active">
@@ -210,8 +210,9 @@
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>request_memory = 1GB
 retry_request_memory = 4GB
-Every job will request 1 GB of memory. If the job is evicted because it exceeds 1 GB of memory, the job will be restarted with 4 GB of memory.
 </code></pre></div></div>
+
+<p>Every job will request 1 GB of memory. If the job is evicted because it exceeds 1 GB of memory, the job will be restarted with 4 GB of memory.</p>
 
 <p>For more complex options, expressions, and examples, check out the <a href="https://htcondor.readthedocs.io/en/main/man-pages/condor_submit.html#retry_request_memory">HTCondor manual</a>!</p>
 
