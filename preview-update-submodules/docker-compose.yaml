@@ -1,6 +1,6 @@
 services:
   web:
-    image: ruby:3.4
+    image: ruby:3.4.7
     volumes:
       - .:/app
     working_dir: /app
