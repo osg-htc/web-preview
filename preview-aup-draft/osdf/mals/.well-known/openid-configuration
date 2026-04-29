@@ -1,0 +1,4 @@
+{  
+    "issuer":"https://osg-htc.org/osdf/mals",
+    "jwks_uri":"https://osg-htc.org/osdf/mals/oauth2/keys"
+}
