@@ -207,14 +207,14 @@
       <div class="fs-5">
         <p>Observing gaps in Large Language Models’ (LLMs’) abilities to process tabular data motivated UW-Madison Computer Sciences PhD candidate <a href="https://socromp.github.io/">Sonia Cromp</a> to develop Tabby, an architecture modification  to LLMs that improves how they handle structured data. Cromp began working on Tabby two and a half years ago, after realizing there were weaknesses in generative modeling, particularly for tabular data, within LLMs. Cromp notes that currently, “capabilities to generate examples of [tabular data] are really lagging behind these other modalities like image and text. And so the goal with Tabby was to take the advancements that we’ve been able to make with Large Language Models and transfer those into generating tabular data.”</p>
 
-<figure style="float: left; margin: 0 1rem 1rem 0;">
+<figure style="float: left; margin: 0 1rem 1rem 0; width: 260px;">
 <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/sonia-13x20.jpg" height="400" width="260" class="figure-img img-fluid rounded" alt="Pictured: UW Madison CS PhD candidate Sonia Cromp" />
 <figcaption>Pictured: UW Madison CS PhD candidate Sonia Cromp</figcaption>
 </figure>
 
 <p>Traditional LLMs read data as loose sequences of text, so they don’t uphold the strict column structure that tables require. As a result, they can “blur” which values belong to which columns, leading to errors. If you have ever tried to upload a spreadsheet or JSON file to an LLM like ChatGPT and asked it to continue adding to it, you may have noticed the LLM will reorder or even omit rows or columns, failing to give you a cohesive spreadsheet like you requested. Tabby fixes the blurring issue by assigning each column its own dedicated “Expert” so features stay separated. These experts still interact, letting the model learn relationships between columns without mixing them up.</p>
 
-<figure style="float: right; margin: 0 1rem 0 1rem;">
+<figure style="float: right; margin: 0 1rem 0 1rem; width: 300px;">
 <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/box-10x7.png" height="210" width="300" class="figure-img img-fluid rounded" alt="Tabby Logo, credits: Sonia Cromp" />
 <figcaption>Tabby Logo, credits: Sonia Cromp</figcaption>
 </figure>
@@ -225,7 +225,7 @@
 
 <p>Cromp’s journey with the CHTC continued, and she is currently working on another project as part of her work with NASA called GeoDES (Geospatial Diffusion-based Evolution Synthesis), which is a model that generates examples of extratropical cyclone storms (these storms are similar to hurricanes, but form at more northern latitudes). Synthetic extreme storms help fill data gaps, improving both storm research and forecasting model evaluation. Cromp runs her experiments for GeoDES through the CHTC, running models even larger than the ones she ran for Tabby. So far, GeoDES has submitted 638 job requests and logged 2,790 GPU hours.</p>
 
-<figure style="float: right; margin: 0 1rem 0 1rem;">
+<figure style="float: right; margin: 0 1rem 0 1rem; height: 320px; width: 280px;">
 <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/nasa-14x16.jpg" height="320" width="280" class="figure-img img-fluid rounded" alt="Cromp Pictured during her time at NASA working on GeoDES" />
 <figcaption>Cromp Pictured during her time at NASA working on GeoDES</figcaption>
 </figure>
