@@ -23,6 +23,14 @@
             "kty": "EC",
             "x": "VQkzkZVAmyrmu8fYKjoevEmlUZ45kWS0SfsIrMfpbQ4",
             "y": "8FmvtdMrUwF8LZ_I4V1WgU0_b8WNXAkCFiCgeP3m_mU"
-        }
+        },
+        {
+	    "alg": "ES256",
+	    "crv": "P-256",
+	    "kid": "qIBYTlwPmsODkfUQoeOEYPNe1MPaGJ3iUM72WuS5pa8",
+	    "kty": "EC",
+	    "x": "CGQXHnTPtYcOHHpZDRqCCj5KLAHmAgI1wOpTFvkMhTQ",
+	    "y": "t3rbwwiqf9D22LiGnKeC8yeGV84QRrdrCpDtK6AB2X4"
+	}
     ]
 }
