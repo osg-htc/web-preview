@@ -1,0 +1,13 @@
+{
+  "name": "osg-htc-backup",
+  "version": "1.0.0",
+  "description": "Backup script for OSG-HTC data.",
+  "main": "assets/js/backup.js",
+  "type": "module",
+  "scripts": {
+    "backup": "node -e 'import(\"./assets/js/backup.js\").then(module => module.main())'"
+  },
+  "author": "",
+  "license": "MIT"
+}
+
