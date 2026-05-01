@@ -23,16 +23,38 @@ class ProjectDisplay{
 		})
 	}
 
-	async update({Name, PIName, FieldOfScience, Organization, Description}) {
+  clearIFrame(name) {
+    let container = document.getElementById("project-map-container")
+    let iframe = container.getElementsByTagName("iframe")[0]
+    container.removeChild(iframe)
+    let placeholder = document.createElement("span")
+    placeholder.className = "placeholder bg-light w-100"
+    container.appendChild(placeholder)
+  }
+
+  updateIFrame(name) {
+    let container = document.getElementById("project-map-container")
+    let placeholder = container.getElementsByClassName("placeholder")[0]
+    container.removeChild(placeholder)
+    let iframe = document.createElement("iframe")
+    iframe.className = "w-100 rounded"
+    iframe.style = "min-height: 450px; border: none;"
+    iframe.src="https://osg-htc.org/maps/projects/?sidebarHidden=true&project=" + name
+    container.appendChild(iframe)
+  }
+
+  async update({Name, PIName, FieldOfScience, Organization, Description}) {
 		this.updateTextValue("project-Name", Name)
 		this.updateTextValue("project-PIName", PIName)
 		this.updateTextValue("project-FieldOfScience", FieldOfScience)
 		this.updateTextValue("project-Organization", Organization)
-		this.updateTextValue("project-Description", Description)
-		this.setUrl(Name)
-		this.clearGraphSlots()
+    this.updateTextValue("project-Description", Description)
+    this.setUrl(Name)
+    this.clearGraphSlots()
+    this.clearIFrame()
 		this.parentNode.addEventListener("shown.bs.modal", () => {
-			this.updateGraphs(Name)
+      this.updateGraphs(Name)
+      this.updateIFrame(Name)
 		}, {once : true})
 		this.display_modal.show()
 	}
@@ -52,7 +74,6 @@ class ProjectDisplay{
 	}
 
 	async updateGraphs(Name){
-
 		const data = await this.getData(Name)
 		this.updateInstitutionPieChart(data)
 		Count("project-institution-count", Object.keys(data).length, 300)
