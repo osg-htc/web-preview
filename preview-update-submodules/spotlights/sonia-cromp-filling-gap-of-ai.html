@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How one Researcher Uses CHTC To Fill in the Gaps in AI | OSG</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="How one Researcher Uses CHTC To Fill in the Gaps in AI" />
+<meta name="author" content="Sophie Dorros" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Observing gaps in Large Language Models’ (LLMs’) abilities to process tabular data motivated UW-Madison Computer Sciences PhD candidate Sonia Cromp to develop Tabby, an architecture modification to LLMs that improves how they handle structured data." />
+<meta property="og:description" content="Observing gaps in Large Language Models’ (LLMs’) abilities to process tabular data motivated UW-Madison Computer Sciences PhD candidate Sonia Cromp to develop Tabby, an architecture modification to LLMs that improves how they handle structured data." />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/box-card.png" />
+<meta property="og:image:alt" content="Cromp Pictured during her time at NASA working on GeoDES" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/box-card.png" />
+<meta name="twitter:image:alt" content="Cromp Pictured during her time at NASA working on GeoDES" />
+<meta property="twitter:title" content="How one Researcher Uses CHTC To Fill in the Gaps in AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Sophie Dorros"},"dateModified":"2026-04-30T00:00:00+00:00","datePublished":"2026-04-30T00:00:00+00:00","description":"Observing gaps in Large Language Models’ (LLMs’) abilities to process tabular data motivated UW-Madison Computer Sciences PhD candidate Sonia Cromp to develop Tabby, an architecture modification to LLMs that improves how they handle structured data.","headline":"How one Researcher Uses CHTC To Fill in the Gaps in AI","image":{"alt":"Cromp Pictured during her time at NASA working on GeoDES","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/box-card.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://chtc.cs.wisc.edu/sonia-cromp-filling-gap-of-ai.html"},"url":"https://chtc.cs.wisc.edu/sonia-cromp-filling-gap-of-ai.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v8.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-update-submodules/assets/js/all.js" defer></script>
+
+
+
+
+
+
+
+<script>
+	window.fwSettings={
+	'widget_id':12000000602
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}()
+</script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/12000000602.js' async defer></script>
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-update-submodules/"><img height="55" style="filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.2))" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-osdf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSDF</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/projects">Projects</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/data">Data</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-rcf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Research Computing Facilitation</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/facilitation">Connect With the Team</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/facilitation/monthly-training">Monthly Training</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Proposals</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-docs/">Contributor Documentation</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/presentations.html">Presentations</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/training.html">Training</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-update-submodules/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item " href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            <span class="flex-grow-1 d-flex">
+                <div class=" ms-auto mx-auto me-lg-0 d-flex flex-row">
+                    <a class="text-dark d-flex fs-2 me-2" href="https://portal.osg-htc.org/application" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Apply for Account">
+                        <i class="bi-person-fill-add my-auto"></i>
+                    </a>
+                    <a class="text-dark d-flex fs-3 me-3" href="/contact.html" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Contact Us">
+                        <i class="bi-telephone-fill my-auto"></i>
+                    </a>
+
+                    <a href="https://path-cc.io" class="me-2"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                    <a href="https://pelicanplatform.org" class="me-2"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/PelicanPlatformLogo_Icon.png" alt="Pelican logo"></a>
+                    <a href="https://iris-hep.org/"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                </div>
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>How one Researcher Uses CHTC To Fill in the Gaps in AI</h1>
+        <div class="row justify-content-between">
+          
+            <div class="col-auto">
+                <h4 class="text-muted">By: Sophie Dorros</h4>
+            </div>
+          
+          <div class="col-auto">
+            <h4 class="text-muted">April 30, 2026</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p>Observing gaps in Large Language Models’ (LLMs’) abilities to process tabular data motivated UW-Madison Computer Sciences PhD candidate <a href="https://socromp.github.io/">Sonia Cromp</a> to develop Tabby, an architecture modification  to LLMs that improves how they handle structured data. Cromp began working on Tabby two and a half years ago, after realizing there were weaknesses in generative modeling, particularly for tabular data, within LLMs. Cromp notes that currently, “capabilities to generate examples of [tabular data] are really lagging behind these other modalities like image and text. And so the goal with Tabby was to take the advancements that we’ve been able to make with Large Language Models and transfer those into generating tabular data.”</p>
+
+<figure style="float: left; margin: 0 1rem 1rem 0; width: 260px;">
+<img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/sonia-13x20.jpg" height="400" width="260" class="figure-img img-fluid rounded" alt="Pictured: UW Madison CS PhD candidate Sonia Cromp" />
+<figcaption>Pictured: UW Madison CS PhD candidate Sonia Cromp</figcaption>
+</figure>
+
+<p>Traditional LLMs read data as loose sequences of text, so they don’t uphold the strict column structure that tables require. As a result, they can “blur” which values belong to which columns, leading to errors. If you have ever tried to upload a spreadsheet or JSON file to an LLM like ChatGPT and asked it to continue adding to it, you may have noticed the LLM will reorder or even omit rows or columns, failing to give you a cohesive spreadsheet like you requested. Tabby fixes the blurring issue by assigning each column its own dedicated “Expert” so features stay separated. These experts still interact, letting the model learn relationships between columns without mixing them up.</p>
+
+<p>Needing more GPU capacity than her lab had available, Cromp turned to CHTC. Cromp first used CHTC resources to work on a grad school course project at UW-Madison, and two years later, with a Tabby deadline looming, she rediscovered <a href="https://chtc.cs.wisc.edu/">CHTC</a> to run her jobs and provide GPU compute power: “I had a deadline coming up and I didn’t have enough compute to get all of the experiments ran just in my lab. We have our own GPUs that we own, but it’s nothing compared to CHTC. So I was racking my brain, I had one week to get this done. And then I remembered I had a CHTC account and I was able to log in and that was a lifesaver”, remarked Cromp. For Cromp’s experiment, she needed to compare how Tabby performed with different LLMs depending on the number of parameters they had. Parameters within LLMs can range from in the millions all the way to the trillions. Cromp’s CHTC-run experiments looked at the performance of differently sized LLMs to generate tabular data, with or without Tabby. Cromp mainly needed GPU access for Tabby, running a total of 406 GPU hours at CHTC over the course of the project.</p>
+
+<figure style="float: right; margin: 0 1rem 0 1rem; width: 300px;">
+<img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/box-10x7.png" height="210" width="300" class="figure-img img-fluid rounded" alt="Tabby Logo, credits: Sonia Cromp" />
+<figcaption>Tabby Logo, credits: Sonia Cromp</figcaption>
+</figure>
+
+<p>Working on a tabular data project within a community focused on image and text generation was one of the largest hurdles Cromp had to overcome with this project. She noted that “I had trouble getting it accepted within the ML community. A lot of people are focused on image and text, and when you want to work on things that are outside of that, they ask you why. The thing I want to see different within this field, is I think that there should be more attention being put towards tabular and just not image and text data.” Cromp was ultimately able to publish her work, “<a href="https://openreview.net/pdf?id=b9FPVnb0Bn">Tabby: A Language Model Architecture for Tabular and Structured Data Synthesis</a>” that appeared in Transactions on Machine Learning Research (TMLR) 2026.</p>
+
+<p>Cromp’s journey with the CHTC continued, and she is currently working on another project as part of her work with NASA called GeoDES (Geospatial Diffusion-based Evolution Synthesis), which is a model that generates examples of extratropical cyclone storms (these storms are similar to hurricanes, but form at more northern latitudes). Synthetic extreme storms help fill data gaps, improving both storm research and forecasting model evaluation. Cromp runs her experiments for GeoDES through the CHTC, running models even larger than the ones she ran for Tabby. So far, GeoDES has submitted 638 job requests and logged 2,790 GPU hours.</p>
+
+<figure style="float: right; margin: 0 1rem 0 1rem; width: 280px;">
+<img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/sonia/nasa-14x16.jpg" height="320" width="280" class="figure-img img-fluid rounded" alt="Cromp Pictured during her time at NASA working on GeoDES" />
+<figcaption>Cromp Pictured during her time at NASA working on GeoDES</figcaption>
+</figure>
+
+<p>Cromp’s work with both Tabby and GeoDES underscores the importance of researching gaps that machine learning models may be failing to fill. Cromp remarked: “These modalities are not getting the attention that they need, and I feel like people already are amazing at processing image data, text data, We’re not so good at processing these very huge spreadsheets and atmospheric data that have different levels of the atmosphere with 50 different variables at each level.” As LLMs and generative AI continue to advance in scope and ability, it’s important to note the areas where they still need improvement.</p>
+
+<p>Working with the CHTC allowed Cromp to perform compute-intensive experiments she may not otherwise have been able to run. Speaking on her Tabby experiment run on CHTC, Cromp remarked, “that’s a very compute-heavy experiment, but it adds useful information to your paper about how your method performs. So making those sorts of experiments more feasible to be performed for people that are doing research like mine, I think is really useful.” Going forward, Cromp will continue to use CHTC resources to run her GeoDES experiments, and her success with Tabby has also inspired some of her labmates to start using the CHTC to complete their own research work.</p>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-12 col-lg-4 d-none d-md-block">
+                    <div class="row my-auto justify-content-center">
+                        <div class="col-12 d-flex mb-3">
+                            <a class="mx-auto" href="/web-preview/preview-update-submodules/"><img style="height:5rem" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://path-cc.io"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://pelicanplatform.org/"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/PelicanPlatformLogo_Icon.png" alt="Pelican logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://iris-hep.org/"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/ospool/">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/presentations.html">Presentations</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
