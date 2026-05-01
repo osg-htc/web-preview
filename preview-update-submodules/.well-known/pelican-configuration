@@ -1,0 +1,9 @@
+{
+  "director_endpoint": "https://osdf-director.osg-htc.org",
+  "namespace_registration_endpoint": "https://osdf-registry.osg-htc.org",
+  "director_advertise_endpoints": [
+    "https://osdf-director.osg-services.nautilus.chtc.io",
+    "https://osdf-director.osdf-prod.chtc.io"
+  ],
+  "jwks_uri": "https://osg-htc.org/osdf/public_signing_key.jwks"
+}
