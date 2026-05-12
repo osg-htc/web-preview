@@ -215,10 +215,6 @@ class ProjectPage{
 
         this.search = new Search(Object.values(await this.dataManager.getData()), this.dataManager.toggleConsumers)
         this.dataManager.addFilter("search", this.search.filter)
-        this.dataManager.addFilter("minimumJobsFilter", this.minimumJobsFilter)
-
-        this.toggleActiveFilterButton = document.getElementById("toggle-active-filter")
-        this.toggleActiveFilterButton.addEventListener("click", this.toggleActiveFilter)
 
         this.projectCount = new UpdateTextField(
             async () => Object.keys(await this.dataManager.getFilteredData()).length,
