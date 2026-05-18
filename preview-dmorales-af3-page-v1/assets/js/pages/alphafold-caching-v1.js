@@ -1,6 +1,9 @@
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-const DATA_URL = "/assets/data/alphafold-caching.json";
+// Resolve the JSON relative to this module's own URL so it works both in
+// production (baseurl '') and under the preview baseurl (/web-preview/<branch>).
+// This file lives at <baseurl>/assets/js/pages/, the data at <baseurl>/assets/data/.
+const DATA_URL = new URL("../../data/alphafold-caching.json", import.meta.url);
 
 /**
  * Animate a number from 0 up to endValue inside the element with the given id.
