@@ -38,7 +38,7 @@ async function initialize_alphafold_report () {
         const json = (await fetch(DATA_URL).then(res => res.json()))['data']
         const d = new Date(json['date'])
 
-        document.getElementById("alphafold-date").textContent = `${months[d.getUTCMonth()]} ${d.getUTCDate()}`
+        document.getElementById("alphafold-date").textContent = `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`
         counter("alphafold-alignments", json['alignmentsCached'], 20)
         counter("alphafold-proteins", json['uniqueProteins'], 20)
         counter("alphafold-species", json['species'], 20)
