@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AlphaFold3 Alignment Cache | OSG</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="AlphaFold3 Alignment Cache" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="AlphaFold3 Alignment Cache - v3: Accelerating structure prediction As of 1 alignments cached Covering 1 unique proteins Spanning 1 species Including 1 community-contributed alignments. Contribute your alignments" />
+<meta property="og:description" content="AlphaFold3 Alignment Cache - v3: Accelerating structure prediction As of 1 alignments cached Covering 1 unique proteins Spanning 1 species Including 1 community-contributed alignments. Contribute your alignments" />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-18T21:59:46+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AlphaFold3 Alignment Cache" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-18T21:59:46+00:00","datePublished":"2026-05-18T21:59:46+00:00","description":"AlphaFold3 Alignment Cache - v3: Accelerating structure prediction As of 1 alignments cached Covering 1 unique proteins Spanning 1 species Including 1 community-contributed alignments. Contribute your alignments","headline":"AlphaFold3 Alignment Cache","mainEntityOfPage":{"@type":"WebPage","@id":"/web-preview/preview-dmorales-af3-page-v1/services/osdf/alphafold.html"},"url":"/web-preview/preview-dmorales-af3-page-v1/services/osdf/alphafold.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-dmorales-af3-page-v1/assets/css/style-v8.css?v=">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="/web-preview/preview-dmorales-af3-page-v1/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-dmorales-af3-page-v1/assets/js/all.js" defer></script>
+
+
+
+
+<script src="/web-preview/preview-dmorales-af3-page-v1/assets/js/pages/alphafold-caching-v2.js" type="module" defer></script>
+
+
+
+
+<script>
+	window.fwSettings={
+	'widget_id':12000000602
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}()
+</script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/12000000602.js' async defer></script>
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-dmorales-af3-page-v1/"><img height="55" style="filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.2))" src="/web-preview/preview-dmorales-af3-page-v1/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/ospool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/ospool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/ospool/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-osdf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSDF</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/osdf">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/osdf/projects">Projects</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/osdf/data">Data</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/osdf/alphafold">AlphaFold3 Alignment Cache</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-rcf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Research Computing Facilitation</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/facilitation">Connect With the Team</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/facilitation/monthly-training">Monthly Training</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/services/access-point">OSG-Operated Access Points</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/campus-cyberinfrastructure.html">CC* Proposals</a>
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/campus-docs/">Contributor Documentation</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/presentations.html">Presentations</a>
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/community/training.html">Training</a>
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-dmorales-af3-page-v1/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-dmorales-af3-page-v1/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item " href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            <span class="flex-grow-1 d-flex">
+                <div class=" ms-auto mx-auto me-lg-0 d-flex flex-row">
+                    <a class="text-dark d-flex fs-2 me-2" href="https://portal.osg-htc.org/application" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Apply for Account">
+                        <i class="bi-person-fill-add my-auto"></i>
+                    </a>
+                    <a class="text-dark d-flex fs-3 me-3" href="/contact.html" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Contact Us">
+                        <i class="bi-telephone-fill my-auto"></i>
+                    </a>
+
+                    <a href="https://path-cc.io" class="me-2"><img height="55" src="/web-preview/preview-dmorales-af3-page-v1/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                    <a href="https://pelicanplatform.org" class="me-2"><img height="55" src="/web-preview/preview-dmorales-af3-page-v1/assets/images/logos/PelicanPlatformLogo_Icon.png" alt="Pelican logo"></a>
+                    <a href="https://iris-hep.org/"><img height="55" src="/web-preview/preview-dmorales-af3-page-v1/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                </div>
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="bg-dark py-2  d-none d-md-block">
+    <div class="container-xxl">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-auto position-absolute">
+                <h5 class="text-secondary mb-0"><i class="bi bi-database-fill"></i>&nbsp;OSDF</h5>
+            </div>
+            <div class="col d-flex">
+                <div class="ms-auto me-md-auto">
+                    <a class="text-secondary" href="/services/osdf">
+                        <i class="bi bi-house-door-fill"></i> Overview
+                    </a>
+                    <a class="text-secondary mx-3" href="/services/osdf/projects">
+                        <i class="bi bi-person"></i> Projects
+                    </a>
+                    <a class="text-secondary me-3" href="/services/osdf/data">
+                        <i class="bi bi-folder2-open"></i> Data
+                    </a>
+                    <a class="text-secondary me-3" href="/services/osdf/alphafold">
+                        <i class="bi bi-diagram-3-fill"></i> AlphaFold3 Cache
+                    </a>
+                    <a class="text-secondary" href="https://www.youtube.com/watch?v=KFg5ApsIGN8">
+                        <i class="bi bi-youtube"></i> Training
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="py-5">
+    <div class="container-xxl">
+  <div class="row justify-content-center">
+    <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+      <h1 class="text-center pt-5 fw-bold">AlphaFold3 Alignment Cache - v3: Accelerating structure prediction</h1>
+    </div>
+  </div>
+</div>
+<div class="my-5 pb-3 wave-display text-display">
+  <div class="container">
+    <div class="row justify-content-center py-3">
+      <div class="col-12 col-xl-9 col-lg-10 col-md-12 col-12 col-sm-11 pt-1 pt-md-0 d-flex">
+        <h2 class="text-center d-inline-block mx-auto">
+          <span class="d-inline-block">As of <b id="alphafold-date"></b></span><br>
+          <span class="d-inline-block job-text py-2"><b class="d-inline-block"><span id="alphafold-alignments">1</span> alignments</b> cached</span><br>
+          <span class="d-inline-block">Covering</span>
+          <b class="d-inline-block"><span id="alphafold-proteins">1</span> unique proteins</b><br>
+          <span class="d-inline-block">Spanning</span>
+          <b class="d-inline-block"><span id="alphafold-species">1</span> species</b><br>
+          <span class="d-inline-block">Including</span>
+          <b class="d-inline-block"><span id="alphafold-community">1</span> community-contributed alignments.</b><br>
+        </h2>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="mailto:support@osg-htc.org" class="btn btn-secondary">Contribute your alignments</a>
+    </div>
+  </div>
+</div>
+
+<div class="container-xxl">
+  <div class="row justify-content-center">
+    <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+      <h1 id="what-is-the-alphafold3-alignment-cache">What is the AlphaFold3 Alignment Cache?</h1>
+      <p>
+        The AlphaFold3 Alignment Cache is a shared library of precomputed multiple
+        sequence alignments (MSAs) distributed through the
+        <a href="/services/osdf">Open Science Data Federation (OSDF)</a>. Generating
+        MSAs is one of the most time- and compute-intensive steps of an AlphaFold3
+        prediction. By caching these alignments once and serving them from OSDF data
+        caches close to where jobs run, researchers can skip redundant search work
+        and move straight to structure inference.
+      </p>
+
+      <div class="text-center">
+        <a href="https://portal.osg-htc.org/documentation/" class="btn btn-secondary">Read the documentation</a>
+      </div>
+
+      <p class="pt-3">
+        Alignments are keyed by sequence hash, so any job requesting a protein whose
+        MSA has already been computed &mdash; by you or by anyone in the community
+        &mdash; retrieves it directly from the cache instead of recomputing it.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container-xxl">
+  <div class="row justify-content-center">
+    <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+
+      <h2 id="why-cache-alignments">Why cache alignments?</h2>
+
+      <p>
+        MSA generation for a single query can take from minutes to many hours of CPU
+        time depending on sequence length and database size. Across a community
+        running large batches of predictions, the same well-studied proteins are
+        searched again and again. The alignment cache removes that duplicated effort:
+      </p>
+
+      <ul>
+        <li><strong>Faster predictions</strong> &mdash; jobs that hit the cache skip the search stage entirely and start inference immediately.</li>
+        <li><strong>Lower compute cost</strong> &mdash; capacity that would have gone to repeated alignment searches is freed for new science.</li>
+        <li><strong>Reproducibility</strong> &mdash; everyone using a cached alignment runs against the exact same MSA input.</li>
+        <li><strong>Community scale</strong> &mdash; every contributed alignment makes the next researcher's run faster.</li>
+      </ul>
+
+      <h2 id="how-can-i-use-the-cache">How can I use the cache?</h2>
+
+      <p>
+        The cache is consumed the same way as any other dataset on the OSDF. Jobs
+        submitted from an <a href="/services/access-point">OSG-Operated Access Point</a>
+        request alignments through the OSDF namespace, and HTCondor handles transfer
+        from the nearest cache. When an alignment is not yet cached, the workflow
+        computes it and writes it back so the next request is a cache hit.
+      </p>
+
+      <p class="rounded p-2 py-3 text-center bg-light my-4">
+        <b>Need an account to run AlphaFold3 workloads? Sign up on the <a class="ms-2 btn btn-secondary" href="https://portal.osg-htc.org">OSG Portal</a></b>
+      </p>
+
+      <p><strong>The alignment cache is a good fit if you are</strong></p>
+
+      <ul>
+        <li>Running AlphaFold3 (or other MSA-based structure tools) on many sequences.</li>
+        <li>Re-predicting structures for proteins that are common across studies.</li>
+        <li>Part of a collaboration that repeatedly works with the same organisms or protein families.</li>
+      </ul>
+
+      <h2 id="how-can-i-contribute">How can I contribute alignments?</h2>
+
+      <p>
+        Community contributions are what make the cache valuable. When your jobs
+        generate new MSAs, you can publish them back to the shared namespace so
+        others benefit. Contributed alignments are deduplicated by sequence and
+        validated before being made broadly available.
+      </p>
+
+      <p>
+        Institutions or collaborations that would like to contribute alignments or
+        host cache capacity should contact
+        <a href="mailto:support@osg-htc.org">support@osg-htc.org</a>.
+      </p>
+
+      <h2 id="whats-in-the-cache">What's in the cache?</h2>
+
+      <p>The table below summarizes the current contents of the alignment cache. Figures are refreshed periodically from the live cache.</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <tbody>
+          <tr>
+            <th>Metric</th>
+            <th>Current</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <th>Alignments cached</th>
+            <td>~2.85M</td>
+            <td>Precomputed MSAs available for direct reuse.</td>
+          </tr>
+          <tr>
+            <th>Unique proteins</th>
+            <td>~1.06M</td>
+            <td>Distinct query sequences represented in the cache.</td>
+          </tr>
+          <tr>
+            <th>Species</th>
+            <td>~14.2K</td>
+            <td>Source organisms spanned by the cached proteins.</td>
+          </tr>
+          <tr>
+            <th>Community-contributed</th>
+            <td>~88.5K</td>
+            <td>Alignments published back by researchers running on the OSPool.</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        View other datasets shared through the federation on the
+        <a href="/services/osdf/data.html">Explore the OSDF</a> page.
+      </p>
+
+    </div>
+  </div>
+
+  <div>
+    <div class="row mt-3 justify-content-center align-items-center">
+      <div class="col-auto mt-3">
+        <div class="d-flex align-items-center">
+          <a href="https://pelicanplatform.org/" target="_blank">
+            <img width="80" src="/assets/images/logos/PelicanPlatformLogo_Icon.png" alt="Pelican Logo" class="img-fluid" style="max-width: 200px;">
+          </a>
+          <h2 class="ms-3 mb-0">Powered By <a href="https://pelicanplatform.org">Pelican Platform</a></h2>
+        </div>
+      </div>
+      <div class="col-auto mt-3">
+        <div class="d-flex align-items-center">
+          <a href="https://path-cc.io" target="_blank">
+            <img width="80" src="/assets/images/logos/Logo_Round_Med.png" alt="PATh Logo" class="img-fluid" style="max-width: 200px;">
+          </a>
+          <h2 class="ms-3 mb-0">Operated by <a href="https://path-cc.io">PATh</a></h2>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-auto mt-3">
+        <a href="https://pelicanplatform.org/" target="_blank">
+          <img width="320" src="/assets/images/logos/OSDF_OSPool_Logos.png" alt="OSDF Logo" class="img-fluid">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-12 col-lg-4 d-none d-md-block">
+                    <div class="row my-auto justify-content-center">
+                        <div class="col-12 d-flex mb-3">
+                            <a class="mx-auto" href="/web-preview/preview-dmorales-af3-page-v1/"><img style="height:5rem" src="/web-preview/preview-dmorales-af3-page-v1/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://path-cc.io"><img style="height:4rem" src="/web-preview/preview-dmorales-af3-page-v1/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://pelicanplatform.org/"><img style="height:4rem" src="/web-preview/preview-dmorales-af3-page-v1/assets/images/logos/PelicanPlatformLogo_Icon.png" alt="Pelican logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://iris-hep.org/"><img style="height:4rem" src="/web-preview/preview-dmorales-af3-page-v1/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/services/ospool/">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://opensciencegrid.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/presentations.html">Presentations</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-dmorales-af3-page-v1/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
