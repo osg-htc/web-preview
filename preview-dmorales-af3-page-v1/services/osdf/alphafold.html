@@ -15,11 +15,11 @@
 <meta property="og:description" content="AlphaFold3 Alignment Library A growing OSDF-hosted library of reusable AlphaFold3 multiple sequence alignments for structure prediction workflows." />
 <meta property="og:site_name" content="OSG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2026-05-22T16:03:11+00:00" />
+<meta property="article:published_time" content="2026-05-22T16:08:02+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="AlphaFold3 Alignment Cache" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-22T16:03:11+00:00","datePublished":"2026-05-22T16:03:11+00:00","description":"AlphaFold3 Alignment Library A growing OSDF-hosted library of reusable AlphaFold3 multiple sequence alignments for structure prediction workflows.","headline":"AlphaFold3 Alignment Cache","mainEntityOfPage":{"@type":"WebPage","@id":"/web-preview/preview-dmorales-af3-page-v1/services/osdf/alphafold.html"},"url":"/web-preview/preview-dmorales-af3-page-v1/services/osdf/alphafold.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-22T16:08:02+00:00","datePublished":"2026-05-22T16:08:02+00:00","description":"AlphaFold3 Alignment Library A growing OSDF-hosted library of reusable AlphaFold3 multiple sequence alignments for structure prediction workflows.","headline":"AlphaFold3 Alignment Cache","mainEntityOfPage":{"@type":"WebPage","@id":"/web-preview/preview-dmorales-af3-page-v1/services/osdf/alphafold.html"},"url":"/web-preview/preview-dmorales-af3-page-v1/services/osdf/alphafold.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -250,11 +250,11 @@
 <div class="container-xxl">
   <div class="row justify-content-center">
     <div class="col-12 col-xl-7 col-lg-8 col-md-10">
-      <h1 id="what-is-the-alphafold3-alignment-library">What is the AlphaFold 3 Alignment Library?</h1>
+      <h1 id="what-is-the-alphafold3-alignment-library">What is the AlphaFold3 Alignment Library?</h1>
       <p>
-        The AlphaFold 3 Alignment Library is a shared index and OSDF namespace for
+        The AlphaFold3 Alignment Library is a shared index and OSDF namespace for
         precomputed multiple sequence alignments (MSAs) that can be reused by
-        cache-aware AlphaFold 3 workflows running on CHTC and the OSPool. The
+        cache-aware AlphaFold3 workflows running on CHTC and the OSPool. The
         initial focus is protein-chain unpaired MSAs in A3M format, which are the
         alignment artifacts most useful for skipping repeated CPU-heavy sequence
         search work before GPU inference.
@@ -273,9 +273,9 @@
 
       <p class="pt-3">
         The library is not a replacement for AlphaFold3 itself. It is a reuse layer
-        for the data-pipeline stage: when a alignment already exists for a
+        for the data-pipeline stage: when a pre-computed alignment already exists for a
         protein chain, a workflow can fetch that alignment from OSDF instead of
-        recomputing it _de novo_ from the full reference databases.
+        recomputing it <i>de novo</i> from the full reference databases.
       </p>
     </div>
   </div>
@@ -288,7 +288,7 @@
       <h2 id="why-cache-alignments">Why cache alignments?</h2>
 
       <p>
-        AlphaFold 3 workflows often spend substantial CPU time in the data pipeline
+        AlphaFold3 workflows often spend substantial CPU time in the data pipeline
         searching large sequence databases to build MSAs. Across a community of
         users, protein chains, protein families, organisms, and benchmark
         inputs may be searched repeatedly. The alignment library reduces duplicated
@@ -312,7 +312,7 @@
         sequence, computes its sequence hash, queries the registry or static
         manifest, and then fetches an acceptable A3M file from OSDF when a matching
         record is available. If no acceptable record is found, the job can continue
-        with _de novo_ MSA generation using the AlphaFold3 databases.
+        with <i>de novo</i> MSA generation using the AlphaFold3 databases.
       </p>
 
       <p>
@@ -324,13 +324,13 @@
       </p>
 
       <p class="rounded p-2 py-3 text-center bg-light my-4">
-        <b>Need an account to run AlphaFold 3 workloads? Sign up on the <a class="ms-2 btn btn-secondary" href="https://portal.osg-htc.org">OSG Portal</a></b>
+        <b>Need an account to run AlphaFold3 workloads? Sign up on the <a class="ms-2 btn btn-secondary" href="https://portal.osg-htc.org">OSG Portal</a></b>
       </p>
 
       <p><strong>The alignment library is a good fit if you are</strong></p>
 
       <ul>
-        <li>Running AlphaFold 3 or other MSA-based structure-prediction workflows on many protein sequences.</li>
+        <li>Running AlphaFold3 or other MSA-based structure-prediction workflows on many protein sequences.</li>
         <li>Repeating predictions for common proteins, proteomes, benchmark sets, or collaboration-specific targets.</li>
         <li>Building workflows where the same chains appear across many protein-complex combinations.</li>
         <li>Maintaining a curated set of alignments that should be reusable across a project or institution.</li>
@@ -363,7 +363,7 @@
           </tr>
           <tr>
             <th>Sources</th>
-            <td>CHTC/OSPool-generated AlphaFold 3 data-pipeline outputs, curated imported alignment sets, and validated institutional or community contributions.</td>
+            <td>CHTC/OSPool-generated AlphaFold3 data-pipeline outputs, curated imported alignment sets, and validated institutional or community contributions.</td>
           </tr>
           <tr>
             <th>Organism information</th>
@@ -386,7 +386,7 @@
         alignments will be added to the library's registry and made available for reuse
         by yourself (and other users).
 
-        **Already have a set of pre-computed alignments you'd like to share?**
+        <strong>Already have a set of pre-computed alignments you'd like to share?</strong>
         Please reach out to the OSPool/PATh Facilitation Team at [support@osg-htc.org](mailto:support@osg-htc.org).
         Contributions should include the A3M file, the query
         protein sequence or sequence hash, the source or project label, generation
@@ -405,59 +405,6 @@
         collaboration-scale alignment set, contact
         <a href="mailto:support@osg-htc.org?subject=AlphaFold%203%20alignment%20library%20contribution">support@osg-htc.org</a>.
       </p>
-
-      <h2 id="whats-in-the-library">What's in the library?</h2>
-
-      <p>
-        The table below summarizes the manifest-backed contents of the alignment
-        library. These values should be generated from the static YAML manifest or
-        registry API rather than manually hard-coded into this page.
-      </p>
-
-      <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-          <tbody>
-          <tr>
-            <th>Metric</th>
-            <th>Current</th>
-            <th>Description</th>
-          </tr>
-          <tr>
-            <th>Cached alignment records</th>
-            <td><span id="alphafold-alignments-table">&mdash;</span></td>
-            <td>Reusable MSA records indexed by sequence hash and source/provenance.</td>
-          </tr>
-          <tr>
-            <th>Unique protein sequences</th>
-            <td><span id="alphafold-proteins-table">&mdash;</span></td>
-            <td>Distinct normalized protein sequences represented in the library.</td>
-          </tr>
-          <tr>
-            <th>Annotated source organisms</th>
-            <td><span id="alphafold-species-table">&mdash;</span></td>
-            <td>Organism annotations represented in the manifest where source metadata is available.</td>
-          </tr>
-          <tr>
-            <th>Data sources</th>
-            <td><span id="alphafold-sources-table">&mdash;</span></td>
-            <td>Distinct source labels, such as generated, imported, institutional, or community-contributed records.</td>
-          </tr>
-          <tr>
-            <th>Community-contributed records</th>
-            <td><span id="alphafold-community-table">&mdash;</span></td>
-            <td>Validated records contributed by researchers or collaborations outside the initial library build.</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p>
-        View other datasets shared through the federation on the
-        <a href="/services/osdf/data.html">Explore the OSDF</a> page.
-      </p>
-
-    </div>
-  </div>
 
   <div>
     <div class="row mt-3 justify-content-center align-items-center">
