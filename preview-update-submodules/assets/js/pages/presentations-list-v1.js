@@ -17,6 +17,46 @@ class PresentationFilterManager {
         this.initializeEventButtons();
         this.initializeKeywordCheckboxes();
         this.initializeResetButton();
+        this.applyUrlFilters();
+    }
+
+    /**
+     * Read filters from the URL query string so other pages can deep-link into
+     * a pre-filtered view (e.g. /presentations.html?keyword=Facilitation).
+     * Supports `keyword` (repeatable or comma-separated) and `event`.
+     */
+    applyUrlFilters() {
+        const params = new URLSearchParams(window.location.search);
+
+        // Keywords: ?keyword=A&keyword=B or ?keyword=A,B
+        const keywordValues = params.getAll("keyword")
+            .flatMap(value => value.split(","))
+            .map(value => value.trim())
+            .filter(Boolean);
+
+        keywordValues.forEach(keyword => {
+            const checkbox = Array.from(this.keywordCheckboxes)
+                .find(cb => cb.dataset.keywordSelector === keyword);
+            if (checkbox) {
+                checkbox.checked = true;
+                this.selectedKeywords.add(keyword);
+            }
+        });
+
+        // Event: ?event=HTC25
+        const eventValue = params.get("event");
+        if (eventValue) {
+            const match = Array.from(this.buttonEventDropdownItems)
+                .find(item => item.dataset.eventSelector === eventValue);
+            if (match) {
+                this.selectedEvent = eventValue;
+                this.buttonEventFilter.textContent = eventValue;
+            }
+        }
+
+        if (this.selectedKeywords.size > 0 || this.selectedEvent) {
+            this.filterPresentations();
+        }
     }
 
     initializeEventButtons() {
