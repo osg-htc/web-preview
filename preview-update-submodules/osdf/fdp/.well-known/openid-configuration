@@ -1,0 +1,4 @@
+{  
+    "issuer":"https://osg-htc.org/osdf/fdp",
+    "jwks_uri":"https://osg-htc.org/osdf/fdp/oauth2/keys"
+}
