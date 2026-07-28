@@ -1,0 +1,4 @@
+{  
+    "issuer":"https://osg-htc.org/osdf/sio",
+    "jwks_uri":"https://osg-htc.org/osdf/sio/oauth2/keys"
+}
