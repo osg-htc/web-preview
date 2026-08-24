@@ -17,6 +17,7 @@ const OSDF_HTTPS_BASE = "https://osdf-director.osg-htc.org";
 
 const HASHES_PER_REQUEST = 100;   // batch size for /v1/query
 const DOWNLOAD_CONCURRENCY = 4;   // parallel A3M fetches when zipping
+const RESULTS_PER_PAGE = 50;      // table rows per page
 const MAX_ZIP_BYTES = 3.5 * 1024 ** 3; // stay well under the 4 GiB zip32 limit
 
 const ANY_SOURCE = "__any__";
@@ -88,7 +89,7 @@ async function sha256Hex(text) {
 // Registry query
 // ---------------------------------------------------------------------------
 
-async function queryRegistry(seqHashes) {
+async function queryRegistry(seqHashes, onChunkDone) {
     const hitsByHash = new Map();
 
     for (let i = 0; i < seqHashes.length; i += HASHES_PER_REQUEST) {
@@ -105,6 +106,7 @@ async function queryRegistry(seqHashes) {
         for (const result of json.results ?? []) {
             hitsByHash.set(result.seq_hash, result.hits ?? []);
         }
+        onChunkDone?.(chunk);
     }
 
     return hitsByHash;
@@ -128,6 +130,38 @@ function basename(uri) {
 
 function slugify(text) {
     return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "source";
+}
+
+/**
+ * Display order for sources: OSG/OSPool-generated first, community
+ * contributions second, everything else alphabetically.
+ */
+function sourceRank(name) {
+    if (/(osg|ospool)[\s_-]*generated/i.test(name)) return 0;
+    if (/community/i.test(name)) return 1;
+    return 2;
+}
+
+function compareSources(a, b) {
+    return sourceRank(a) - sourceRank(b) || a.localeCompare(b);
+}
+
+/**
+ * Page numbers to offer in the pagination control: all of them when few,
+ * otherwise first, last, and a window around the current page, with nulls
+ * marking the gaps (rendered as ellipses).
+ */
+function pageNumbers(current, pages) {
+    if (pages <= 7) return [...Array(pages).keys()];
+    const shown = [...new Set([0, current - 1, current, current + 1, pages - 1])]
+        .filter(p => p >= 0 && p < pages)
+        .sort((a, b) => a - b);
+    const items = [];
+    for (let i = 0; i < shown.length; i++) {
+        if (i > 0 && shown[i] - shown[i - 1] > 1) items.push(null);
+        items.push(shown[i]);
+    }
+    return items;
 }
 
 function formatBytes(bytes) {
@@ -293,7 +327,14 @@ class AlphaFoldSearch {
         this.downloadProgressBar = el("af3-download-progress-bar");
         this.downloadProgressText = el("af3-download-progress-text");
         this.downloadError = el("af3-download-error");
+        this.paginationRow = el("af3-pagination-row");
+        this.paginationInfo = el("af3-pagination-info");
+        this.paginationList = el("af3-pagination");
+        this.searchProgress = el("af3-search-progress");
+        this.searchProgressBar = el("af3-search-progress-bar");
+        this.searchProgressText = el("af3-search-progress-text");
 
+        this.page = 0;
         this.queries = [];
         this.hits = [];          // unique hits across all queries
         this.hitsBySource = new Map();
@@ -306,6 +347,22 @@ class AlphaFoldSearch {
         el("af3-example")?.addEventListener("click", () => { this.textarea.value = EXAMPLE_FASTA; this.textarea.focus(); });
         el("af3-clear")?.addEventListener("click", () => this.reset());
         this.fileInput?.addEventListener("change", () => this.loadFile());
+        for (const type of ["dragenter", "dragover"]) {
+            this.form.addEventListener(type, e => {
+                if (![...(e.dataTransfer?.types ?? [])].includes("Files")) return;
+                e.preventDefault();
+                this.form.classList.add("af3-drop-active");
+            });
+        }
+        this.form.addEventListener("dragleave", e => {
+            if (!this.form.contains(e.relatedTarget)) this.form.classList.remove("af3-drop-active");
+        });
+        this.form.addEventListener("drop", e => {
+            e.preventDefault();
+            this.form.classList.remove("af3-drop-active");
+            const files = [...(e.dataTransfer?.files ?? [])];
+            if (files.length) this.loadFasta(files);
+        });
         this.downloadMenu.addEventListener("click", e => {
             const item = e.target.closest("[data-source]");
             if (!item) return;
@@ -315,8 +372,20 @@ class AlphaFoldSearch {
         this.tableBody.addEventListener("click", e => {
             const link = e.target.closest("a[data-a3m]");
             if (link) { e.preventDefault(); this.downloadOne(link); return; }
+            const toggle = e.target.closest(".af3-meta-toggle");
+            if (toggle) {
+                const hidden = toggle.closest("li").querySelector(".af3-meta").classList.toggle("d-none");
+                toggle.innerHTML = hidden
+                    ? `Get Metadata <i class="bi bi-chevron-down"></i>`
+                    : `Hide Metadata <i class="bi bi-chevron-up"></i>`;
+                return;
+            }
             const seq = e.target.closest(".af3-seq");
             if (seq) seq.classList.toggle("af3-seq-expanded");
+        });
+        this.paginationList.addEventListener("click", e => {
+            const button = e.target.closest("button[data-page]");
+            if (button && !button.disabled) this.setPage(Number(button.dataset.page));
         });
     }
 
@@ -330,17 +399,25 @@ class AlphaFoldSearch {
     }
 
     async loadFile() {
-        const file = this.fileInput.files?.[0];
-        if (!file) return;
-        try {
-            const text = await file.text();
-            const existing = this.textarea.value.trim();
-            this.textarea.value = existing ? `${existing}\n${text}` : text;
-            this.setStatus(`Loaded ${file.name}`);
-        } catch (e) {
-            this.showError(`Could not read ${file.name}: ${e.message}`);
-        }
+        const files = [...(this.fileInput.files ?? [])];
+        if (files.length) await this.loadFasta(files);
         this.fileInput.value = "";
+    }
+
+    /**
+     * Load FASTA file(s) into the form, replacing whatever is there.
+     * Multiple files are appended together in the order given.
+     */
+    async loadFasta(files) {
+        try {
+            const texts = await Promise.all(files.map(f => f.text()));
+            this.textarea.value = texts.map(t => t.trim()).filter(Boolean).join("\n") + "\n";
+            const label = files.length === 1 ? files[0].name : `${files.length} files (appended together)`;
+            this.setStatus(`Loaded ${label}`);
+            this.error.classList.add("d-none");
+        } catch (e) {
+            this.showError(`Could not read the FASTA file(s): ${e.message}`);
+        }
     }
 
     setStatus(text) { this.status.textContent = text; }
@@ -370,22 +447,40 @@ class AlphaFoldSearch {
             await Promise.all(valid.map(async q => { q.hash = await sha256Hex(q.sequence); }));
             const uniqueHashes = [...new Set(valid.map(q => q.hash))];
 
-            this.setStatus(`Querying the registry for ${uniqueHashes.length} unique ${uniqueHashes.length === 1 ? "sequence" : "sequences"}…`);
-            const hitsByHash = uniqueHashes.length ? await queryRegistry(uniqueHashes) : new Map();
+            this.setStatus("");
+            this.setSearchProgress(0, valid.length);
+            const completed = new Set();
+            const hitsByHash = uniqueHashes.length
+                ? await queryRegistry(uniqueHashes, chunk => {
+                    chunk.forEach(hash => completed.add(hash));
+                    this.setSearchProgress(valid.filter(q => completed.has(q.hash)).length, valid.length);
+                })
+                : new Map();
 
             for (const q of queries) {
                 q.hits = q.error ? [] : (hitsByHash.get(q.hash) ?? []);
             }
             this.queries = queries;
             this.render();
-            this.setStatus("");
         } catch (e) {
             console.error("AlphaFold alignment search failed:", e);
             this.showError(`The alignment registry could not be queried (${e.message}). Please try again later or contact support@osg-htc.org.`);
             this.setStatus("");
         } finally {
             this.setBusy(false);
+            this.searchProgress.classList.add("d-none");
         }
+    }
+
+    /**
+     * Show query progress in terms of the researcher's sequences (not the
+     * deduplicated hashes actually sent on the wire).
+     */
+    setSearchProgress(done, total) {
+        this.searchProgress.classList.remove("d-none");
+        this.searchProgressBar.style.width = total ? `${Math.round((done / total) * 100)}%` : "100%";
+        this.searchProgressText.textContent =
+            `Queried ${numberFormat.format(done)} of ${numberFormat.format(total)} ${total === 1 ? "sequence" : "sequences"}…`;
     }
 
     render() {
@@ -399,13 +494,14 @@ class AlphaFoldSearch {
                 seen.get(hit.osdf_uri).query_names.push(q.name);
             }
         }
-        this.hits = [...seen.values()];
+        this.hits = [...seen.values()].sort((a, b) =>
+            compareSources(a.source, b.source) || basename(a.osdf_uri).localeCompare(basename(b.osdf_uri)));
         this.hitsBySource = new Map();
         for (const hit of this.hits) {
             if (!this.hitsBySource.has(hit.source)) this.hitsBySource.set(hit.source, []);
             this.hitsBySource.get(hit.source).push(hit);
         }
-        const sources = [...this.hitsBySource.keys()].sort((a, b) => a.localeCompare(b));
+        const sources = [...this.hitsBySource.keys()].sort(compareSources);
 
         // Headline summary
         const queriesWithHits = this.queries.filter(q => q.hits.length).length;
@@ -441,9 +537,48 @@ class AlphaFoldSearch {
         this.downloadError.classList.add("d-none");
 
         // Results table
-        this.tableBody.innerHTML = this.queries.map((q, i) => this.renderRow(q, i)).join("");
+        this.page = 0;
+        this.renderTable();
         this.results.classList.remove("d-none");
         this.results.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    /**
+     * Render the current page of the results table. Only the table is paged;
+     * the summary, per-source counts, and "Download All" always cover the
+     * entire result set.
+     */
+    renderTable() {
+        const total = this.queries.length;
+        const pages = Math.max(1, Math.ceil(total / RESULTS_PER_PAGE));
+        this.page = Math.min(Math.max(this.page, 0), pages - 1);
+        const start = this.page * RESULTS_PER_PAGE;
+        const slice = this.queries.slice(start, start + RESULTS_PER_PAGE);
+        this.tableBody.innerHTML = slice.map((q, i) => this.renderRow(q, start + i)).join("");
+
+        this.paginationRow.classList.toggle("d-none", pages <= 1);
+        if (pages <= 1) return;
+        this.paginationInfo.textContent =
+            `Showing queries ${numberFormat.format(start + 1)}–${numberFormat.format(start + slice.length)} of ${numberFormat.format(total)}`;
+        const item = (label, page, { disabled = false, active = false, gap = false } = {}) => gap
+            ? `<li class="page-item disabled"><span class="page-link">&hellip;</span></li>`
+            : `<li class="page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}">
+                 <button type="button" class="page-link" data-page="${page}" ${disabled ? "disabled" : ""}>${label}</button>
+               </li>`;
+        this.paginationList.innerHTML = [
+            item("&laquo; Prev", this.page - 1, { disabled: this.page === 0 }),
+            ...pageNumbers(this.page, pages).map(p => p === null
+                ? item("", 0, { gap: true })
+                : item(numberFormat.format(p + 1), p, { active: p === this.page })),
+            item("Next &raquo;", this.page + 1, { disabled: this.page === pages - 1 }),
+        ].join("");
+    }
+
+    setPage(page) {
+        if (page === this.page) return;
+        this.page = page;
+        this.renderTable();
+        this.tableBody.closest(".table-responsive").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     renderRow(q, index) {
@@ -462,8 +597,9 @@ class AlphaFoldSearch {
                 ? `<span class="fw-bold">${numberFormat.format(q.hits.length)}</span>`
                 : `<span class="text-muted">0</span>`;
 
-        const hits = q.hits.length
-            ? `<ul class="list-unstyled mb-0 af3-hit-list">${q.hits.map(hit => this.renderHit(hit)).join("")}</ul>`
+        const sortedHits = [...q.hits].sort((a, b) => compareSources(a.source, b.source));
+        const hits = sortedHits.length
+            ? `<ul class="list-unstyled mb-0 af3-hit-list">${sortedHits.map(hit => this.renderHit(hit)).join("")}</ul>`
             : q.error ? "" : `<span class="text-muted fst-italic">No cached alignment</span>`;
 
         return `<tr class="${q.hits.length ? "" : "table-light"}">
@@ -483,18 +619,30 @@ class AlphaFoldSearch {
             hit.n_sequences != null ? `${numberFormat.format(hit.n_sequences)} sequences` : null,
             hit.a3m_size_bytes != null ? formatBytes(hit.a3m_size_bytes) : null,
         ].filter(Boolean).map(d => d.startsWith("<i>") ? d : escapeHtml(d)).join(" · ");
-        const tooltip = [
-            `File: ${filename}`,
-            `Database: ${hit.db_version}`,
-            hit.a3m_sha256 ? `SHA-256: ${hit.a3m_sha256}` : null,
-            hit.osdf_uri,
-        ].filter(Boolean).join("\n");
+        const metadata = [
+            ["File", filename],
+            ["Source", hit.source],
+            ["Database version", hit.db_version],
+            ["Query length", hit.seq_length != null ? `${numberFormat.format(hit.seq_length)} aa` : null],
+            ["Aligned sequences", hit.n_sequences != null ? numberFormat.format(hit.n_sequences) : null],
+            ["Size", hit.a3m_size_bytes != null ? `${formatBytes(hit.a3m_size_bytes)} (${numberFormat.format(hit.a3m_size_bytes)} bytes)` : null],
+            ["A3M SHA-256", hit.a3m_sha256],
+            ["Sequence hash", hit.seq_hash],
+            ["OSDF URI", hit.osdf_uri],
+            ["HTTPS URL", url],
+        ].filter(([, value]) => value != null && value !== "");
 
-        return `<li class="mb-1">
-            <a href="${escapeHtml(url)}" data-a3m="${escapeHtml(filename)}" title="${escapeHtml(tooltip)}" class="fw-semibold text-decoration-none">
+        return `<li class="mb-2">
+            <a href="${escapeHtml(url)}" data-a3m="${escapeHtml(filename)}" title="Download ${escapeHtml(filename)}" class="fw-semibold text-decoration-none">
                 <i class="bi bi-download"></i> ${escapeHtml(hit.source)}
             </a>
             ${details ? `<br><small class="text-muted">${details}</small>` : ""}
+            <br><button type="button" class="btn btn-link btn-sm p-0 af3-meta-toggle">Get Metadata <i class="bi bi-chevron-down"></i></button>
+            <div class="af3-meta d-none">
+                <dl class="mb-0">${metadata.map(([key, value]) =>
+                    `<div><dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}
+                </dl>
+            </div>
         </li>`;
     }
 
@@ -536,6 +684,8 @@ class AlphaFoldSearch {
         this.downloadError.classList.add("d-none");
         this.downloadProgress.classList.remove("d-none");
         this.downloadProgressBar.style.width = "0%";
+        this.downloadProgressBar.classList.add("progress-bar-striped", "progress-bar-animated");
+        this.downloadProgressBar.classList.remove("bg-success");
         this.downloadProgressText.textContent = `Preparing ${hits.length} ${hits.length === 1 ? "file" : "files"}…`;
 
         let done = 0;
@@ -578,8 +728,12 @@ class AlphaFoldSearch {
             files.push({ name: "manifest.tsv", data: new TextEncoder().encode(this.buildManifest(hits, failures)) });
             this.downloadProgressText.textContent = `Building ${zipName} (${formatBytes(bytes)})…`;
             saveBlob(buildZip(files), zipName);
-            this.downloadProgressText.textContent = `Downloaded ${files.length - 1} ${files.length - 1 === 1 ? "alignment" : "alignments"} (${formatBytes(bytes)}) as ${zipName}.`;
             this.downloadProgressBar.style.width = "100%";
+            this.downloadProgressBar.classList.remove("progress-bar-striped", "progress-bar-animated");
+            this.downloadProgressBar.classList.add("bg-success");
+            const n = files.length - 1;
+            this.downloadProgressText.innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> ` +
+                `Done &mdash; downloaded ${n} ${n === 1 ? "alignment" : "alignments"} (${formatBytes(bytes)}) as ${escapeHtml(zipName)}.`;
 
             if (failures.length) {
                 this.downloadError.innerHTML = `<b>${failures.length} ${failures.length === 1 ? "file" : "files"} could not be fetched</b> and ${failures.length === 1 ? "was" : "were"} left out of the archive (see manifest.tsv):<ul class="mb-0">` +
