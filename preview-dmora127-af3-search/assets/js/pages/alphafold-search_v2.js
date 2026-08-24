@@ -15,7 +15,9 @@ const API_BASE = "https://149.165.170.71.sslip.io";
 const QUERY_URL = `${API_BASE}/v1/query`;
 const OSDF_HTTPS_BASE = "https://osdf-director.osg-htc.org";
 
-const HASHES_PER_REQUEST = 100;   // batch size for /v1/query
+const HASHES_PER_REQUEST_SMALL = 100;  // /v1/query batch size for typical searches (finer progress)
+const HASHES_PER_REQUEST_LARGE = 500;  // batch size for bulk searches (server answers 500 in ~0.16s)
+const LARGE_QUERY_THRESHOLD = 10000;   // unique sequences at which to switch to large batches
 const QUERY_CONCURRENCY = 4;      // parallel /v1/query batches
 const DOWNLOAD_CONCURRENCY = 4;   // parallel A3M fetches when zipping
 const RESULTS_PER_PAGE = 50;      // table rows per page
@@ -91,9 +93,12 @@ async function sha256Hex(text) {
 // ---------------------------------------------------------------------------
 
 async function queryRegistry(seqHashes, onChunkDone) {
+    const batchSize = seqHashes.length < LARGE_QUERY_THRESHOLD
+        ? HASHES_PER_REQUEST_SMALL
+        : HASHES_PER_REQUEST_LARGE;
     const chunks = [];
-    for (let i = 0; i < seqHashes.length; i += HASHES_PER_REQUEST) {
-        chunks.push(seqHashes.slice(i, i + HASHES_PER_REQUEST));
+    for (let i = 0; i < seqHashes.length; i += batchSize) {
+        chunks.push(seqHashes.slice(i, i + batchSize));
     }
 
     const hitsByHash = new Map();
@@ -173,7 +178,20 @@ function formatBytes(bytes) {
     if (bytes < 1024) return `${bytes} B`;
     if (bytes < 1024 ** 2) return `${(bytes / 1024).toFixed(1)} KB`;
     if (bytes < 1024 ** 3) return `${(bytes / 1024 ** 2).toFixed(1)} MB`;
-    return `${(bytes / 1024 ** 3).toFixed(2)} GB`;
+    if (bytes < 1024 ** 4) return `${(bytes / 1024 ** 3).toFixed(2)} GB`;
+    return `${(bytes / 1024 ** 4).toFixed(2)} TB`;
+}
+
+/**
+ * "N files · 12.3 MB" label for a set of hits; sizes come from the registry's
+ * a3m_size_bytes, with a ≥ prefix when some hits don't report a size.
+ */
+function downloadSetLabel(hits) {
+    const known = hits.filter(h => h.a3m_size_bytes != null);
+    const files = `${numberFormat.format(hits.length)} ${hits.length === 1 ? "file" : "files"}`;
+    if (!known.length) return files;
+    const bytes = known.reduce((n, h) => n + h.a3m_size_bytes, 0);
+    return `${files} &middot; ${known.length < hits.length ? "&ge;" : ""}${formatBytes(bytes)}`;
 }
 
 const numberFormat = new Intl.NumberFormat("en-US");
@@ -532,12 +550,10 @@ class AlphaFoldSearch {
         this.downloadButton.disabled = !this.hits.length;
         this.downloadMenu.innerHTML = [
             `<li><h6 class="dropdown-header">Download every hit from…</h6></li>`,
-            ...sources.map(source => {
-                const n = this.hitsBySource.get(source).length;
-                return `<li><a class="dropdown-item" href="#" data-source="${escapeHtml(source)}">${escapeHtml(source)} <span class="text-muted">(${numberFormat.format(n)} ${n === 1 ? "file" : "files"})</span></a></li>`;
-            }),
+            ...sources.map(source =>
+                `<li><a class="dropdown-item" href="#" data-source="${escapeHtml(source)}">${escapeHtml(source)} <span class="text-muted">(${downloadSetLabel(this.hitsBySource.get(source))})</span></a></li>`),
             sources.length > 1 ? `<li><hr class="dropdown-divider"></li>` : "",
-            `<li><a class="dropdown-item" href="#" data-source="${ANY_SOURCE}">Any Matching Source <span class="text-muted">(${numberFormat.format(this.hits.length)} ${this.hits.length === 1 ? "file" : "files"})</span></a></li>`,
+            `<li><a class="dropdown-item" href="#" data-source="${ANY_SOURCE}">Any Matching Source <span class="text-muted">(${downloadSetLabel(this.hits)})</span></a></li>`,
         ].join("");
         this.downloadProgress.classList.add("d-none");
         this.downloadError.classList.add("d-none");
@@ -634,8 +650,6 @@ class AlphaFoldSearch {
             ["Size", hit.a3m_size_bytes != null ? `${formatBytes(hit.a3m_size_bytes)} (${numberFormat.format(hit.a3m_size_bytes)} bytes)` : null],
             ["A3M SHA-256", hit.a3m_sha256],
             ["Sequence hash", hit.seq_hash],
-            ["OSDF URI", hit.osdf_uri],
-            ["HTTPS URL", url],
         ].filter(([, value]) => value != null && value !== "");
 
         return `<li class="mb-2">
