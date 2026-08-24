@@ -16,6 +16,7 @@ const QUERY_URL = `${API_BASE}/v1/query`;
 const OSDF_HTTPS_BASE = "https://osdf-director.osg-htc.org";
 
 const HASHES_PER_REQUEST = 100;   // batch size for /v1/query
+const QUERY_CONCURRENCY = 4;      // parallel /v1/query batches
 const DOWNLOAD_CONCURRENCY = 4;   // parallel A3M fetches when zipping
 const RESULTS_PER_PAGE = 50;      // table rows per page
 const MAX_ZIP_BYTES = 3.5 * 1024 ** 3; // stay well under the 4 GiB zip32 limit
@@ -90,10 +91,13 @@ async function sha256Hex(text) {
 // ---------------------------------------------------------------------------
 
 async function queryRegistry(seqHashes, onChunkDone) {
-    const hitsByHash = new Map();
-
+    const chunks = [];
     for (let i = 0; i < seqHashes.length; i += HASHES_PER_REQUEST) {
-        const chunk = seqHashes.slice(i, i + HASHES_PER_REQUEST);
+        chunks.push(seqHashes.slice(i, i + HASHES_PER_REQUEST));
+    }
+
+    const hitsByHash = new Map();
+    await mapConcurrent(chunks, QUERY_CONCURRENCY, async chunk => {
         const response = await fetch(QUERY_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -107,7 +111,7 @@ async function queryRegistry(seqHashes, onChunkDone) {
             hitsByHash.set(result.seq_hash, result.hits ?? []);
         }
         onChunkDone?.(chunk);
-    }
+    });
 
     return hitsByHash;
 }
@@ -449,11 +453,13 @@ class AlphaFoldSearch {
 
             this.setStatus("");
             this.setSearchProgress(0, valid.length);
-            const completed = new Set();
+            const seqsPerHash = new Map();
+            for (const q of valid) seqsPerHash.set(q.hash, (seqsPerHash.get(q.hash) ?? 0) + 1);
+            let done = 0;
             const hitsByHash = uniqueHashes.length
                 ? await queryRegistry(uniqueHashes, chunk => {
-                    chunk.forEach(hash => completed.add(hash));
-                    this.setSearchProgress(valid.filter(q => completed.has(q.hash)).length, valid.length);
+                    done += chunk.reduce((n, hash) => n + (seqsPerHash.get(hash) ?? 0), 0);
+                    this.setSearchProgress(done, valid.length);
                 })
                 : new Map();
 
