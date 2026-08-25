@@ -11,7 +11,7 @@
  * the sequences themselves never leave the browser.
  */
 
-const API_BASE = "https://149.165.170.71.sslip.io";
+const API_BASE = "https://af3-msa-library.dannymorales.com";
 const QUERY_URL = `${API_BASE}/v1/query`;
 const OSDF_HTTPS_BASE = "https://osdf-director.osg-htc.org";
 
