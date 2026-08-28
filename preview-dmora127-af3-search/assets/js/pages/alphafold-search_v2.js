@@ -191,7 +191,7 @@ function downloadSetLabel(hits) {
     const files = `${numberFormat.format(hits.length)} ${hits.length === 1 ? "file" : "files"}`;
     if (!known.length) return files;
     const bytes = known.reduce((n, h) => n + h.a3m_size_bytes, 0);
-    return `${files} &middot; ${known.length < hits.length ? "&ge;" : ""}${formatBytes(bytes)}`;
+    return `${files} · ${known.length < hits.length ? "≥" : ""}${formatBytes(bytes)}`;
 }
 
 const numberFormat = new Intl.NumberFormat("en-US");
@@ -323,11 +323,25 @@ async function mapConcurrent(items, limit, worker) {
 
 const el = id => document.getElementById(id);
 
-function escapeHtml(text) {
-    return String(text)
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+/**
+ * Build a DOM element. String children become text nodes via Element.append,
+ * so data can never be parsed as HTML — markup structure only enters through
+ * the tag/attrs literals. This is what keeps registry- and user-provided
+ * strings (sequences, query names, species, error messages) inert; do not
+ * reintroduce innerHTML in this file.
+ */
+function h(tag, attrs = {}, ...children) {
+    const node = document.createElement(tag);
+    for (const [key, value] of Object.entries(attrs)) {
+        if (key === "class") node.className = value;
+        else if (key === "dataset") Object.assign(node.dataset, value);
+        else if (value != null) node.setAttribute(key, value);
+    }
+    node.append(...children.flat(Infinity).filter(c => c != null && c !== false));
+    return node;
 }
+
+const icon = (name, cls) => h("i", { class: `bi bi-${name}${cls ? ` ${cls}` : ""}` });
 
 class AlphaFoldSearch {
     constructor() {
@@ -397,9 +411,8 @@ class AlphaFoldSearch {
             const toggle = e.target.closest(".af3-meta-toggle");
             if (toggle) {
                 const hidden = toggle.closest("li").querySelector(".af3-meta").classList.toggle("d-none");
-                toggle.innerHTML = hidden
-                    ? `Get Metadata <i class="bi bi-chevron-down"></i>`
-                    : `Hide Metadata <i class="bi bi-chevron-up"></i>`;
+                toggle.replaceChildren(hidden ? "Get Metadata " : "Hide Metadata ",
+                    icon(hidden ? "chevron-down" : "chevron-up"));
                 return;
             }
             const seq = e.target.closest(".af3-seq");
@@ -531,30 +544,32 @@ class AlphaFoldSearch {
         const queriesWithHits = this.queries.filter(q => q.hits.length).length;
         const invalid = this.queries.filter(q => q.error).length;
         const totalHits = this.queries.reduce((n, q) => n + q.hits.length, 0);
-        this.summary.innerHTML = `
-            <div class="af3-stat"><b>${numberFormat.format(this.queries.length)}</b><span>${this.queries.length === 1 ? "query" : "queries"}</span></div>
-            <div class="af3-stat"><b>${numberFormat.format(queriesWithHits)}</b><span>with a cached alignment</span></div>
-            <div class="af3-stat"><b>${numberFormat.format(totalHits)}</b><span>${totalHits === 1 ? "hit" : "hits"} in total</span></div>
-            ${invalid ? `<div class="af3-stat text-danger"><b>${numberFormat.format(invalid)}</b><span>could not be parsed</span></div>` : ""}
-        `;
+        const stat = (value, label, cls) => h("div", { class: `af3-stat${cls ? ` ${cls}` : ""}` },
+            h("b", {}, numberFormat.format(value)), h("span", {}, label));
+        this.summary.replaceChildren(
+            stat(this.queries.length, this.queries.length === 1 ? "query" : "queries"),
+            stat(queriesWithHits, "with a cached alignment"),
+            stat(totalHits, totalHits === 1 ? "hit in total" : "hits in total"),
+            ...(invalid ? [stat(invalid, "could not be parsed", "text-danger")] : []),
+        );
 
         // Per-source summary
-        this.sourceSummary.innerHTML = sources.length
-            ? sources.map(source => {
-                const n = this.hitsBySource.get(source).length;
-                return `<span class="badge rounded-pill text-bg-light border fw-normal fs-6 me-2 mb-2">${escapeHtml(source)} <b class="ms-1">${numberFormat.format(n)}</b></span>`;
-            }).join("")
-            : `<span class="text-muted">No matching alignments were found for these sequences.</span>`;
+        this.sourceSummary.replaceChildren(...(sources.length
+            ? sources.map(source => h("span", { class: "badge rounded-pill text-bg-light border fw-normal fs-6 me-2 mb-2" },
+                source, " ", h("b", { class: "ms-1" }, numberFormat.format(this.hitsBySource.get(source).length))))
+            : [h("span", { class: "text-muted" }, "No matching alignments were found for these sequences.")]));
 
         // Download menu
         this.downloadButton.disabled = !this.hits.length;
-        this.downloadMenu.innerHTML = [
-            `<li><h6 class="dropdown-header">Download every hit from…</h6></li>`,
-            ...sources.map(source =>
-                `<li><a class="dropdown-item" href="#" data-source="${escapeHtml(source)}">${escapeHtml(source)} <span class="text-muted">(${downloadSetLabel(this.hitsBySource.get(source))})</span></a></li>`),
-            sources.length > 1 ? `<li><hr class="dropdown-divider"></li>` : "",
-            `<li><a class="dropdown-item" href="#" data-source="${ANY_SOURCE}">Any Matching Source <span class="text-muted">(${downloadSetLabel(this.hits)})</span></a></li>`,
-        ].join("");
+        const menuItem = (label, source, hits) => h("li", {},
+            h("a", { class: "dropdown-item", href: "#", dataset: { source } },
+                label, " ", h("span", { class: "text-muted" }, `(${downloadSetLabel(hits)})`)));
+        this.downloadMenu.replaceChildren(
+            h("li", {}, h("h6", { class: "dropdown-header" }, "Download every hit from…")),
+            ...sources.map(source => menuItem(source, source, this.hitsBySource.get(source))),
+            ...(sources.length > 1 ? [h("li", {}, h("hr", { class: "dropdown-divider" }))] : []),
+            menuItem("Any Matching Source", ANY_SOURCE, this.hits),
+        );
         this.downloadProgress.classList.add("d-none");
         this.downloadError.classList.add("d-none");
 
@@ -576,24 +591,25 @@ class AlphaFoldSearch {
         this.page = Math.min(Math.max(this.page, 0), pages - 1);
         const start = this.page * RESULTS_PER_PAGE;
         const slice = this.queries.slice(start, start + RESULTS_PER_PAGE);
-        this.tableBody.innerHTML = slice.map((q, i) => this.renderRow(q, start + i)).join("");
+        this.tableBody.replaceChildren(...slice.map(q => this.renderRow(q)));
 
         this.paginationRow.classList.toggle("d-none", pages <= 1);
         if (pages <= 1) return;
         this.paginationInfo.textContent =
             `Showing queries ${numberFormat.format(start + 1)}–${numberFormat.format(start + slice.length)} of ${numberFormat.format(total)}`;
-        const item = (label, page, { disabled = false, active = false, gap = false } = {}) => gap
-            ? `<li class="page-item disabled"><span class="page-link">&hellip;</span></li>`
-            : `<li class="page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}">
-                 <button type="button" class="page-link" data-page="${page}" ${disabled ? "disabled" : ""}>${label}</button>
-               </li>`;
-        this.paginationList.innerHTML = [
-            item("&laquo; Prev", this.page - 1, { disabled: this.page === 0 }),
+        const item = (label, page, { disabled = false, active = false, gap = false } = {}) => {
+            if (gap) return h("li", { class: "page-item disabled" }, h("span", { class: "page-link" }, "…"));
+            const button = h("button", { type: "button", class: "page-link", dataset: { page } }, label);
+            button.disabled = disabled;
+            return h("li", { class: `page-item${disabled ? " disabled" : ""}${active ? " active" : ""}` }, button);
+        };
+        this.paginationList.replaceChildren(
+            item("« Prev", this.page - 1, { disabled: this.page === 0 }),
             ...pageNumbers(this.page, pages).map(p => p === null
                 ? item("", 0, { gap: true })
                 : item(numberFormat.format(p + 1), p, { active: p === this.page })),
-            item("Next &raquo;", this.page + 1, { disabled: this.page === pages - 1 }),
-        ].join("");
+            item("Next »", this.page + 1, { disabled: this.page === pages - 1 }),
+        );
     }
 
     setPage(page) {
@@ -603,44 +619,48 @@ class AlphaFoldSearch {
         this.tableBody.closest(".table-responsive").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    renderRow(q, index) {
-        const name = `<div class="fw-semibold">${escapeHtml(q.name)}</div>` +
-            (q.hash ? `<small class="text-muted font-monospace" title="SHA-256 ${escapeHtml(q.hash)}">${q.hash.slice(0, 12)}…</small>` : "");
+    renderRow(q) {
+        const name = h("td", {},
+            h("div", { class: "fw-semibold" }, q.name),
+            q.hash && h("small", { class: "text-muted font-monospace", title: `SHA-256 ${q.hash}` },
+                `${q.hash.slice(0, 12)}…`));
 
-        const sequence = q.error
-            ? `<span class="text-danger"><i class="bi bi-exclamation-triangle-fill"></i> ${escapeHtml(q.error)}</span>` +
-              (q.raw ? `<br><code class="af3-seq text-muted" title="Click to expand">${escapeHtml(q.raw)}</code>` : "")
-            : `<code class="af3-seq" title="Click to expand">${escapeHtml(q.sequence)}</code>` +
-              `<br><small class="text-muted">${numberFormat.format(q.sequence.length)} aa</small>`;
+        const sequence = h("td", {});
+        if (q.error) {
+            sequence.append(h("span", { class: "text-danger" }, icon("exclamation-triangle-fill"), ` ${q.error}`));
+            if (q.raw) sequence.append(h("br"), h("code", { class: "af3-seq text-muted", title: "Click to expand" }, q.raw));
+        } else {
+            sequence.append(
+                h("code", { class: "af3-seq", title: "Click to expand" }, q.sequence),
+                h("br"),
+                h("small", { class: "text-muted" }, `${numberFormat.format(q.sequence.length)} aa`));
+        }
 
-        const count = q.error
-            ? `<span class="text-muted">&mdash;</span>`
+        const count = h("td", { class: "text-center" }, q.error
+            ? h("span", { class: "text-muted" }, "—")
             : q.hits.length
-                ? `<span class="fw-bold">${numberFormat.format(q.hits.length)}</span>`
-                : `<span class="text-muted">0</span>`;
+                ? h("span", { class: "fw-bold" }, numberFormat.format(q.hits.length))
+                : h("span", { class: "text-muted" }, "0"));
 
         const sortedHits = [...q.hits].sort((a, b) => compareSources(a.source, b.source));
-        const hits = sortedHits.length
-            ? `<ul class="list-unstyled mb-0 af3-hit-list">${sortedHits.map(hit => this.renderHit(hit)).join("")}</ul>`
-            : q.error ? "" : `<span class="text-muted fst-italic">No cached alignment</span>`;
+        const hits = h("td", {}, sortedHits.length
+            ? h("ul", { class: "list-unstyled mb-0 af3-hit-list" }, sortedHits.map(hit => this.renderHit(hit)))
+            : q.error ? null : h("span", { class: "text-muted fst-italic" }, "No cached alignment"));
 
-        return `<tr class="${q.hits.length ? "" : "table-light"}">
-            <td>${name}</td>
-            <td>${sequence}</td>
-            <td class="text-center">${count}</td>
-            <td>${hits}</td>
-        </tr>`;
+        return h("tr", { class: q.hits.length ? "" : "table-light" }, name, sequence, count, hits);
     }
 
     renderHit(hit) {
         const url = osdfToHttps(hit.osdf_uri);
         const filename = basename(hit.osdf_uri);
-        const details = [
-            hit.query_name && hit.query_name !== "Unclassified" ? hit.query_name : null,
-            hit.species && hit.species !== "Unclassified" ? `<i>${escapeHtml(hit.species)}</i>` : null,
-            hit.n_sequences != null ? `${numberFormat.format(hit.n_sequences)} sequences` : null,
-            hit.a3m_size_bytes != null ? formatBytes(hit.a3m_size_bytes) : null,
-        ].filter(Boolean).map(d => d.startsWith("<i>") ? d : escapeHtml(d)).join(" · ");
+        const parts = [];
+        if (hit.query_name && hit.query_name !== "Unclassified") parts.push(hit.query_name);
+        if (hit.species && hit.species !== "Unclassified") parts.push(h("i", {}, hit.species));
+        if (hit.n_sequences != null) parts.push(`${numberFormat.format(hit.n_sequences)} sequences`);
+        if (hit.a3m_size_bytes != null) parts.push(formatBytes(hit.a3m_size_bytes));
+        const details = parts.length
+            ? h("small", { class: "text-muted" }, parts.flatMap((part, i) => i ? [" · ", part] : [part]))
+            : null;
         const metadata = [
             ["File", filename],
             ["Source", hit.source],
@@ -652,18 +672,17 @@ class AlphaFoldSearch {
             ["Sequence hash", hit.seq_hash],
         ].filter(([, value]) => value != null && value !== "");
 
-        return `<li class="mb-2">
-            <a href="${escapeHtml(url)}" data-a3m="${escapeHtml(filename)}" title="Download ${escapeHtml(filename)}" class="fw-semibold text-decoration-none">
-                <i class="bi bi-download"></i> ${escapeHtml(hit.source)}
-            </a>
-            ${details ? `<br><small class="text-muted">${details}</small>` : ""}
-            <br><button type="button" class="btn btn-link btn-sm p-0 af3-meta-toggle">Get Metadata <i class="bi bi-chevron-down"></i></button>
-            <div class="af3-meta d-none">
-                <dl class="mb-0">${metadata.map(([key, value]) =>
-                    `<div><dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}
-                </dl>
-            </div>
-        </li>`;
+        return h("li", { class: "mb-2" },
+            h("a", { href: url, dataset: { a3m: filename }, title: `Download ${filename}`, class: "fw-semibold text-decoration-none" },
+                icon("download"), ` ${hit.source}`),
+            details && [h("br"), details],
+            h("br"),
+            h("button", { type: "button", class: "btn btn-link btn-sm p-0 af3-meta-toggle" },
+                "Get Metadata ", icon("chevron-down")),
+            h("div", { class: "af3-meta d-none" },
+                h("dl", { class: "mb-0" }, metadata.map(([key, value]) =>
+                    h("div", {}, h("dt", {}, key), h("dd", {}, value))))),
+        );
     }
 
     /**
@@ -752,12 +771,15 @@ class AlphaFoldSearch {
             this.downloadProgressBar.classList.remove("progress-bar-striped", "progress-bar-animated");
             this.downloadProgressBar.classList.add("bg-success");
             const n = files.length - 1;
-            this.downloadProgressText.innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> ` +
-                `Done &mdash; downloaded ${n} ${n === 1 ? "alignment" : "alignments"} (${formatBytes(bytes)}) as ${escapeHtml(zipName)}.`;
+            this.downloadProgressText.replaceChildren(icon("check-circle-fill", "text-success"),
+                ` Done — downloaded ${n} ${n === 1 ? "alignment" : "alignments"} (${formatBytes(bytes)}) as ${zipName}.`);
 
             if (failures.length) {
-                this.downloadError.innerHTML = `<b>${failures.length} ${failures.length === 1 ? "file" : "files"} could not be fetched</b> and ${failures.length === 1 ? "was" : "were"} left out of the archive (see manifest.tsv):<ul class="mb-0">` +
-                    failures.map(f => `<li><code>${escapeHtml(basename(f.hit.osdf_uri))}</code> &mdash; ${escapeHtml(f.reason)}</li>`).join("") + `</ul>`;
+                this.downloadError.replaceChildren(
+                    h("b", {}, `${failures.length} ${failures.length === 1 ? "file" : "files"} could not be fetched`),
+                    ` and ${failures.length === 1 ? "was" : "were"} left out of the archive (see manifest.tsv):`,
+                    h("ul", { class: "mb-0" }, failures.map(f =>
+                        h("li", {}, h("code", {}, basename(f.hit.osdf_uri)), ` — ${f.reason}`))));
                 this.downloadError.classList.remove("d-none");
             }
         } catch (e) {
