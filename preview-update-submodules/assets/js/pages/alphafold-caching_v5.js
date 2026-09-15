@@ -4,7 +4,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 // production (baseurl '') and under the preview baseurl (/web-preview/<branch>).
 // This file lives at <baseurl>/assets/js/pages/, the data at <baseurl>/assets/data/.
 const DATA_URL = new URL("../../data/alphafold-caching.json", import.meta.url);
-// const DATA_URL = "https://149.165.170.71.sslip.io/v1/stats";
+// const DATA_URL = "https://af3-msa-library.dannymorales.com/v1/stats";
 
 /**
  * Animate a number from 0 up to endValue inside the element with the given id.
