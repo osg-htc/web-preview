@@ -97,6 +97,7 @@ class ProjectDisplay{
            namespace,
            oneYearReads,
            publicObject,
+           is_directory,
            organizationUrl,
            repositoryUrl,
            id
@@ -125,7 +126,7 @@ class ProjectDisplay{
 
     // If there is a publicObject then update those pieces
     document.getElementById("data-public-object").style.display = publicObject ? "block" : "none"
-    document.getElementById("data-pelican-download").innerText = `pelican object get osdf://${publicObject} ./`
+    document.getElementById("data-pelican-download").innerText = `pelican object get ${is_directory ? "-r " : ""}osdf://${publicObject} ./`
     document.getElementById("data-browser-download").href = `https://osdf-director.osg-htc.org${publicObject}`
 
     // Update the big value numbers
@@ -4615,7 +4616,7 @@ class DataManager {
     "purdue-anvil-coco": {
       
       
-      description: "<p>COCO (Microsoft COCO: Common Objects in Context) is a large-scale object detection, segmentation, and captioning dataset created by Microsoft Research in collaboration with researchers at Cornell, TTI-Chicago, Caltech, Brown, UC Irvine, and Facebook AI Research. It contains 330K images (over 200K labeled) of complex everyday scenes with common objects in their natural context, totaling 1.5 million object instances across 80 object categories and 91 stuff categories. Annotations include per-instance segmentation masks, bounding boxes, 5 captions per image, and 250,000 people labeled with keypoints, gathered through extensive crowd worker involvement. COCO is one of the most widely used benchmarks in computer vision, advancing research in scene understanding, contextual reasoning, and precise object localization.</p>\n\n<p>This data is public and freely available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p><a href=\"https://cocodataset.org/#home\">COCO (Microsoft COCO: Common Objects in Context)</a> is a large-scale object detection, segmentation, and captioning dataset created by Microsoft Research in collaboration with researchers at Cornell, TTI-Chicago, Caltech, Brown, UC Irvine, and Facebook AI Research. It contains 330K images (over 200K labeled) of complex everyday scenes with common objects in their natural context, totaling 1.5 million object instances across 80 object categories and 91 stuff categories. Annotations include per-instance segmentation masks, bounding boxes, 5 captions per image, and 250,000 people labeled with keypoints, gathered through extensive crowd worker involvement. COCO is one of the most widely used benchmarks in computer vision, advancing research in scene understanding, contextual reasoning, and precise object localization.</p>\n\n<p>This data is public and freely available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/COCO/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -4627,7 +4628,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 83000000000 ,
       
       
       
@@ -4635,7 +4636,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -4655,7 +4656,7 @@ class DataManager {
       
       
       
-      namespace: ["/rcac.purdue.edu/anvil/datasets/ai/COCO"] ,
+      namespace: ["/rcac.purdue.edu/anvil/datasets/ai/coco"] ,
       
       
       
@@ -4667,7 +4668,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/coco" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -4679,7 +4688,7 @@ class DataManager {
     "purdue-anvil-common-crawl": {
       
       
-      description: "<p>This dataset is the January 2026 crawl archive (CC-MAIN-2026-04) from Common Crawl, a 501©(3) nonprofit organization founded in 2007 that maintains a free, open repository of web crawl data. The crawl archive contains 2.30 billion pages; this copy consists of the WET (WARC Encapsulated Text) files, which contain extracted plain text parsed from HTML, excluding code, images, and other media. Common Crawl’s corpus — over 300 billion pages collected since 2008 — is hosted on Amazon S3 under the AWS Open Data Sponsorship Program and is one of the most important sources of pre-training data for large language models; it is cited in over 10,000 research papers and underlies filtered corpora such as C4 and The Pile.</p>\n\n<p>This data is public and free to use under the Common Crawl Terms of Use; users must comply with applicable laws and respect the intellectual property and privacy rights of original content owners, as the data is derived from publicly crawled web sources. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p>This dataset is the January 2026 crawl archive (CC-MAIN-2026-04) from <a href=\"https://commoncrawl.org/overview\">Common Crawl</a>, a 501©(3) nonprofit organization founded in 2007 that maintains a free, open repository of web crawl data. The crawl archive contains 2.30 billion pages; this copy consists of the WET (WARC Encapsulated Text) files, which contain extracted plain text parsed from HTML, excluding code, images, and other media. Common Crawl’s corpus — over 300 billion pages collected since 2008 — is hosted on Amazon S3 under the AWS Open Data Sponsorship Program and is one of the most important sources of pre-training data for large language models; it is cited in over 10,000 research papers and underlies filtered corpora such as C4 and The Pile.</p>\n\n<p>This data is public and free to use under the Common Crawl Terms of Use; users must comply with applicable laws and respect the intellectual property and privacy rights of original content owners, as the data is derived from publicly crawled web sources. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/commoncrawl/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -4691,7 +4700,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 7000000000000 ,
       
       
       
@@ -4699,7 +4708,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -4731,7 +4740,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/commoncrawl" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -4743,7 +4760,7 @@ class DataManager {
     "purdue-anvil-embodiment-sim": {
       
       
-      description: "<p>PhysicalAI-Robotics-GR00T-X-Embodiment-Sim is a set of simulation datasets released by NVIDIA for post-training GR00T N1, an open foundation model for generalist humanoid robots. Each dataset is a collection of trajectories from different robot embodiments and tasks: cross-embodied bimanual manipulation (9K trajectories with Franka Panda and GR1 embodiments), humanoid robot tabletop manipulation (240K trajectories, plus a 24K downsampled version), robot arm kitchen manipulation (72K trajectories), and Unitree G1 loco-manipulation (102 trajectories). The trajectories are provided in LeRobot format and cover tasks such as pick-and-place, pouring, threading, and drawer/cabinet interaction, enabling training and fine-tuning of vision-language-action robot policies.</p>\n\n<p>This data is public and freely available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p><a href=\"https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim\">PhysicalAI-Robotics-GR00T-X-Embodiment-Sim</a> is a set of simulation datasets released by NVIDIA for post-training GR00T N1, an open foundation model for generalist humanoid robots. Each dataset is a collection of trajectories from different robot embodiments and tasks: cross-embodied bimanual manipulation (9K trajectories with Franka Panda and GR1 embodiments), humanoid robot tabletop manipulation (240K trajectories, plus a 24K downsampled version), robot arm kitchen manipulation (72K trajectories), and Unitree G1 loco-manipulation (102 trajectories). The trajectories are provided in LeRobot format and cover tasks such as pick-and-place, pouring, threading, and drawer/cabinet interaction, enabling training and fine-tuning of vision-language-action robot policies.</p>\n\n<p>This data is public and freely available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -4755,7 +4772,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 2700000000 ,
       
       
       
@@ -4763,7 +4780,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -4795,7 +4812,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -4807,7 +4832,7 @@ class DataManager {
     "purdue-anvil-fast-ai": {
       
       
-      description: "<p>fast.ai datasets are a curated collection of commonly used machine learning datasets, assembled by fast.ai and pre-hosted (mostly on AWS Open Data) in standardized formats and integrated directly into the fastai library. The goal is to remove the friction of finding, downloading, and preprocessing data so users can focus on modeling. The collection spans image classification (Caltech-101, CIFAR-10/100, CUB-200-2011, Food-101, MNIST, Oxford-102-Flowers, Oxford-IIIT-Pets, Stanford Cars, Imagenette, Imagewoof, Imagewang), image localization (CamVid, PASCAL VOC 2007/2012, LSUN Bedrooms, BIWI Head Pose), NLP (AG News, Amazon/Yelp Reviews, DBpedia, Sogou News, WikiText, Yahoo Answers, English–French translation), Kaggle competition data (Dogs vs. Cats), medical imaging (SIIM, TCGA samples), and pretrained models (OpenAI Transformer, WikiText-103 language models). These datasets serve as academic baselines widely used for teaching and for comparing algorithmic changes.</p>\n\n<p>This data is public; licenses vary by individual dataset — users should cite the original dataset creators (e.g., ImageNet, Oxford-IIIT) and acknowledge the fast.ai/AWS collection. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p><a href=\"https://docs.fast.ai/data.external.html\">fast.ai datasets</a> are a curated collection of commonly used machine learning datasets, assembled by fast.ai and pre-hosted (mostly on AWS Open Data) in standardized formats and integrated directly into the fastai library. The goal is to remove the friction of finding, downloading, and preprocessing data so users can focus on modeling. The collection spans image classification (Caltech-101, CIFAR-10/100, CUB-200-2011, Food-101, MNIST, Oxford-102-Flowers, Oxford-IIIT-Pets, Stanford Cars, Imagenette, Imagewoof, Imagewang), image localization (CamVid, PASCAL VOC 2007/2012, LSUN Bedrooms, BIWI Head Pose), NLP (AG News, Amazon/Yelp Reviews, DBpedia, Sogou News, WikiText, Yahoo Answers, English–French translation), Kaggle competition data (Dogs vs. Cats), medical imaging (SIIM, TCGA samples), and pretrained models (OpenAI Transformer, WikiText-103 language models). These datasets serve as academic baselines widely used for teaching and for comparing algorithmic changes.</p>\n\n<p>This data is public; licenses vary by individual dataset — users should cite the original dataset creators (e.g., ImageNet, Oxford-IIIT) and acknowledge the fast.ai/AWS collection. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/fast.ai/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -4819,7 +4844,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 36000000000 ,
       
       
       
@@ -4827,7 +4852,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -4859,7 +4884,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/fast.ai" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -4871,7 +4904,7 @@ class DataManager {
     "purdue-anvil-lvis": {
       
       
-      description: "<p>LVIS (Large Vocabulary Instance Segmentation) is a benchmark dataset created by Facebook AI Research (FAIR) containing approximately 2 million high-quality instance segmentation masks for over 1,000 entry-level object categories across 164K images (reusing the COCO 2017 image set). Due to the Zipfian distribution of categories in natural images, LVIS naturally has a long tail of categories with few training samples, posing an important scientific challenge for state-of-the-art deep learning methods that perform poorly in the low-sample regime. It was built with a crowdsourced annotation pipeline using a federated dataset design, where each category is exhaustively annotated within its own constituent dataset, yielding higher-quality masks than COCO. LVIS is used for training and evaluating object detection and instance segmentation models on rare, long-tailed categories.</p>\n\n<p>This data is public; LVIS annotations and the underlying COCO images are licensed under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p><a href=\"https://www.lvisdataset.org/\">LVIS (Large Vocabulary Instance Segmentation)</a> is a benchmark dataset created by Facebook AI Research (FAIR) containing approximately 2 million high-quality instance segmentation masks for over 1,000 entry-level object categories across 164K images (reusing the COCO 2017 image set). Due to the Zipfian distribution of categories in natural images, LVIS naturally has a long tail of categories with few training samples, posing an important scientific challenge for state-of-the-art deep learning methods that perform poorly in the low-sample regime. It was built with a crowdsourced annotation pipeline using a federated dataset design, where each category is exhaustively annotated within its own constituent dataset, yielding higher-quality masks than COCO. LVIS is used for training and evaluating object detection and instance segmentation models on rare, long-tailed categories.</p>\n\n<p>This data is public; LVIS annotations and the underlying COCO images are licensed under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/LVIS/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -4883,7 +4916,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 59000000000 ,
       
       
       
@@ -4891,7 +4924,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -4923,7 +4956,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/LVIS" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -4935,7 +4976,7 @@ class DataManager {
     "purdue-anvil-manipulatoin-singlearm": {
       
       
-      description: "<p>PhysicalAI-Robotics-Manipulation-SingleArm is a collection of automatically generated motion datasets created by NVIDIA, featuring a Franka Panda robot performing operations such as block stacking and opening cabinets and drawers. The dataset was generated in NVIDIA Isaac Sim using task and motion planning algorithms (PDDLStream, CuRobo) to solve tasks automatically, in tabletop scenes where object layouts and asset textures are procedurally generated. It comprises six datasets in LeRobot format (panda-stack-wide, panda-stack-platforms, panda-stack-platforms-texture, panda-open-cabinet-left, panda-open-cabinet-right, panda-open-drawer) with RGB and depth video from world and wrist-mounted cameras plus proprioceptive state observations, intended for training robot policies and foundation models. This dataset is available for commercial use.</p>\n\n<p>This data is public and freely available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p><a href=\"https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Manipulation-SingleArm\">PhysicalAI-Robotics-Manipulation-SingleArm</a> is a collection of automatically generated motion datasets created by NVIDIA, featuring a Franka Panda robot performing operations such as block stacking and opening cabinets and drawers. The dataset was generated in NVIDIA Isaac Sim using task and motion planning algorithms (PDDLStream, CuRobo) to solve tasks automatically, in tabletop scenes where object layouts and asset textures are procedurally generated. It comprises six datasets in LeRobot format (panda-stack-wide, panda-stack-platforms, panda-stack-platforms-texture, panda-open-cabinet-left, panda-open-cabinet-right, panda-open-drawer) with RGB and depth video from world and wrist-mounted cameras plus proprioceptive state observations, intended for training robot policies and foundation models. This dataset is available for commercial use.</p>\n\n<p>This data is public and freely available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/PhysicalAI-Robotics-Manipulation-SingleArm/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -4947,7 +4988,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 359000000 ,
       
       
       
@@ -4955,7 +4996,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -4987,7 +5028,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/PhysicalAI-Robotics-Manipulation-SingleArm" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -4999,7 +5048,7 @@ class DataManager {
     "purdue-anvil-oxford-robotcar": {
       
       
-      description: "<p>The Oxford RobotCar Dataset is a large-scale autonomous driving dataset collected by the University of Oxford’s Oxford Robotics Institute (Mobile Robotics Group). Between May 2014 and December 2015, the Oxford RobotCar platform — an autonomous-capable Nissan LEAF equipped with 6 cameras, 2D and 3D LiDAR, and a NovAtel GPS/INS system — traversed a 10 km route through central Oxford roughly twice a week, resulting in over 1,000 km of recorded driving and nearly 20 million images. The data captures a wide range of weather (heavy rain, snow, direct sunlight), illumination (dawn, dusk, night), traffic, and long-term structural changes such as construction and roadworks, enabling research on long-term localization and mapping for autonomous vehicles in real-world, dynamic urban environments. A Real-Time Kinematic (RTK) ground truth release followed in 2020.</p>\n\n<p>This data is public for research and academic use under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0) license; commercial use requires contacting the authors. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p>The <a href=\"https://robotcar-dataset.robots.ox.ac.uk/\">Oxford RobotCar Dataset</a> is a large-scale autonomous driving dataset collected by the University of Oxford’s Oxford Robotics Institute (Mobile Robotics Group). Between May 2014 and December 2015, the Oxford RobotCar platform — an autonomous-capable Nissan LEAF equipped with 6 cameras, 2D and 3D LiDAR, and a NovAtel GPS/INS system — traversed a 10 km route through central Oxford roughly twice a week, resulting in over 1,000 km of recorded driving and nearly 20 million images. The data captures a wide range of weather (heavy rain, snow, direct sunlight), illumination (dawn, dusk, night), traffic, and long-term structural changes such as construction and roadworks, enabling research on long-term localization and mapping for autonomous vehicles in real-world, dynamic urban environments. A Real-Time Kinematic (RTK) ground truth release followed in 2020.</p>\n\n<p>This data is public for research and academic use under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0) license; commercial use requires contacting the authors. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/oxfordrobotcar/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -5011,7 +5060,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 9400000000000 ,
       
       
       
@@ -5019,7 +5068,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -5051,7 +5100,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/oxfordrobotcar" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -5063,7 +5120,7 @@ class DataManager {
     "purdue-anvil-smartspaces": {
       
       
-      description: "<p>PhysicalAI-SmartSpaces is a comprehensive, annotated synthetic dataset created by NVIDIA for multi-camera tracking and 2D/3D object detection in smart spaces. Generated with NVIDIA Omniverse and Isaac Sim, it consists of over 250 hours of time-synchronized 1080p video (30 FPS, H.264 MP4) from nearly 1,500 cameras covering indoor scenes in warehouses, hospitals, retail, and more. The dataset supports tracking humans (and in newer releases, forklifts, pallet trucks, and autonomous mobile robots) across multiple cameras using feature representations with no personal data. It was first released as part of the 8th AI City Challenge in conjunction with CVPR 2024, and has been expanded for subsequent editions of the challenge with 2D/3D bounding boxes, depth maps, and detailed camera calibration.</p>\n\n<p>This data is public and freely available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p><a href=\"https://huggingface.co/datasets/nvidia/PhysicalAI-SmartSpaces\">PhysicalAI-SmartSpaces</a> is a comprehensive, annotated synthetic dataset created by NVIDIA for multi-camera tracking and 2D/3D object detection in smart spaces. Generated with NVIDIA Omniverse and Isaac Sim, it consists of over 250 hours of time-synchronized 1080p video (30 FPS, H.264 MP4) from nearly 1,500 cameras covering indoor scenes in warehouses, hospitals, retail, and more. The dataset supports tracking humans (and in newer releases, forklifts, pallet trucks, and autonomous mobile robots) across multiple cameras using feature representations with no personal data. It was first released as part of the 8th AI City Challenge in conjunction with CVPR 2024, and has been expanded for subsequent editions of the challenge with 2D/3D bounding boxes, depth maps, and detailed camera calibration.</p>\n\n<p>This data is public and freely available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/PhysicalAI-SmartSpaces/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -5075,7 +5132,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 27000000 ,
       
       
       
@@ -5083,7 +5140,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -5115,7 +5172,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/PhysicalAI-SmartSpaces" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -5127,7 +5192,7 @@ class DataManager {
     "purdue-anvil-teleop-sim": {
       
       
-      description: "<p>PhysicalAI-Robotics-GR00T-Teleop-Sim is a dataset created by NVIDIA GEAR consisting of 1,000 teleoperation trajectories per task (24 tabletop tasks) recorded in simulation using the GR1 humanoid robot with upper-body control and simulated Fourier hands. The simulation setup mimics tabletop manipulation tasks and uses RGB observations from a virtual camera, with accompanying language instructions (e.g., “pick up the bottled water, place it into the cabinet and close the cabinet”). The data is provided in HDF5 and LeRobot formats and is intended for AI-driven robotics research, algorithm development in simulation, and non-commercial benchmarking and prototyping of policies for tabletop tasks.</p>\n\n<p>This data is public, but restricted to non-commercial use under the Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0) license. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the Purdue Anvil Pelican origin server.</p>\n",
+      description: "<p><a href=\"https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-Teleop-Sim\">PhysicalAI-Robotics-GR00T-Teleop-Sim</a> is a dataset created by NVIDIA GEAR consisting of 1,000 teleoperation trajectories per task (24 tabletop tasks) recorded in simulation using the GR1 humanoid robot with upper-body control and simulated Fourier hands. The simulation setup mimics tabletop manipulation tasks and uses RGB observations from a virtual camera, with accompanying language instructions (e.g., “pick up the bottled water, place it into the cabinet and close the cabinet”). The data is provided in HDF5 and LeRobot formats and is intended for AI-driven robotics research, algorithm development in simulation, and non-commercial benchmarking and prototyping of policies for tabletop tasks.</p>\n\n<p>This data is public, but restricted to non-commercial use under the Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0) license. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the Purdue Anvil Pelican origin server.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/PhysicalAI-Robotics-GR00T-Teleop-Sim/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -5139,7 +5204,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 159000000 ,
       
       
       
@@ -5147,7 +5212,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -5179,7 +5244,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/PhysicalAI-Robotics-GR00T-Teleop-Sim" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
@@ -5191,7 +5264,7 @@ class DataManager {
     "purdue-anvil-visual-genome": {
       
       
-      description: "<p>Visual Genome is a dataset, a knowledge base, and an ongoing effort to connect structured image concepts to language, created at Stanford University with collaborators at TU Dresden, Yahoo, Snapchat, and CWI Amsterdam. It contains over 108K images (drawn from the intersection of YFCC100M and MS-COCO) with dense crowdsourced annotations: an average of 35 objects, 26 attributes, and 21 pairwise relationships per image, totaling 5.4 million region descriptions, 1.7 million visual question-answer pairs, 3.8 million object instances, 2.8 million attributes, and 2.3 million relationships, all canonicalized to WordNet synsets. By modeling objects, attributes, and relationships as scene graphs, Visual Genome enables research on cognitive vision tasks such as image description, visual question answering, and visual relationship detection that go beyond perceptual recognition.</p>\n\n<p>This data is public and available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s Anvil cluster — available read-only from the S3 Anvil Object Storage ai-datasets bucket and as compressed LMDB/SquashFS images on the filesystem.</p>\n",
+      description: "<p><a href=\"https://homes.cs.washington.edu/~ranjay/visualgenome/index.html\">Visual Genome</a> is a dataset, a knowledge base, and an ongoing effort to connect structured image concepts to language, created at Stanford University with collaborators at TU Dresden, Yahoo, Snapchat, and CWI Amsterdam. It contains over 108K images (drawn from the intersection of YFCC100M and MS-COCO) with dense crowdsourced annotations: an average of 35 objects, 26 attributes, and 21 pairwise relationships per image, totaling 5.4 million region descriptions, 1.7 million visual question-answer pairs, 3.8 million object instances, 2.8 million attributes, and 2.3 million relationships, all canonicalized to WordNet synsets. By modeling objects, attributes, and relationships as scene graphs, Visual Genome enables research on cognitive vision tasks such as image description, visual question answering, and visual relationship detection that go beyond perceptual recognition.</p>\n\n<p>This data is public and available under the Creative Commons Attribution 4.0 (CC BY 4.0) license. This dataset is hosted on Purdue University’s <a href=\"https://www.rcac.purdue.edu/anvil\">Anvil cluster</a> — available read-only from the S3 Anvil Object Storage ai-datasets bucket and as compressed LMDB/SquashFS images on the filesystem.</p>\n\n<p>Details about the dataset can be found at <a href=\"https://docs.rcac.purdue.edu/datasets/ai/visualgenome/\">RCAC Documentation website</a>.</p>\n",
       
       
       
@@ -5203,7 +5276,7 @@ class DataManager {
       
       
       
-      size: null ,
+      size: 36000000000 ,
       
       
       
@@ -5211,7 +5284,7 @@ class DataManager {
       
       
       
-      numberOfDatasets: null ,
+      numberOfDatasets: 1 ,
       
       
       
@@ -5243,7 +5316,15 @@ class DataManager {
       
       
       
-      organizationUrl: "https://rcac.purdue.edu/" ,
+      publicObject: "/rcac.purdue.edu/anvil/datasets/ai/visualgenome" ,
+      
+      
+      
+      is_directory: true ,
+      
+      
+      
+      organizationUrl: "https://www.rcac.purdue.edu/" ,
       
       
       
