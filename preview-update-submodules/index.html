@@ -25,7 +25,7 @@
 
 
 <!-- Bootstrap 5 -->
-<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v8.css?v=1791312841">
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v8.css?v=1791313603">
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -51,6 +51,25 @@
 
   </head>
   <body>
+    
+      <a class="nobel-banner d-none d-lg-block" data-expires="2026-11-06" href="/web-preview/preview-update-submodules/spotlights/francis-halzen-nobel-prize.html">
+    <div class="container-xxl py-1 text-center">
+        <i class="bi bi-award me-1"></i>
+        <span>OSPool User, Francis Halzen awarded the 2026 Nobel Prize</span>
+        <span class="nobel-banner-cta ms-2 text-nowrap">Read More <i class="bi bi-arrow-right"></i></span>
+    </div>
+</a>
+<script>
+    (function () {
+        var banners = document.querySelectorAll('.nobel-banner[data-expires]');
+        for (var i = 0; i < banners.length; i++) {
+            if (new Date() >= new Date(banners[i].getAttribute('data-expires'))) {
+                banners[i].remove();
+            }
+        }
+    })();
+</script>
+    
     <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
         <div class="container-xxl">
@@ -180,7 +199,24 @@
 </header>
 
     <main>
-      <div class="bg-secondary d-flex flex-column justify-content-center align-items-center py-5">
+      <a class="nobel-banner d-lg-none" data-expires="2026-11-06" href="/web-preview/preview-update-submodules/spotlights/francis-halzen-nobel-prize.html">
+    <div class="container-xxl py-1 text-center">
+        <i class="bi bi-award me-1"></i>
+        <span>OSPool User, Francis Halzen awarded the 2026 Nobel Prize</span>
+        <span class="nobel-banner-cta ms-2 text-nowrap">Read More <i class="bi bi-arrow-right"></i></span>
+    </div>
+</a>
+<script>
+    (function () {
+        var banners = document.querySelectorAll('.nobel-banner[data-expires]');
+        for (var i = 0; i < banners.length; i++) {
+            if (new Date() >= new Date(banners[i].getAttribute('data-expires'))) {
+                banners[i].remove();
+            }
+        }
+    })();
+</script>
+<div class="bg-secondary d-flex flex-column justify-content-center align-items-center py-5">
     <h1 class="primary">OSG Consortium</h1>
     <h2 class="secondary">Advancing Open Science through High Throughput Computing</h2>
 </div>
