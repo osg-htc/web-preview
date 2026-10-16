@@ -15,22 +15,22 @@
 <meta property="og:description" content="The OSG recently delivered 22.3 million CPU hours in a single week. In addition to the CPU and storage resources needed to deliver computation at this level a large number of services are required to support associated tasks." />
 <meta property="og:site_name" content="OSG" />
 <meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/osg-op-status.png" />
-<meta property="og:image:alt" content="op-status" />
+<meta property="og:image:alt" content="OSG operational status display" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2015-07-27T00:00:00+00:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/osg-op-status.png" />
-<meta name="twitter:image:alt" content="op-status" />
+<meta name="twitter:image:alt" content="OSG operational status display" />
 <meta property="twitter:title" content="Value of Reliable Services in OSG (and how we make it happen)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2015-07-27T00:00:00+00:00","datePublished":"2015-07-27T00:00:00+00:00","description":"The OSG recently delivered 22.3 million CPU hours in a single week. In addition to the CPU and storage resources needed to deliver computation at this level a large number of services are required to support associated tasks.","headline":"Value of Reliable Services in OSG (and how we make it happen)","image":{"alt":"op-status","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/osg-op-status.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://osg-htc.org/news/2015/07/27/value-of-reliable-services-in-osg-and-how-we-make-it-happen/"},"url":"https://osg-htc.org/news/2015/07/27/value-of-reliable-services-in-osg-and-how-we-make-it-happen/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2015-07-27T00:00:00+00:00","datePublished":"2015-07-27T00:00:00+00:00","description":"The OSG recently delivered 22.3 million CPU hours in a single week. In addition to the CPU and storage resources needed to deliver computation at this level a large number of services are required to support associated tasks.","headline":"Value of Reliable Services in OSG (and how we make it happen)","image":{"alt":"OSG operational status display","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/osg-op-status.png","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://osg-htc.org/news/2015/07/27/value-of-reliable-services-in-osg-and-how-we-make-it-happen/"},"url":"https://osg-htc.org/news/2015/07/27/value-of-reliable-services-in-osg-and-how-we-make-it-happen/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 
 
 <!-- Bootstrap 5 -->
-<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v8.css?v=1792174289">
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v8.css?v=1792176503">
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -204,13 +204,11 @@
       <div class="fs-5">
         <p>The OSG recently delivered 22.3 million CPU hours in a single week. In addition to the CPU and storage resources needed to deliver computation at this level a large number of services are required to support associated tasks.</p>
 
-<p>For a job to</p>
-
-<figure>
-<img style="max-width:100%" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/osg-op-status.png" alt="op-status" />
+<figure class="figure float-end" style="margin-left: 1em">
+  <img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/osg-op-status.png" class="figure-img img-fluid rounded" alt="OSG operational status display" width="250px" />
 </figure>
 
-<p>run on an OSG resource, users must have a place to submit it and a place to store data and code. They must be able to obtain information about the state of the OSG and its components. These components must communicate their state in an automated manner<br /> to allow detection of inevitable inturruptions. It must be possible to communicate with operators of these systems without any special knowledge of particulars as to who does what and, finally, it must be possible to figure out how to do what the user wants to do.</p>
+<p>For a job to run on an OSG resource, users must have a place to submit it and a place to store data and code. They must be able to obtain information about the state of the OSG and its components. These components must communicate their state in an automated manner to allow detection of inevitable inturruptions. It must be possible to communicate with operators of these systems without any special knowledge of particulars as to who does what and, finally, it must be possible to figure out how to do what the user wants to do.</p>
 
 <p>In systems with many components, the proper and complete functioning of the overall system requires each component to function with an availability higher than required of the larger system. A failure is the failure of any component.</p>
 
