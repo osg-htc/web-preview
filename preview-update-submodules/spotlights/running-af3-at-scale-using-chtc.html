@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en-US">
+  <head  data-proofer-ignore>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="/favicon.ico">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How CHTC and the OSPool are Helping Researchers Run AlphaFold3 at Scale | OSG</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="How CHTC and the OSPool are Helping Researchers Run AlphaFold3 at Scale" />
+<meta name="author" content="Sophie Dorros" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Researchers using AlphaFold3 via the OSPool and CHTC resources are saving months of computing time." />
+<meta property="og:description" content="Researchers using AlphaFold3 via the OSPool and CHTC resources are saving months of computing time." />
+<meta property="og:site_name" content="OSG" />
+<meta property="og:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/af3-shabaan-microscope.jpg" />
+<meta property="og:image:alt" content="Hannan Shabaan looking through a fluorescence microscope next to a monitor showing a sea anemone" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/CHTC/Articles/main/images/af3-shabaan-microscope.jpg" />
+<meta name="twitter:image:alt" content="Hannan Shabaan looking through a fluorescence microscope next to a monitor showing a sea anemone" />
+<meta property="twitter:title" content="How CHTC and the OSPool are Helping Researchers Run AlphaFold3 at Scale" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Sophie Dorros"},"dateModified":"2026-10-27T00:00:00+00:00","datePublished":"2026-10-27T00:00:00+00:00","description":"Researchers using AlphaFold3 via the OSPool and CHTC resources are saving months of computing time.","headline":"How CHTC and the OSPool are Helping Researchers Run AlphaFold3 at Scale","image":{"alt":"Hannan Shabaan looking through a fluorescence microscope next to a monitor showing a sea anemone","url":"https://raw.githubusercontent.com/CHTC/Articles/main/images/af3-shabaan-microscope.jpg","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://fabaid.io/news/2026/10/27/running-af3-at-scale-using-chtc/"},"url":"https://fabaid.io/news/2026/10/27/running-af3-at-scale-using-chtc/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="/web-preview/preview-update-submodules/assets/css/style-v8.css?v=1793389808">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="/web-preview/preview-update-submodules/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="/web-preview/preview-update-submodules/assets/js/all.js" defer></script>
+
+
+
+
+
+
+
+<script>
+	window.fwSettings={
+	'widget_id':12000000602
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}()
+</script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/12000000602.js' async defer></script>
+
+  </head>
+  <body>
+    
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+        <div class="container-xxl">
+            <a class="navbar-brand pt-1 pb-1" href="/web-preview/preview-update-submodules/"><img height="55" style="filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.2))" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="services-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="services-dropdown">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-ospool-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSPool</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-ospool-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/institutions">Institutions</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/ospool/projects">Projects</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-osdf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OSDF</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf">Overview</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/projects">Projects</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/data">Data</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/osdf/alphafold">AlphaFold3 Alignment Cache</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" id="services-rcf-dropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Research Computing Facilitation</a>
+                                <ul class="dropdown-menu dropdown-submenu" aria-labelledby="services-osdf-dropdown">
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/facilitation">Connect With the Team</a></li>
+                                    <li><a class="dropdown-item" href="/web-preview/preview-update-submodules/services/facilitation/monthly-training">Monthly Training</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="campusNavLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Campuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="campusNavLink">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus/support.html">Support</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-cyberinfrastructure.html">CC* Campuses</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/campus-docs/">Contributor Documentation</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Community 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="communityNavLinks">
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/spotlight.html">Spotlight</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/news.html">News</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/events.html">Events</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/presentations.html">Presentations</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/training.html">Training</a>
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/community/school.html">OSG School</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/web-preview/preview-update-submodules/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/introduction/">Introduction</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/organization/">Consortium Members</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/team/">The OSG Team</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/publications/">Publications</a>
+                            
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/about/employment-opportunities/">Employment Opportunities</a>
+                            
+                            
+                            <a class="dropdown-item" href="/web-preview/preview-update-submodules/acknowledging.html">Acknowledging OSG</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item " href="https://portal.osg-htc.org/documentation/">For Users</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/docs/">For Sysadmins</a>
+                            <a class="dropdown-item" href="https://osg-htc.org/security/">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            <span class="flex-grow-1 d-flex">
+                <div class=" ms-auto mx-auto me-lg-0 d-flex flex-row">
+                    <a class="text-dark d-flex fs-2 me-2" href="https://portal.osg-htc.org/application" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Apply for Account">
+                        <i class="bi-person-fill-add my-auto"></i>
+                    </a>
+                    <a class="text-dark d-flex fs-3 me-3" href="/contact.html" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Contact Us">
+                        <i class="bi-telephone-fill my-auto"></i>
+                    </a>
+
+                    <a href="https://path-cc.io" class="me-2"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                    <a href="https://pelicanplatform.org" class="me-2"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/PelicanPlatformLogo_Icon.png" alt="Pelican logo"></a>
+                    <a href="https://iris-hep.org/"><img height="55" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                </div>
+            </span>
+            </div>
+        </div> <!-- End Container -->
+    </nav>
+</header>
+
+    <main>
+      <div class="py-5">
+    <div class="container-xxl">
+    <div class="row justify-content-center">
+  <div class="col-12 col-xl-7 col-lg-8 col-md-10">
+    <section class="news-article">
+      
+      <div class="mb-1">
+        <h1>How CHTC and the OSPool are Helping Researchers Run AlphaFold3 at Scale</h1>
+        <div class="row justify-content-between">
+          
+            <div class="col-auto">
+                <h4 class="text-muted">By: Sophie Dorros</h4>
+            </div>
+          
+          <div class="col-auto">
+            <h4 class="text-muted">October 27, 2026</h4>
+          </div>
+        </div>
+      </div> <!-- title-head -->
+      
+
+      <div class="fs-5">
+        <p>The biggest challenge facing researchers using AI-based protein predictors such as AlphaFold3 is running it at scale. In 2024 the AlphaFold team won the Nobel Prize in Chemistry recognizing advances in protein structure prediction and computational protein design. Following this award, AlphaFold3, an AI protein prediction software, became highly in demand by researchers.</p>
+
+<p>AlphaFold3 searches researchers’ input amino acid sequences against biological databases to build the evolutionary context of how the protein evolved over time. This evolutionary context (called alignments) is used to predict the 3D structure of a biomolecule or complex, helping researchers investigate the molecular interactions, interpret biological function, and guide experiments in drug discovery. However, computing these alignments requires long time input preparation steps and searching through large reference databases (around 650 gigabytes in size) before any structure prediction can begin. This leads to long runtimes and scheduling challenges on distributed high-throughput computing systems. Finding machines that can transfer and hold that much data is one of the most expensive parts of running AlphaFold3.</p>
+
+<p>Shared resources via the <a href="https://osg-htc.org/services/ospool/">OSPool</a> and the <a href="https://chtc.cs.wisc.edu/">Center for High Throughput Computing (CHTC)</a> help researchers overcome those limitations in several ways. One is a shared library of pre-computed alignments. Before AlphaFold3 can predict a protein’s shape, it must build an alignment. An alignment lines up the same protein from many species, letter by letter, highlighting conserved or variable regions across similar sequences. Building an alignment means searching large protein databases, which takes 30 minutes to an hour of computing time for each protein. When many researchers study the same proteins, the same alignment is produced over and over. The OSPool <a href="https://osg-htc.org/services/osdf/alphafold/">AlphaFold3 Alignment Library</a> lets researchers skip that step when the work has already been done.</p>
+
+<figure>
+<img style="width:100%" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/af3-msa-example.png" alt="Diagram of a multiple sequence alignment showing a query sequence lined up with several related sequences, with amino acids color coded and gaps marked" />
+<figcaption>Example of a Multiple Sequence Alignment. Created in BioRender. Morales, D. (2026) <a href="https://BioRender.com/54c67wp">https://BioRender.com/54c67wp</a></figcaption>
+</figure>
+
+<figure style="float: right; margin: 0 0 1rem 1rem; width: 250px;">
+<img src="https://raw.githubusercontent.com/CHTC/Articles/main/images/af3-daniel-morales.jpg" class="figure-img img-fluid rounded" alt="CHTC Research Computing Facilitator Daniel Morales" />
+<figcaption>Pictured: CHTC Facilitator Daniel Morales. Credits: Daniel Morales</figcaption>
+</figure>
+
+<p>The idea for the library came from CHTC Research Computing Facilitator Danny Morales and CHTC Director Miron Livny as part of the <a href="https://fabaid.io/">Fabric for AI-Driven Science (FabAID)</a> project. The goal behind the library is to make alignment artifact reuse easier and reproducible for science, and the project is focusing on the findable and reusable parts of that framework. Using AlphaFold3 can be computationally intensive and expensive. Generating a single alignment takes between half an hour and one hour of CPU time, so every alignment that can be shared instead of recomputed saves that time for the next researcher. The AlphaFold3 Library makes alignments easy to find and reuse, and is accessible to any user of the OSPool, holding more than 1.4 million alignments covering over 25,000 species, including 84,267 contributed by the OSPool/CHTC research community. To date, researchers have submitted nearly 2.3 million queries, and more than 690,000 of them were answered with an alignment already in the library.</p>
+
+<p>One group using the library are the researchers in the <a href="https://mehtalab.vetmed.wisc.edu/">Mehta Lab</a> at the University of Wisconsin-Madison, who are exploring how viruses cause lesions to their host’s DNA, often resulting in cancer via interactions with the human proteome. The human body encodes roughly 20,000 proteins. To find out which of them interact with the human papillomavirus (HPV), the Mehta Lab is using AlphaFold3 to pair each human protein with each of nine HPV proteins they are studying. This results in a classical N x M combinatorial explosion, requiring approximately 180,000 protein-protein interaction predictions per HPV. Each human-HPV combination would take 50 to 60 days of computing time, if every alignment had to be built from scratch. With over 200 types of HPVs, these analyses become unfeasible.</p>
+
+<figure>
+<img style="width:100%" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/af3-mehta-lab.jpg" alt="Five members of the Mehta Lab standing together in a teaching lab" />
+<figcaption>Pictured: The Mehta Lab, University of Wisconsin-Madison. Credits: Cristhian Salas Quinchucua, Spurgeon Lab</figcaption>
+</figure>
+
+<p>By drawing on the OSPool Alignment Library where the human proteins had already been aligned, the lab cut that to about 5 days, a savings of roughly 90% compute hours. Dr. Kavi Mehta, Mehta Lab Principal Investigator and Assistant Professor in the department of Comparative Biosciences in the School of Veterinary Medicine, noted “We are leveraging CHTC resources to solve the human proteome and HPV proteome interaction network with AlphaFold. We are predicting interactions between PV proteins and using our findings to apply them at the bench and as a resource to the field at large.”</p>
+
+<p>The library holds alignments from several sources: alignments generated on the OSPool, alignments released by Google DeepMind, and alignments contributed by other researchers. When a researcher submits a protein sequence, the job first converts the sequence to a hash unique to that sequence. It then uses the code snippet to check whether the library already holds an alignment for that sequence. The researcher decides which sources to accept. If there’s a match, the job fetches the alignment in seconds via <a href="https://pelicanplatform.org/">Pelican</a>, software designed to facilitate data distribution on the <a href="https://portal.osg-htc.org/documentation/htc_workloads/managing_data/osdf/">OSDF</a>, and passes it to AlphaFold3, allowing the job to jump straight to predicting the structure. Any newly computed alignments are published to the library, so the next job doesn’t have to repeat the work.</p>
+
+<p>CHTC is also improving workflows and boosting efficiency before researchers even begin running their jobs. Facilitators have run over 1.3 million AlphaFold3 jobs themselves to contribute to the AlphaFold Alignment Library, and used that experience to improve the workflow.</p>
+
+<figure>
+<img style="width:100%" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/af3-training.jpg" alt="A room of researchers with laptops watching a presenter during an AlphaFold3 training session" />
+<figcaption>Pictured: February AlphaFold3 Training hosted at CHTC. Credits: Rachel Lombardi</figcaption>
+</figure>
+
+<p>The improved workflow also separates the AlphaFold3 job into two distinct stages: A CPU-only data-intensive alignment-generation step, and a GPU-dependent model inferencing step. This separation maximizes resource utilization by preventing limited resources, such as GPU capacity, from sitting idly during alignment generation. Separating these two stages in the workflow results in an approximately 32% reduction in compute cost by eliminating wasted GPU-hours. Furthermore, the facilitator-supported AlphaFold3 workflow embeds smart GPU memory selection, allowing researchers to run on larger swaths of the pools’ GPU capacity based on their individual prediction’s requirements. This was achieved through the benchmarking of AlphaFold3’s GPU memory utilization and development of a predictive measurement for the minimum GPU memory required for each inferencing run. This work was presented at the 2026 Practice and Experience in Advanced Research Computing (PEARC) conference and received a <a href="https://dl.acm.org/doi/10.1145/3785462.3815874">Best Short Paper award</a>.</p>
+
+<p>In addition to shared workflows and the AlphaFold library, the AlphaFold3 workflows are able to run much faster as a result of the caching built into the <a href="https://pelicanplatform.org/">Pelican Platform</a> and <a href="https://osg-htc.org/services/osdf">Open Science Data Federation (OSDF)</a>. Alignments moving back and forth through the OSDF are cached, and after a user searches through the library and finds some matches, the user job will fetch the alignment using Pelican. These alignments are stored temporarily at locations across the country, nearby the compute resources, so a job will usually receive its alignment from a cache rather than from the original storage site, leading to a shorter download time. As a result of making the library’s alignments available through the OSDF, saved alignments can be delivered more efficiently to any workflow that uses the library.</p>
+
+<figure>
+<img style="width:100%" src="https://raw.githubusercontent.com/CHTC/Articles/main/images/af3-shabaan-microscope.jpg" alt="Hannan Shabaan looking through a fluorescence microscope next to a monitor showing a sea anemone" />
+<figcaption>Pictured: Hannan Shabaan from Florida International University studying Exaiptasia diaphana, a species of sea anemone and a key scientific model organism for coral symbiosis research. Credits: Hannan Shabaan</figcaption>
+</figure>
+
+<p>Many research questions require thousands of predictions, exceeding researchers’ local computing capacity. The OSPool and CHTC provide the computing resources needed to pursue these questions at scale. For researcher Hannan Shabaan, from the <a href="https://jpienaar.wixsite.com/my-site">Pienaar Lab</a> at Florida International University (FIU), these OSPool services have provided the compute capabilities needed to advance her research exploring sea anemone symbiont bleaching mechanisms. By leveraging the Alignment Library service, Shabaan was able to reduce the compute need from 1 billion core hours down to 65,000. The facilitation team is also working to make AlphaFold more accessible to a wider scope of researchers, Dr. Mehta noted that “Much of this [our] work has been performed by a talented high school student through mentor guidance and using the CHTC tutorials.” Using CHTC provided resources and training, users can boost their ability to use AlphaFold in their research without prior computing or experience with the software.</p>
+
+<p>The work to support AlphaFold3 researchers is still growing. The alignment library began as a prototype hosted on <a href="https://jetstream-cloud.org/index.html">Jetstream2</a> at Indiana University, and is now moving toward a service operated by CHTC. At the same time, CHTC is expanding how researchers can scale their work. The new self-service annex, a way for researchers to add their own computing allocations to CHTC’s system, lets researchers run AlphaFold3 across CHTC, the OSPool, and <a href="https://access-ci.org/">ACCESS</a>/<a href="https://nairrpilot.org/">NAIRR</a> allocations. Looking ahead, the team is exploring support for other protein structure models, including <a href="https://openfold.io/">OpenFold</a>, <a href="https://www.science.org/doi/10.1126/science.abj8754">RoseTTAFold</a>, and ESMFold, and exploring uses of the library beyond structure prediction, such as general evolutionary analysis.</p>
+
+<p>If you are an OSPool user interested in learning more about how to run AlphaFold3 workflows on OSPool resources, the Research Computing Facilitation team will be hosting a hands-on tutorial introducing researchers to running <a href="https://osg-htc.org/events/2026/12/15/Alphafold3/">AlphaFold3 at large scale on the OSPool</a> on December 15th, from 2:30-4:00 pm EST. Participants will learn how to prepare AlphaFold3 inputs, separate the workflow into CPU-based alignment generation and GPU-accelerated structure prediction, submit and manage jobs with HTCondor, and use containers and distributed data resources to build scalable and reproducible protein structure prediction workflows. Participants will also learn about the OSPool AlphaFold MSA Library, a service aimed at reducing researchers’ time-to-results by caching and reusing alignments across different jobs. Register for this upcoming training <a href="https://osg-htc.org/events/2026/12/15/Alphafold3/">here</a>.</p>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+    </main>
+    <footer id="footer" class="mt-auto pt-5">
+    <div class="shadow bg-light">
+        <div class="container-xxl">
+            <div class="row justify-content-center py-5">
+                <div class="col-12 col-lg-4 d-none d-md-block">
+                    <div class="row my-auto justify-content-center">
+                        <div class="col-12 d-flex mb-3">
+                            <a class="mx-auto" href="/web-preview/preview-update-submodules/"><img style="height:5rem" src="/web-preview/preview-update-submodules/assets/images/logos/OSG-logo.svg" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://path-cc.io"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/Logo_Round_Med.png" alt="OSG logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://pelicanplatform.org/"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/PelicanPlatformLogo_Icon.png" alt="Pelican logo"></a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="https://iris-hep.org/"><img style="height:4rem" src="/web-preview/preview-update-submodules/assets/images/logos/IRIS_HEP.png" alt="OSG logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                    <div class="row justify-content-between my-2">
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>About</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/introduction">Introduction</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/about/publications">Publications</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/code-of-conduct">Code of Conduct</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/acknowledging">Acknowledging OSG</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Services</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/ospool/">Open Science Pool</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/osdf">Open Science Data Federation</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/services/access-point">OSG-Operated Access Points</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Documentation</th></tr>
+                                
+                                <tr><td><a href="https://portal.osg-htc.org">User</a></td></tr>
+                                
+                                <tr><td><a href="https://osg-htc.org/docs/">System Admin</a></td></tr>
+                                
+                                <tr><td><a href="https://osg-htc.org/security/">Security</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                        <div class="col-6 col-lg-4 col-xl-3 my-2">
+                            <table>
+                                <tr><th>Engagement</th></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/spotlight.html">User Spotlights</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/news.html">News</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/events.html">Events</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/presentations.html">Presentations</a></td></tr>
+                                
+                                <tr><td><a href="/web-preview/preview-update-submodules/newsletter.html">Newsletter</a></td></tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="row py-5">
+            <div class="col text-center">
+                This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Grant Nos. 2030508 and 1836650. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. <br />
+            </div>
+        </div>
+    </div>
+</footer>
+
+  </body>
+</html>
